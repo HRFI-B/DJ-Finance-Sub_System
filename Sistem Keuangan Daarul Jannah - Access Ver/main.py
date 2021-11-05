@@ -5,7 +5,7 @@ import pyodbc
 
 app = Flask(__name__)
 
-conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\ihzaf\OneDrive\Documents\Project\Sistem Keuangan Daarul Jannah - Access Ver\sk_dj.accdb;')
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\ihzaf\OneDrive\Documents\Project\DJ-Finance-Sub_Sistem\Sistem Keuangan Daarul Jannah - Access Ver\Database\sk_dj.accdb;')
 cursor = conn.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
