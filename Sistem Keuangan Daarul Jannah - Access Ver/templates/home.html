@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block head%}
+
+{% endblock %}
+
+{% block body %}
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/login">Logout</a>
+    {% if Otoritas == "admin":%}
+      <a href="/create_account">create account</a>
+    {% endif %}
+  </div>
+  <nav class="heading">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Sistem Keuangan Daarul Jannah - Home</span>
+  </nav>
+  
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  
+  </script>
+<div class="content">
+  <a href="/pengecekan_pembayaran_siswa">
+    <svg width="400" height="110" id="rect">
+      <rect width="300" height="100" style="fill:#2c2c2c;stroke-width:3;stroke:rgb(0,0,0)"/>
+    </svg>
+  </a>
+  
+</div>
+{% endblock %}
+
