@@ -1,5 +1,4 @@
 from flask import Flask,render_template,url_for, request,jsonify
-from flask_mysqldb import MySQL
 from werkzeug.utils import redirect
 import pyodbc
 
@@ -76,4 +75,4 @@ def home():
         return render_template('home.html')
 
 if __name__ == "__main__":
-    app.run(host='192.168.0.145', port=5000, debug=True)
+    app.run(host='192.168.0.145', port=8080, debug=True)
