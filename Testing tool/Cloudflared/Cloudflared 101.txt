@@ -1,0 +1,2 @@
+1. Run Powershell on Cloudflared.exe path
+2. run ".\cloudflared tunnel --url (the url)"
