@@ -13,6 +13,7 @@ def function():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    log_stat = ""
     if request.method == 'POST':
         id = request.form['ID']
         password = request.form['Password']
@@ -39,14 +40,19 @@ def login():
                 print("\nLogin Success as ", end = '')
                 print(Otoritas, end=' - ')
                 print(request.remote_addr)
+                log_stat= "true"
                 return redirect('/home')
 
             elif Verify_ID == None:
                 print("\nWrong ID!")
-                return redirect('/login')
+                if log_stat == "" or log_stat == "false":
+                    log_stat = "false"
+                    return redirect('/login')
             elif not Verify_Pass == password:
                 print("\nWrong Password!")
-                return redirect('/login')
+                if log_stat == "" or log_stat == "false":
+                    log_stat = "false"
+                    return redirect('/login')
 
         except ValueError:
             return 'There was an issue'
@@ -62,8 +68,12 @@ def pengecekan_pembayaran_siswa():
         result = cursor.fetchall()
         for x in result:
             nama = x[0]
-        print(nama)
-        return render_template('cek_pembayaran.html')
+        if not nama == None:
+            print(nama)
+            return render_template('cek_pembayaran.html')
+        else:
+            print("Wrong ID")
+            return render_template('cek_pembayaran.html')
     else:
         return render_template('cek_pembayaran.html')
 
@@ -74,5 +84,5 @@ def home():
     else:
         return render_template('home.html')
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     app.run(host='192.168.0.145', port=8080, debug=True)
