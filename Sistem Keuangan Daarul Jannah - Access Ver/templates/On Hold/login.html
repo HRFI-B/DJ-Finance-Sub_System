@@ -4,43 +4,30 @@
 {% block head%}
 
 {% endblock %}
-
 {% block body %}
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active" style="color: #f6f6f6;"> Sign In </h2>
+      <!-- <h2 class="inactive underlineHover">Sign Up </h2> -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <!-- Icon tag here -->
+      </div>
+  
+      <!-- Login Form -->
+      <form action="/login" method="POST">
+        <input type="text" id="ID" class="fadeIn second" name="ID" placeholder="ID">
+        <input type="text" id="Password" class="fadeIn third" name="Password" placeholder="Password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
+      </div>
+  
+    </div>
   </div>
-  <nav class="heading">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Sistem Keuangan Daarul Jannah - Login</span>
-  </nav>
-  
-  <script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
-  </script>
-<div class="content">
-    <form action="/login" method="POST">
-    <pre>
-    <h2>Login</h2>
-    <br>
-    ID 
-    <input type="text" name="ID" id="ID" style="width: 400px; height: 25px;">
-    <br>
-    Password  
-    <input type="text" name="Password" id="Password" style="width: 400px; height: 25px;">
-    <br>
-    <input type="submit" value="Login" >
-    </pre>
-    </form>
-    
-</div>
 {% endblock %}
-
