@@ -15,23 +15,23 @@ def function():
 def login():
     log_stat = ""
     if request.method == 'POST':
-        id = request.form['ID']
-        password = request.form['Password']
+        id = request.form['nip']
+        password = request.form['password']
         try:
             Verify_ID = None
             Verify_Pass = None
 
-            cursor.execute(f'SELECT ID FROM account where ID = \'{id}\'')
+            cursor.execute(f'SELECT NIP FROM pegawai where NIP = \'{id}\'')
             result = cursor.fetchall()
             for x in result:
                 Verify_ID = x[0]
 
-            cursor.execute(f'SELECT password FROM account where ID = \'{id}\'')
+            cursor.execute(f'SELECT Password FROM pegawai where NIP = \'{id}\'')
             result = cursor.fetchall()
             for x in result:
                 Verify_Pass = x[0]
 
-            cursor.execute(f'SELECT Otoritas FROM account where ID = \'{id}\'')
+            cursor.execute(f'SELECT Otoritas FROM pegawai where NIP = \'{id}\'')
             result = cursor.fetchall()
             for x in result:
                 Otoritas = x[0]

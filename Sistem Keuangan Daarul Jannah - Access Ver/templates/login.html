@@ -1,17 +1,21 @@
 <!DOCTYPE html>
+{% extends 'base.html'%}
 <html>
     <head>
+      {%block head%}
         <link rel="icon" href="Image/Icon.png">
         <link rel="stylesheet" href="CSS/login-style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
         <title>Login Page</title>
+      {%endblock%}
     </head>
     <body>
+      {%block body%}
         <div class = "container">
             <img src = "Image/logo-sekolah.png">
-            <form>
+            <form action="/login" method="POST">
                 <label class="nip">NIP</label>
                 <input type="text" maxlength="16" name="nip"><br>
                 <label class="password">Kata Sandi</label>
@@ -23,5 +27,6 @@
                 </div>
             </form>
         </div>
+      {%endblock%}
     </body>
 </html>
