@@ -14,7 +14,7 @@
     <body>
       {%block body%}
         <div class = "container">
-            <img src = "Image/logo-sekolah.png">
+            <img src = "{{ url_for('static', filename='logo-sekolah.png') }}">
             <form action="/login" method="POST">
                 <label class="nip">NIP</label>
                 <input type="text" maxlength="16" name="nip"><br>
