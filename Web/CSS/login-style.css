@@ -13,7 +13,7 @@ body{
 .container{
     /* login-container */
 
-    position: absolute;
+    position: relative;
     width: 418px;
     height: 470px;
     left: 559px;
@@ -76,63 +76,62 @@ body{
     line-height: 28px;
 }
 
-.con-box{
-    /* Rectangle 1 */
-
+.container form button{
     position: absolute;
+    width: 418px;
     height: 78px;
-    left: 0%;
-    right: 0%;
-    bottom: -78px;
-
-    /* fill color1 */
-
-    background: #056A31;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-}
-
-.box-btn{
-    /* Button */
-
-    position: absolute;
-    height: 78px;
-    left: -16px;
-    right: -16px;
+    left: 0px;
+    right: 0px;
     bottom: 0px;
+    clip: initial;
+
 
     /* outline1 */
 
-    border: 1px solid #D1D1D1;
+    border: 1px solid #056A31;
     box-sizing: border-box;
-}
-
-.btn{
-    /* Rectangle 1 */
-
-    position: absolute;
-    height: 78px;
-    left: 0%;
-    right: 0%;
-    bottom: -78px;
-
-    /* fill color1 */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    box-shadow: 0 0 2px 0px #056A31 inset, 0 0 1px 0px #056A31;
 
     background: #056A31;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-    }
-
-.text{
-    position: absolute;
-    width: 54px;
-    height: 18px;
-    left: calc(50% - 54px/2 - 0.7px);
-    top: calc(50% - 18px/2 - 0.56px);
 
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
     line-height: 18px;
+    letter-spacing: 0.1em;
+    /* identical to box height, or 129% */
+
+    text-align: center;
+    color:white
+    
+}
+
+.container form button:hover{
+    background-color: white;
+    border-color: #056A31;
+    color:#056A31
+}
+
+
+
+.text{
+    /* Rectangle 1 */
+
+    position: absolute;
+    height: 78px;
+    left: 0%;
+    right: 0%;
+    bottom: -78px;
+
+    /* fill color1 */
+
+    background: #056A31;
+    transform: matrix(1, 0, 0, -1, 0, 0);
     /* identical to box height, or 129% */
 
     display: flex;
@@ -186,3 +185,27 @@ body{
 
     color: #000000;
 }
+
+.footer{
+    position: fixed;
+    width: 1554px;
+    height: 49px;
+    left: -9px;
+    top: 673px;
+}
+
+.footer{
+    position: fixed;
+    width: 287px;
+    height: 21px;
+    left: 9px;
+    top: 673px;
+    
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */ 
+    color: rgba(255, 255, 255, 0.22);
+    }
