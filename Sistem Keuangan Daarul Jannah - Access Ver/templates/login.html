@@ -3,7 +3,8 @@
 <html>
     <head>
       {%block head%}
-        <link rel="icon" href="Image/Icon.png">
+        <link rel="icon" href="{{ url_for('static', filename='logo-sekolah.png') }}">
+        <link rel="stylesheet" href="CSS/login-style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
@@ -15,17 +16,42 @@
         <div class = "container">
             <img src = "{{ url_for('static', filename='logo-sekolah.png') }}">
             <form action="/login" method="POST">
-                <label class="nip">NIP</label>
-                <input type="text" maxlength="16" name="nip"><br>
-                <label class="password">Kata Sandi</label>
-                <input type="password" name="password"><br>
-                <div class = "box-btn">
-                    <div class = "btn">
-                        <input id="submit-btn" type="submit" name="submit" value="Masuk" class="text"/>
-                    </div>
-                </div>
+              <label class="nip">NIP</label>
+              <input type="text" maxlength="16" name="nip"><br>
+              <label class="password">Kata Sandi</label>
+              <input type="password" name="password">
+              <button type="submit">Masuk</button>
             </form>
         </div>
+        <div class = "footer">
+          <p>Copyright © 2021 Sekolah Daarul Jannah</p>
+      </div>
       {%endblock%}
     </body>
 </html>
+
+<!-- <html>
+  <head>
+      <link rel="icon" href="Image/Icon.png">
+      <link rel="stylesheet" href="CSS/login-style.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+      <title>Login Page</title>
+  </head>
+  <body>
+      <div class = "container">
+          <img src = "Image/logo-sekolah.png">
+          <form action = "Page/Dashboard.html">
+              <label class="nip">NIP</label>
+              <input type="text" maxlength="16" name="nip"><br>
+              <label class="password">Kata Sandi</label>
+              <input type="password" name="password">
+              <button type="submit">Masuk</button>
+          </form>
+      </div>
+      <div class = "footer">
+          <p>Copyright © 2021 Sekolah Daarul Jannah</p>
+      </div>
+  </body>
+</html> -->
