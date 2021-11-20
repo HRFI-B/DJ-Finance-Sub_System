@@ -1,13 +1,16 @@
 # library import
-from flask import Flask,render_template,url_for, request,jsonify
+from flask import Flask,render_template,url_for, request,jsonify,session
 from werkzeug.utils import redirect
 import pyodbc
+# from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 #inisialisasi variabel app
+# login_manager = LoginManager()
 app = Flask(__name__)
+# login_manager.init_app(app)
 
 #Koneksi ke basis data
-conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\ihzaf\OneDrive\Documents\Project\DJ-Finance-Sub_Sistem\Sistem Keuangan Daarul Jannah - Access Ver\Database\sk_dj.accdb;')
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Database\sk_dj.accdb;')
 cursor = conn.cursor()
 
 #Direct to /login
@@ -17,10 +20,10 @@ def function():
 
 #Backend laman Login
 @app.route('/login', methods=['POST', 'GET'])
-def login():
-    log_stat = ""
+def login():       
     #Pengambilan data dari Form Login.html (NIP, Password)
     if request.method == 'POST':
+        session.pop('id', None)
         id = request.form['nip']
         password = request.form['password']
         try:
@@ -50,30 +53,26 @@ def login():
                 print("\nLogin Success as ", end = '')
                 print(Otoritas, end=' - ')
                 print(request.remote_addr)
-                log_stat= "true"
+                session['id'] = Verify_ID
                 #Pengalihan ke laman home
-                return redirect('/home')
+                return redirect(url_for('home'))
 
             #Algoritma ketika NIP tidak ditemukan
             elif Verify_ID == None:
                 print("\nWrong ID!")
-                if log_stat == "" or log_stat == "false":
-                    log_stat = "false"
-                    return redirect('/login')
+                return redirect(url_for('login'))
                 
             #Algoritma ketika NIP tidak ditemukan
             elif not Verify_Pass == password:
                 print("\nWrong Password!")
-                if log_stat == "" or log_stat == "false":
-                    log_stat = "false"
-                    return redirect('/login')
+                return redirect(url_for('login'))
         
         #jika ada error dalam masukan data
         except ValueError:
             return 'There was an issue'
     else:
         #Render login.html jika ada request dari client
-        return render_template('login.html')
+        return render_template('Login.html')
 
 #Backend laman pengecekan pembayaran siswa
 @app.route('/pengecekan_pembayaran_siswa', methods=['POST', 'GET'])
@@ -105,4 +104,7 @@ def home():
 
 #run program
 if __name__ == "__main__": 
+    # app.secret_key = 'super secret key'
+    # app.config["SESSION_PERMANENT"] = False
+    # app.config["SESSION_TYPE"] = "filesystem"
     app.run(host='192.168.0.145', port=8080, debug=True)
