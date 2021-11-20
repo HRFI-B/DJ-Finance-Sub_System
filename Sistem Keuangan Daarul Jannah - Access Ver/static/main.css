@@ -2,11 +2,9 @@ body{
     /* LOGIN-SCREEN */
 
     position: relative;
-    width: 1536px;
-    height: 722px;
-
     /* Fill color2 */
-
+    min-width: 100px;
+    overflow: hidden;
     background: #07361B;
 }
 
