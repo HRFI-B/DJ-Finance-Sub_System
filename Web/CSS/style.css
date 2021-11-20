@@ -7,6 +7,10 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 
+.h1 {
+  size: 10px;
+}
+
 .img {
   /* Logo-Sekolah*/
   position: relative;
@@ -64,9 +68,6 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(13, 181, 18, 1) !important;
+  background-color: rgba(13, 181, 18, 1) !important;
   color: white;
-  
 }
-
-/*Dashboard Style*/
