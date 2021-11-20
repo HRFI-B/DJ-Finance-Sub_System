@@ -43,6 +43,10 @@ body {
     0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
 }
 
+.form-floating{
+    top: 40px;
+}
+
 .btn {
   background-color: #056a31 !important;
   color: white;
