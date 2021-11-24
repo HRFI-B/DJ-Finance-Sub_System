@@ -54,6 +54,11 @@ html, body {
     border-bottom-right-radius: 10px;
 }
 
+span {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
+
 .img{
     padding-top: 5.10rem;
 }
