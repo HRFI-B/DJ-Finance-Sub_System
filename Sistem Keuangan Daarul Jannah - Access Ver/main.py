@@ -23,7 +23,7 @@ def function():
 def login():       
     #Pengambilan data dari Form Login.html (NIP, Password)
     if request.method == 'POST':
-        session.pop('id', None)
+        # session.pop('id', None)
         id = request.form['nip']
         password = request.form['password']
         try:
@@ -53,7 +53,7 @@ def login():
                 print("\nLogin Success as ", end = '')
                 print(Otoritas, end=' - ')
                 print(request.remote_addr)
-                session['id'] = Verify_ID
+                # session['id'] = Verify_ID
                 #Pengalihan ke laman home
                 return redirect(url_for('home'))
 
