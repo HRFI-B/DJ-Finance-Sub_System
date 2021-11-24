@@ -16,6 +16,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -31,16 +32,16 @@
   <div class="card mx-auto menu1 " style="width: 18rem;">
   <a href="ubahdata.html">
   <div class="card-body">
-  <img src="Image/fa-solid_user-edit.png" class="card-img-overlay">
+  <img src="{{ url_for('static', filename='fa-solid_user-edit.png') }}" class="card-img-overlay">
   <p class="card-text">Ubah Data<br>Siswa</p>
   </div>
   </a>
   </div>
 
   <div class="card mx-auto menu2" style="width: 18rem;">
-  <a href="cekpembayaran.html">
+  <a href="/pengecekan_pembayaran_siswa">
   <div class="card-body">
-  <img src="Image/fa-solid_user-check.png" class="card-img-overlay">
+  <img src="{{ url_for('static', filename='fa-solid_user-check.png') }}" class="card-img-overlay">
   <p class="card-text">Cek Pembayaran<br>Siswa</p>
   </div>
   </a>
