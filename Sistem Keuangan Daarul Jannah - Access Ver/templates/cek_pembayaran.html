@@ -3,6 +3,9 @@
 
 {% block head%}
 <title>Cek Pembayaran - Sistem Pembayaran DJ</title>
+<script>
+  document.getElementById('judul').innerHTML = "Cek Pembayaran";
+</script>
 
 <!--Font-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,17 +29,17 @@
 <h1 class = "text-center h1">Sistem Cek Pembayaran<br>Sekolah Daarul Jannah</h1>
 
 <!--Search Bar-->
-<div class="input-group mb-3 searchbar-pos mx-auto">
-  <span class="input-group-addon card shadow">
-      <img src="{{ url_for('static', filename='eva_search-fill.png') }}">
-  </span>
-  <!-- <form method="post" action="/pengecekan_pembayaran_siswa"> -->
-  <input type="text" class="form-control searchbar" placeholder="Ketik NIS atau Nama Siswa" aria-label="nis-siswa" aria-describedby="basic-addon2" id="nis">
-  <div class="input-group-append">
-    <button class="btn btn-success shadow" type="button">Cari</button>
+<form method="POST" action="/pengecekan_pembayaran_siswa" >
+  <div class="input-group mb-3 searchbar-pos mx-auto">
+    <span class="input-group-addon card shadow">
+        <img src="{{ url_for('static', filename='eva_search-fill.png') }}">
+    </span>
+    <input type="text" class="form-control searchbar" placeholder="Ketik NIS atau Nama Siswa" aria-label="nis-siswa" aria-describedby="basic-addon2" name="nis">
+    <div class="input-group-append">
+      <button class="btn btn-success shadow" type="submit">Cari</button>
+    </div>
   </div>
-  
-</div>
+</form>
 
 <!-- Footer -->
 <footer class="bg-light text-center text-lg-start footer">

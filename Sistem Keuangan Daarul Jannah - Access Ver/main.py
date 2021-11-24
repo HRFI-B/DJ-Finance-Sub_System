@@ -77,18 +77,33 @@ def login():
 #Backend laman pengecekan pembayaran siswa
 @app.route('/pengecekan_pembayaran_siswa', methods=['POST', 'GET'])
 def pengecekan_pembayaran_siswa():
+    #Jika ada aksi metode post dari front end
     if request.method == 'POST':
+        #Penarikan variabel nis dari form ke variabel python
         nis = request.form['nis']
-
-        cursor.execute(f'SELECT Nama FROM data_siswa where nis = \'{nis}\'')
+        #Pengambilan data dari database (siswa_sd)
+        cursor.execute(f'SELECT Nama FROM siswa_sd where nis = \'{nis}\'')
         result = cursor.fetchall()
+        #jika tidak ditemukan nis yang dicari di tabel siswa_sd, pencarian dilanjutkan ke tabel siswa_smp
+        if len(result) == 0:
+            cursor.execute(f'SELECT Nama FROM siswa_smp where nis = \'{nis}\'')
+            result = cursor.fetchall()
+        #jika tidak ditemukan nis yang dicari di tabel siswa_smp, pencarian dilanjutkan ke tabel siswa_tk    
+        if len(result) == 0:
+            cursor.execute(f'SELECT Nama FROM siswa_tk where nis = \'{nis}\'')
+            result = cursor.fetchall()
+        #konversi bentuk array ke variabel string
         for x in result:
             nama = x[0]
-        if not nama == None:
-            print(nama)
-            return render_template('cek_pembayaran.html')
-        else:
-            print("Wrong ID")
+    
+        try:
+            if not nama == None:
+                print(nama)
+                return render_template('cek_pembayaran.html')
+            else:
+                print("Wrong ID")
+                return render_template('cek_pembayaran.html')
+        except:
             return render_template('cek_pembayaran.html')
     else:
         return render_template('cek_pembayaran.html')

@@ -71,6 +71,10 @@ html, body {
 
 }
 
+span {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
 
 /*input[type="text"]::placeholder{
     padding-left:20px;

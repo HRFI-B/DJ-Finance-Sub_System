@@ -80,16 +80,28 @@ def pengecekan_pembayaran_siswa():
     if request.method == 'POST':
         nis = request.form['nis']
 
-        cursor.execute(f'SELECT Nama FROM data_siswa where nis = \'{nis}\'')
-        result = cursor.fetchall()
+        try:
+            cursor.execute(f'SELECT Nama FROM siswa_sd where nis = \'{nis}\'')
+            result = cursor.fetchall()
+            if result == None:
+                cursor.execute(f'SELECT Nama FROM siswa_smp where nis = \'{nis}\'')
+                result = cursor.fetchall()
+                if result == None:
+                    cursor.execute(f'SELECT Nama FROM siswa_tk where nis = \'{nis}\'')
+                    result = cursor.fetchall()
+        except:
+            pass
         for x in result:
             nama = x[0]
+        # try:
         if not nama == None:
             print(nama)
             return render_template('cek_pembayaran.html')
         else:
             print("Wrong ID")
             return render_template('cek_pembayaran.html')
+        # except:
+        #     return render_template('cek_pembayaran.html')
     else:
         return render_template('cek_pembayaran.html')
 
