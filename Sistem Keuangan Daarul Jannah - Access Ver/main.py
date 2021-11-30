@@ -20,7 +20,8 @@ def function():
 
 #Backend laman Login
 @app.route('/login', methods=['POST', 'GET'])
-def login():       
+def login():
+    print("\n")       
     #Pengambilan data dari Form Login.html (NIP, Password)
     if request.method == 'POST':
         # session.pop('id', None)
@@ -77,6 +78,7 @@ def login():
 #Backend laman pengecekan pembayaran siswa
 @app.route('/pengecekan_pembayaran_siswa', methods=['POST', 'GET'])
 def pengecekan_pembayaran_siswa():
+    print("\n")
     #Jika ada aksi metode post dari front end
     if request.method == 'POST':
         #Penarikan variabel nis dari form ke variabel python
@@ -112,7 +114,7 @@ def pengecekan_pembayaran_siswa():
 @app.route('/home', methods=['POST', 'GET'])
 def home():
     if request.method == 'POST':
-        pass
+        print("\n")
     else:
         #Render home.html jika ada request dari client
         return render_template('home.html')
