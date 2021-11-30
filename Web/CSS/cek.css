@@ -5,7 +5,7 @@ html, body {
 
 .header{
     position: sticky;
-    background-color: #056A31;
+    background-color: 056A31;
 }
 
 .footer{
@@ -52,11 +52,11 @@ html, body {
     border-top-left-radius: 0px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    transition: 0.5s ease;
 }
 
-span {
-    border-top-left-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
+.btn:hover{
+    background-color:#07361B;
 }
 
 .img{
@@ -81,6 +81,57 @@ span {
     border-bottom-left-radius: 10px !important;
 }
 
-/*input[type="text"]::placeholder{
-    padding-left:20px;
+.logo-header{
+    position: flex;
+    margin-right: 42rem !important;
 }
+
+
+.navbar{
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    height:75px !important;
+}
+
+.box-menu{
+        border: none;
+        background-color: 056A31 !important;
+        color: white;
+        padding: 18px 18px;
+        font-size: 16px;
+        cursor: pointer;
+
+}
+.user-box{
+    /* user-box */
+
+    position: flex;
+    width: 213px;
+    height: 75px;
+    left: 1323px;
+    top: 0px;
+
+    /* Fill color2 */
+
+    background: #07361B;
+}
+
+.nama{
+    color: white;
+    weight: bold;
+    text-align: right;
+    padding-right: 60px;
+    padding-top: 14px;
+}
+
+
+.fa-user-circle{
+    position: absolute;
+    color: white;
+    font-size: 38px;
+    display: inline-block;
+    margin-left:10.5rem;
+    margin-top: 1.15rem;
+}
+
+
