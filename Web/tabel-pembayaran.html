@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Cek Pembayaran - Sistem Pembayaran DJ</title>
+        <title>Dashboard - Sistem Pembayaran DJ</title>
         <!--Font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,11 +14,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
         <!-- CSS Custom -->
-        <link rel="stylesheet" href="CSS/cek.css">
+        <link rel="stylesheet" href="CSS/tabel.css">
 
         <link rel="icon" type="image/png" href="Image/Icon1.png">
         <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script>
-
+        
     </head>
 
     <body>
@@ -36,24 +36,53 @@
             </div>
         </nav>
 
-        <h1 class = "text-center h1">Sistem Cek Pembayaran<br>Sekolah Daarul Jannah</h1>
-
-        <!--Search Bar-->
-        <form action="tabel-pembayaran.html">
-                <div class="input-group mb-3 searchbar-pos mx-auto">
-                <span class="input-group-addon card shadow">
-                    <img src="Image/eva_search-fill.png">
-                </span>
-                <input type="text" class="form-control searchbar" placeholder="Ketik NIS atau Nama Siswa" aria-label="nis-siswa" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                <button class="btn btn-success shadow" type="button">Cari</button>
-                </div>
+        <div class="heading">
+            <a href="dashboard.html" class="">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <div class="head-pack">
+                <h1 class = "h1">Data Pembayaran Siswa/i Daarul Jannah</h1>
+                <h2>Sistem Cek Pembayaran Sekolah Daarul Jannah</h2>
             </div>
-        </form>
+        </div>
 
-        <!-- Footer -->
-        <footer class="bg-light text-center text-lg-start footer">
-            <div class="text-left p-3">
+        <div class="data-container mx-auto">
+            <div class="siswa-group">
+                <p>Data Siswa/i</p>
+                <div class="tabel-siswa">
+                </div>  
+            </div>
+
+            <p>Rincian Tagihan </p>
+            <div class="tabe-rincian">
+
+            </div>
+
+            <p>Histori Pembayaran Siswa/i</p>
+
+            <table class="tabel-histori mx-auto">
+                <th>Tanggal Pembayaran</th>
+                <th>SPP</th>
+                <th>Tabungan Wajib</th>
+                <th>Katering</th>
+                <th>Jemputan</th>
+                <th>Ekskul</th>
+                <th>Majelis Sekolah</th>
+            </table>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <footer class="bg-light text-center text-lg-start footer mt-auto">
+            <!-- Copyright -->
+            <div class="text-left p-3 mt-auto">
               Copyright © 2021 Sekolah Daarul Jannah
             </div>
         </footer>
