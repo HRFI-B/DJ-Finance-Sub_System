@@ -7,10 +7,6 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 
-.h1 {
-  size: 10px;
-}
-
 .img {
   /* Logo-Sekolah*/
   position: relative;
@@ -43,9 +39,10 @@ body {
     0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
 }
 
-.form-floating{
-    top: 40px;
+.form-floating {
+  top: 40px;
 }
+
 
 .btn {
   background-color: #056a31 !important;
@@ -71,3 +68,15 @@ body {
   background-color: rgba(13, 181, 18, 1) !important;
   color: white;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  background-color: #07361b !important;
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.form-control:focus {
+  border-color: #056a31;
+}
+

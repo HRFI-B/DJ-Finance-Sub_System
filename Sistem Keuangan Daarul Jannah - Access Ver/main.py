@@ -95,8 +95,6 @@ def pengecekan_pembayaran_siswa():
         if len(result) == 0:
             cursor.execute(f'SELECT Nama FROM siswa_tk where nis = \'{nis}\'')
             result = cursor.fetchall()
-        if len(result) == 0:
-            flash('Looks like you have changed your name!')
         #konversi bentuk array ke variabel string
         for x in result:
             nama = x[0]
