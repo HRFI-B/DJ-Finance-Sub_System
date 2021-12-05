@@ -2,6 +2,7 @@
 from flask import Flask,render_template,url_for, request,jsonify,session
 from werkzeug.utils import redirect
 import pyodbc
+from flask import flash
 # from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 #inisialisasi variabel app
@@ -54,7 +55,7 @@ def login():
                 print("\nLogin Success as ", end = '')
                 print(Otoritas, end=' - ')
                 print(request.remote_addr)
-                # session['id'] = Verify_ID
+                # session['id']=Verify_ID
                 #Pengalihan ke laman home
                 return redirect(url_for('home'))
 
@@ -94,6 +95,8 @@ def pengecekan_pembayaran_siswa():
         if len(result) == 0:
             cursor.execute(f'SELECT Nama FROM siswa_tk where nis = \'{nis}\'')
             result = cursor.fetchall()
+        if len(result) == 0:
+            flash('Looks like you have changed your name!')
         #konversi bentuk array ke variabel string
         for x in result:
             nama = x[0]
@@ -121,7 +124,7 @@ def home():
 
 #run program
 if __name__ == "__main__": 
-    # app.secret_key = 'super secret key'
-    # app.config["SESSION_PERMANENT"] = False
+    app.secret_key = 'super secret key'
+    app.config["SESSION_PERMANENT"] = False
     # app.config["SESSION_TYPE"] = "filesystem"
     app.run(host='192.168.0.145', port=8080, debug=True)
