@@ -39,7 +39,7 @@ a:hover{
 
 .box-menu{
         border: none;
-        background-color: 056A31 !important;
+        background-color: #056A31 !important;
         color: white;
         padding: 18px 18px;
         font-size: 16px;
@@ -79,7 +79,8 @@ a:hover{
 }
 
 .heading{
-
+    margin-right: auto !important;
+    margin-left: auto !important;
 }
 
 .head-pack{
@@ -142,15 +143,39 @@ a:hover{
     border-radius: 15px;
 }
 
+.foto-siswa{
+    position: flex;
+    width: 149px;
+    height: 183px;
+    left: 32px;
+    top: 32px;
+
+    background: url(.png);
+    border-radius: 15px !important;
+    padding-top: 20px;
+    padding-left: 20px; 
+    float: left;
+
+}
+
+.detail-siswa{
+    overflow: hidden;
+    padding-left:40px;
+    padding-top: 20px;
+}
+
+.detail-tagihan{
+    overflow: hidden;
+    padding-left:30px;
+    padding-top: 20px;
+}
 .tabel-rincian{
     /* Frame 2 */
 
     position: flex;
-    display: inline-block;
     width: 692px;
     height: 290px;
-    right: 38px;
-    top: 66px;
+    
 
     background: #FFFFFF;
     /* outline1 */
@@ -158,10 +183,11 @@ a:hover{
     border: 1px solid #CCCCCC;
     box-sizing: border-box;
     border-radius: 15px;
+    float: left;
+
 }
 
 .tabel-histori{
-    border: 1px solid;
     border-radius: 15px;
     width: 1309px;
     top: 418px;
@@ -173,4 +199,39 @@ a:hover{
     border: 1px solid #CCCCCC;
     box-sizing: border-box;
     border-radius: 15px;
+
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+.tabel-histori th{
+    align: center;
+}
+
+.siswa-group{
+    padding-top:30px;
+    padding-left: 40px;
+    float: left;
+}
+
+.rincian-group{
+    padding-top:30px;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.histori-group{
+    padding-top:30px;
+}
+
+.text{
+    font-weight: bold;
+}
+
+.text-histori{
+    padding-left: 40px;
+}
+
+.wrapper{
+    width: 100%;
 }

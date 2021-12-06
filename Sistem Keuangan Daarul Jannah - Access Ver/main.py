@@ -2,7 +2,14 @@
 from flask import Flask,render_template,url_for, request,jsonify,session
 from werkzeug.utils import redirect
 import pyodbc
-from flask import flash
+from datetime import *
+from konversi_bulan import convert_bln
+import time
+
+#get date
+current_date = date.today()
+datem = datetime.strptime(str(current_date), "%Y-%m-%d")
+
 # from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 #inisialisasi variabel app
@@ -97,19 +104,142 @@ def pengecekan_pembayaran_siswa():
             result = cursor.fetchall()
         #konversi bentuk array ke variabel string
         for x in result:
-            nama = x[0]
-    
+            nama = x[0] 
+            if nama == "":
+                nama = None
+            
         try:
             if not nama == None:
-                print(nama)
-                return render_template('cek_pembayaran.html')
+                nis = int(nis)
+                try:
+                    return redirect (url_for('.detail_pembayaran', nis=nis))
+                except:
+                    print("error accured")
             else:
                 print("Wrong ID")
                 return render_template('cek_pembayaran.html')
         except:
+            print("Something wrong just happen")
             return render_template('cek_pembayaran.html')
     else:
+        print("Wrong ID")
         return render_template('cek_pembayaran.html')
+
+@app.route('/detail_pembayaran/<nis>', methods=['POST', 'GET'])
+def detail_pembayaran(nis):
+    # try:
+    if request.method == 'POST':
+        return None
+    else:
+        bulan_sdh_dibayar=[]
+        bulan_x_bayar=[]
+        
+        
+        #Pengambilan data dari database (siswa_sd)
+        cursor.execute(f'SELECT * FROM siswa_sd where nis = \'{nis}\'')
+        data_siswa = cursor.fetchall()
+        if not len(data_siswa) == 0:
+            cursor.execute(f'SELECT * FROM pembayaran_spp_sd where nis = \'{nis}\'')
+            data_pembayaran_spp = cursor.fetchall()
+            for z in data_siswa:
+                temp3 = z.Status
+            print(temp3)
+            cursor.execute(f'SELECT Biaya FROM biaya_spp_sd where Katagori_siswa = \'{temp3}\'')
+            biaya_spp = cursor.fetchall()
+            for a in biaya_spp:
+                biaya_spp = a[0]
+            for x in data_pembayaran_spp:
+                temp = convert_bln(x.Untuk_bulan)
+                bulan_sdh_dibayar.append(temp)
+            cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\'')
+            temp2 = cursor.fetchall()
+            for y in temp2:
+                bulan_x_bayar.append(y.Tagihan_bulan)
+            for i in range(datem.month):
+                if not i+1 in bulan_sdh_dibayar:
+                    if not i+1 in bulan_x_bayar:
+                        cursor.execute(f'INSERT INTO tagihan_sd (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan) VALUES (\'{nis}\', \'{str(i+1)}\',\'SPP\',\'{biaya_spp}\')')
+                        conn.commit()
+                elif i+1 in bulan_sdh_dibayar:   
+                    try:
+                        cursor.execute(f'DELETE FROM tagihan_sd WHERE NIS =\'{nis}\' AND Tagihan_bulan =\'{str(i+1)}\'')
+                        conn.commit()
+                    except:
+                        pass
+            cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\'')
+            temp2 = cursor.fetchall()            
+        
+        #jika tidak ditemukan nis yang dicari di tabel siswa_sd, pencarian dilanjutkan ke tabel siswa_smp
+        if len(data_siswa) == 0:
+            cursor.execute(f'SELECT * FROM siswa_smp where nis = \'{nis}\'')
+            data_siswa = cursor.fetchall()
+            if not len(data_siswa) == 0:
+                cursor.execute(f'SELECT * FROM pembayaran_spp_smp where nis = \'{nis}\'')
+                data_pembayaran_spp = cursor.fetchall()
+                for z in data_siswa:
+                    temp3 = z.Status
+                cursor.execute(f'SELECT Biaya FROM biaya_spp_smp where Katagori_siswa = \'{temp3}\'')
+                biaya_spp = cursor.fetchall()
+                for a in biaya_spp:
+                    biaya_spp = a[0]
+                for x in data_pembayaran_spp:
+                    temp = convert_bln(x.Untuk_bulan)
+                    bulan_sdh_dibayar.append(temp)
+                cursor.execute(f'SELECT * FROM tagihan_smp where nis = \'{nis}\'')
+                temp2 = cursor.fetchall()
+                for y in temp2:
+                    bulan_x_bayar.append(y.Tagihan_bulan)
+                for i in range(datem.month):
+                    if not i+1 in bulan_sdh_dibayar:
+                        if not i+1 in bulan_x_bayar:
+                            cursor.execute(f'INSERT INTO tagihan_smp (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan) VALUES (\'{nis}\', \'{str(i+1)}\',\'SPP\',\'{biaya_spp}\')')
+                            conn.commit()
+                    elif i+1 in bulan_sdh_dibayar:   
+                        try:
+                            cursor.execute(f'DELETE FROM tagihan_smp WHERE NIS =\'{nis}\' AND Tagihan_bulan =\'{str(i+1)}\'')
+                            conn.commit()
+                        except:
+                            pass
+                cursor.execute(f'SELECT * FROM tagihan_smp where nis = \'{nis}\'')
+                temp2 = cursor.fetchall()                  
+        #jika tidak ditemukan nis yang dicari di tabel siswa_smp, pencarian dilanjutkan ke tabel siswa_tk    
+        if len(data_siswa) == 0:
+            cursor.execute(f'SELECT * FROM siswa_tk where nis = \'{nis}\'')
+            data_siswa = cursor.fetchall()
+            if not len(data_siswa) == 0:
+                cursor.execute(f'SELECT * FROM pembayaran_spp_tk where nis = \'{nis}\'')
+                data_pembayaran_spp = cursor.fetchall()
+                for z in data_siswa:
+                    temp3 = z.Status
+                cursor.execute(f'SELECT Biaya FROM biaya_spp_tk where Katagori_siswa = \'{temp3}\'')
+                biaya_spp = cursor.fetchall()
+                for a in biaya_spp:
+                    biaya_spp = a[0]
+                for x in data_pembayaran_spp:
+                    temp = convert_bln(x.Untuk_bulan)
+                    bulan_sdh_dibayar.append(temp)
+                cursor.execute(f'SELECT * FROM tagihan_tk where nis = \'{nis}\'')
+                temp2 = cursor.fetchall()
+                for y in temp2:
+                    bulan_x_bayar.append(y.Tagihan_bulan)
+                for i in range(datem.month):
+                    if not i+1 in bulan_sdh_dibayar:
+                        if not i+1 in bulan_x_bayar:
+                            cursor.execute(f'INSERT INTO tagihan_tk (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan) VALUES (\'{nis}\', \'{str(i+1)}\',\'SPP\',\'{biaya_spp}\')')
+                            conn.commit()
+                    elif i+1 in bulan_sdh_dibayar:   
+                        try:
+                            cursor.execute(f'DELETE FROM tagihan_tk WHERE NIS =\'{nis}\' AND Tagihan_bulan =\'{str(i+1)}\'')
+                            conn.commit()
+                        except:
+                            pass
+                cursor.execute(f'SELECT * FROM tagihan_tk where nis = \'{nis}\'')
+                temp2 = cursor.fetchall()                    
+            #Render tabel-pembayaran.html jika ada request dari client
+        return render_template('tabel-pembayaran.html', siswa=data_siswa, spp=data_pembayaran_spp, tagihan=temp2)
+    # except:
+        print("error")
+
 
 #Backend laman home
 @app.route('/home', methods=['POST', 'GET'])
@@ -120,9 +250,10 @@ def home():
         #Render home.html jika ada request dari client
         return render_template('home.html')
 
+
 #run program
 if __name__ == "__main__": 
-    app.secret_key = 'super secret key'
-    app.config["SESSION_PERMANENT"] = False
+    # app.secret_key = 'super secret key'
+    # app.config["SESSION_PERMANENT"] = False
     # app.config["SESSION_TYPE"] = "filesystem"
     app.run(host='192.168.0.145', port=8080, debug=True)
