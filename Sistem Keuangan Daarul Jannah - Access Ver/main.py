@@ -119,10 +119,9 @@ def pengecekan_pembayaran_siswa():
                 print("Wrong ID")
                 return render_template('cek_pembayaran.html')
         except:
-            print("Something wrong just happen")
+            print("Wrong ID")
             return render_template('cek_pembayaran.html')
     else:
-        print("Wrong ID")
         return render_template('cek_pembayaran.html')
 
 @app.route('/detail_pembayaran/<nis>', methods=['POST', 'GET'])
@@ -133,8 +132,6 @@ def detail_pembayaran(nis):
     else:
         bulan_sdh_dibayar=[]
         bulan_x_bayar=[]
-        
-        
         #Pengambilan data dari database (siswa_sd)
         cursor.execute(f'SELECT * FROM siswa_sd where nis = \'{nis}\'')
         data_siswa = cursor.fetchall()
@@ -249,7 +246,6 @@ def home():
     else:
         #Render home.html jika ada request dari client
         return render_template('home.html')
-
 
 #run program
 if __name__ == "__main__": 
