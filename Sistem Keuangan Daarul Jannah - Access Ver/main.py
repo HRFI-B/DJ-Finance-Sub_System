@@ -33,26 +33,26 @@ def login():
     #Pengambilan data dari Form Login.html (NIP, Password)
     if request.method == 'POST':
         # session.pop('id', None)
-        id = request.form['nip']
+        id = request.form['username']
         password = request.form['password']
         try:
             Verify_ID = None
             Verify_Pass = None
 
             #Pencocokan data NIP masukan dengan NIP di basis data
-            cursor.execute(f'SELECT NIP FROM pegawai where NIP = \'{id}\'')
+            cursor.execute(f'SELECT Username FROM app_user_account where Username = \'{id}\'')
             result = cursor.fetchall()
             for x in result:
                 Verify_ID = x[0]
 
             #Pencocokan data password masukan dengan password pegawai di basis data
-            cursor.execute(f'SELECT Password FROM pegawai where NIP = \'{id}\'')
+            cursor.execute(f'SELECT Password FROM app_user_account where Username = \'{id}\'')
             result = cursor.fetchall()
             for x in result:
                 Verify_Pass = x[0]
 
             #Pengambilan data otoritas pegawai di basis data
-            cursor.execute(f'SELECT Otoritas FROM pegawai where NIP = \'{id}\'')
+            cursor.execute(f'SELECT Otoritas FROM app_user_account where Username = \'{id}\'')
             result = cursor.fetchall()
             for x in result:
                 Otoritas = x[0]
@@ -140,7 +140,6 @@ def detail_pembayaran(nis):
             data_pembayaran_spp = cursor.fetchall()
             for z in data_siswa:
                 temp3 = z.Status
-            print(temp3)
             cursor.execute(f'SELECT Biaya FROM biaya_spp_sd where Katagori_siswa = \'{temp3}\'')
             biaya_spp = cursor.fetchall()
             for a in biaya_spp:
