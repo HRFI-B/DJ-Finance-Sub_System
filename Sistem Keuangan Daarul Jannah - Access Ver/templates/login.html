@@ -17,11 +17,6 @@
   </head>
   <body>
     {%block body%}
-    {% if log_stat == "false":%}
-    <script>
-      alert("Wrong ID/Password")
-    </script>
-    {% endif %}
     <div class="global-container">
       <div class="card login-form">
         <form action="/login" method="POST">

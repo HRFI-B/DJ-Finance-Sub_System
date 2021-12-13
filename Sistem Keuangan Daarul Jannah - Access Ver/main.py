@@ -1,5 +1,5 @@
 # library import
-from flask import Flask,render_template,url_for, request,jsonify,session
+from flask import Flask,render_template,url_for, request,jsonify,session,flash
 from werkzeug.utils import redirect
 import pyodbc
 from datetime import *
@@ -30,6 +30,7 @@ def function():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     print("\n")       
+    log_stat = None
     #Pengambilan data dari Form Login.html (NIP, Password)
     if request.method == 'POST':
         # session.pop('id', None)
@@ -79,6 +80,7 @@ def login():
         #jika ada error dalam masukan data
         except ValueError:
             return 'There was an issue'
+
     else:
         #Render login.html jika ada request dari client
         return render_template('Login.html')
