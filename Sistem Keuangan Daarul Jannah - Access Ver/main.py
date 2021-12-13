@@ -253,4 +253,4 @@ if __name__ == "__main__":
     # app.secret_key = 'super secret key'
     # app.config["SESSION_PERMANENT"] = False
     # app.config["SESSION_TYPE"] = "filesystem"
-    app.run(host='192.168.0.145', port=8080, debug=True)
+    app.run(host='127.0.0.0', port=80, debug=True)
