@@ -103,19 +103,6 @@ span {
         cursor: pointer;
 
 }
-.user-box{
-    /* user-box */
-
-    position: flex;
-    width: 213px;
-    height: 75px;
-    left: 1323px;
-    top: 0px;
-
-    /* Fill color2 */
-
-    background: #07361B;
-}
 
 .nama{
     color: white;
