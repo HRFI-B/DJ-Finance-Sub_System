@@ -24,66 +24,66 @@ cursor = conn.cursor()
 #Direct to /login
 @app.route('/', methods=['POST', 'GET'])
 def function():
-    return redirect('/login')
+    return redirect('/pengecekan_pembayaran_siswa')
 
-#Backend laman Login
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    print("\n")       
-    log_stat = None
-    #Pengambilan data dari Form Login.html (NIP, Password)
-    if request.method == 'POST':
-        # session.pop('id', None)
-        id = request.form['username']
-        password = request.form['password']
-        try:
-            Verify_ID = None
-            Verify_Pass = None
+# #Backend laman Login
+# @app.route('/login', methods=['POST', 'GET'])
+# def login():
+#     print("\n")       
+#     log_stat = None
+#     #Pengambilan data dari Form Login.html (NIP, Password)
+#     if request.method == 'POST':
+#         # session.pop('id', None)
+#         id = request.form['username']
+#         password = request.form['password']
+#         try:
+#             Verify_ID = None
+#             Verify_Pass = None
 
-            #Pencocokan data NIP masukan dengan NIP di basis data
-            cursor.execute(f'SELECT Username FROM app_user_account where Username = \'{id}\'')
-            result = cursor.fetchall()
-            for x in result:
-                Verify_ID = x[0]
+#             #Pencocokan data NIP masukan dengan NIP di basis data
+#             cursor.execute(f'SELECT Username FROM app_user_account where Username = \'{id}\'')
+#             result = cursor.fetchall()
+#             for x in result:
+#                 Verify_ID = x[0]
 
-            #Pencocokan data password masukan dengan password pegawai di basis data
-            cursor.execute(f'SELECT Password FROM app_user_account where Username = \'{id}\'')
-            result = cursor.fetchall()
-            for x in result:
-                Verify_Pass = x[0]
+#             #Pencocokan data password masukan dengan password pegawai di basis data
+#             cursor.execute(f'SELECT Password FROM app_user_account where Username = \'{id}\'')
+#             result = cursor.fetchall()
+#             for x in result:
+#                 Verify_Pass = x[0]
 
-            #Pengambilan data otoritas pegawai di basis data
-            cursor.execute(f'SELECT Otoritas FROM app_user_account where Username = \'{id}\'')
-            result = cursor.fetchall()
-            for x in result:
-                Otoritas = x[0]
+#             #Pengambilan data otoritas pegawai di basis data
+#             cursor.execute(f'SELECT Otoritas FROM app_user_account where Username = \'{id}\'')
+#             result = cursor.fetchall()
+#             for x in result:
+#                 Otoritas = x[0]
 
-            #Algoritma ketika NIP ditemukan di basis data dan password benar
-            if not Verify_ID == None and Verify_Pass == password:
-                print("\nLogin Success as ", end = '')
-                print(Otoritas, end=' - ')
-                print(request.remote_addr)
-                # session['id']=Verify_ID
-                #Pengalihan ke laman home
-                return redirect(url_for('home'))
+#             #Algoritma ketika NIP ditemukan di basis data dan password benar
+#             if not Verify_ID == None and Verify_Pass == password:
+#                 print("\nLogin Success as ", end = '')
+#                 print(Otoritas, end=' - ')
+#                 print(request.remote_addr)
+#                 # session['id']=Verify_ID
+#                 #Pengalihan ke laman home
+#                 return redirect(url_for('home'))
 
-            #Algoritma ketika NIP tidak ditemukan
-            elif Verify_ID == None:
-                print("\nWrong ID!")
-                return redirect(url_for('login'))
+#             #Algoritma ketika NIP tidak ditemukan
+#             elif Verify_ID == None:
+#                 print("\nWrong ID!")
+#                 return redirect(url_for('login'))
                 
-            #Algoritma ketika NIP tidak ditemukan
-            elif not Verify_Pass == password:
-                print("\nWrong Password!")
-                return redirect(url_for('login'))
+#             #Algoritma ketika NIP tidak ditemukan
+#             elif not Verify_Pass == password:
+#                 print("\nWrong Password!")
+#                 return redirect(url_for('login'))
         
-        #jika ada error dalam masukan data
-        except ValueError:
-            return 'There was an issue'
+#         #jika ada error dalam masukan data
+#         except ValueError:
+#             return 'There was an issue'
 
-    else:
-        #Render login.html jika ada request dari client
-        return render_template('Login.html')
+#     else:
+#         #Render login.html jika ada request dari client
+#         return render_template('Login.html')
 
 #Backend laman pengecekan pembayaran siswa
 @app.route('/pengecekan_pembayaran_siswa', methods=['POST', 'GET'])
@@ -240,13 +240,13 @@ def detail_pembayaran(nis):
 
 
 #Backend laman home
-@app.route('/home', methods=['POST', 'GET'])
-def home():
-    if request.method == 'POST':
-        print("\n")
-    else:
-        #Render home.html jika ada request dari client
-        return render_template('home.html')
+# @app.route('/home', methods=['POST', 'GET'])
+# def home():
+#     if request.method == 'POST':
+#         print("\n")
+#     else:
+#         #Render home.html jika ada request dari client
+#         return render_template('home.html')
 
 #run program
 if __name__ == "__main__": 
