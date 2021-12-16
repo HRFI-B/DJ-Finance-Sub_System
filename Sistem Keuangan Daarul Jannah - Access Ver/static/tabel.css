@@ -235,3 +235,18 @@ a:hover{
 .wrapper{
     width: 100%;
 }
+
+.scrollable {
+    display: block;
+    height: 680px;
+    overflow-y: scroll;
+}
+
+th{
+    position: sticky;
+    top: 0;
+    background: white !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
