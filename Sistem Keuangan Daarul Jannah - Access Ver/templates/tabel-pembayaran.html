@@ -69,29 +69,31 @@
                 </div>
             </div>
         </div>
-
+  
         <div class="histori-group">
             <div class="text text-histori">Riwayat Pembayaran Siswa/i</div>
-            <table  class="table table borderless tabel-histori mx-auto">
-                <th>Tanggal Pembayaran</th>
-                <th>SPP</th>
-                <th>Tabungan Wajib</th>
-                <th>Katering</th>
-                <th>Jemputan</th>
-                <th>Ekskul</th>
-                <th>Majelis Sekolah</th>
-                {% for data_pembayaran_spp in spp%}
-                <tr>
-                    <td>{{data_pembayaran_spp.Waktu_pembayaran}}</td>
-                    <td>Rp.{{data_pembayaran_spp.Pembayaran}},-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <div class="scrollable">
+                    <table  class="table table borderless tabel-histori mx-auto">
+                        <th>Tanggal Pembayaran</th>
+                        <th>SPP</th>
+                        <th>Tabungan Wajib</th>
+                        <th>Katering</th>
+                        <th>Jemputan</th>
+                        <th>Ekskul</th>
+                        <th>Majelis Sekolah</th>
+                        {% for data_pembayaran_spp in spp%}
+                        <tr>
+                            <td>{{data_pembayaran_spp.Waktu_pembayaran}}</td>
+                            <td>Rp.{{data_pembayaran_spp.Pembayaran}},-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 
