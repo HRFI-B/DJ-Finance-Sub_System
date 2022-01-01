@@ -5,6 +5,7 @@ import pyodbc
 from datetime import *
 from konversi_bulan import convert_bln
 import time
+from db_update_tagihan import update_tagihan_sd
 
 #get date
 current_date = date.today()
