@@ -60,39 +60,44 @@
         <div class="rincian-group">
             <div class="text">Rincian Tagihan</div>
             <div class="tabel-rincian">
-                <div class="detail-tagihan">
-                    <ul>
-                        {% for tagihan_siswa in tagihan %}
-                        <li><b>SPP {{tagihan_siswa.Tagihan_bulan}}/2021 : </b> Rp.{{tagihan_siswa.Jumlah_tagihan}},-</li>
-                        {% endfor %}
-                    </ul>
+                <div class="scrollable2">
+                    <div class="detail-tagihan">
+                        <ul>
+                            {% for tagihan_siswa in tagihan %}
+                            <li><b>SPP {{tagihan_siswa.Tagihan_bulan}}/2021 : </b> Rp.{{tagihan_siswa.Jumlah_tagihan}},-</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
   
         <div class="histori-group">
             <div class="text text-histori">Riwayat Pembayaran Siswa/i</div>
-                <div class="scrollable">
-                    <table  class="table table borderless tabel-histori mx-auto">
-                        <th>Tanggal Pembayaran</th>
-                        <th>SPP</th>
-                        <th>Tabungan Wajib</th>
-                        <th>Katering</th>
-                        <th>Jemputan</th>
-                        <th>Ekskul</th>
-                        <th>Majelis Sekolah</th>
-                        {% for data_pembayaran_spp in spp%}
-                        <tr>
-                            <td>{{data_pembayaran_spp.Waktu_pembayaran}}</td>
-                            <td>Rp.{{data_pembayaran_spp.Pembayaran}},-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        {% endfor %}
-                </table>
+               <div class="tabel-histori mx-auto">
+                    <div class="scrollable1">
+                        <table  class="table table borderless tabel-hover mx-auto">
+                            <th>Tanggal Pembayaran</th>
+                            <th>SPP</th>
+                            <th>Tabungan Wajib</th>
+                            <th>Katering</th>
+                            <th>Jemputan</th>
+                            <th>Ekskul</th>
+                            <th>Majelis Sekolah</th>
+                            {% for data_pembayaran_spp in spp%}
+                            <tr>
+                                <td>{{data_pembayaran_spp.Waktu_pembayaran}}</td>
+                                <td>Rp.{{data_pembayaran_spp.Pembayaran}},-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                   </div>
+                </div>
             </div>
         </div>
     </div>
