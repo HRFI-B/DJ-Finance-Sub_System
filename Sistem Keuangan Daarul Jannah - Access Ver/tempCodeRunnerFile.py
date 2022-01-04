@@ -1,10 +1,11 @@
 # library import
-from flask import Flask,render_template,url_for, request,jsonify,session
+from flask import Flask,render_template,url_for, request,jsonify,session,flash
 from werkzeug.utils import redirect
 import pyodbc
 from datetime import *
 from konversi_bulan import convert_bln
 import time
+from db_update_tagihan import update_tagihan_sd
 
 #get date
 current_date = date.today()
@@ -24,64 +25,8 @@ cursor = conn.cursor()
 #Direct to /login
 @app.route('/', methods=['POST', 'GET'])
 def function():
-    return redirect('/login')
+    return redirect('/pengecekan_pembayaran_siswa')
 
-#Backend laman Login
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    print("\n")       
-    #Pengambilan data dari Form Login.html (NIP, Password)
-    if request.method == 'POST':
-        # session.pop('id', None)
-        id = request.form['nip']
-        password = request.form['password']
-        try:
-            Verify_ID = None
-            Verify_Pass = None
-
-            #Pencocokan data NIP masukan dengan NIP di basis data
-            cursor.execute(f'SELECT NIP FROM pegawai where NIP = \'{id}\'')
-            result = cursor.fetchall()
-            for x in result:
-                Verify_ID = x[0]
-
-            #Pencocokan data password masukan dengan password pegawai di basis data
-            cursor.execute(f'SELECT Password FROM pegawai where NIP = \'{id}\'')
-            result = cursor.fetchall()
-            for x in result:
-                Verify_Pass = x[0]
-
-            #Pengambilan data otoritas pegawai di basis data
-            cursor.execute(f'SELECT Otoritas FROM pegawai where NIP = \'{id}\'')
-            result = cursor.fetchall()
-            for x in result:
-                Otoritas = x[0]
-
-            #Algoritma ketika NIP ditemukan di basis data dan password benar
-            if not Verify_ID == None and Verify_Pass == password:
-                print("\nLogin Success as ", end = '')
-                print(Otoritas, end=' - ')
-                print(request.remote_addr)
-                # session['id']=Verify_ID
-                #Pengalihan ke laman home
-                return redirect(url_for('home'))
-
-            #Algoritma ketika NIP tidak ditemukan
-            elif Verify_ID == None:
-                print("\nWrong ID!")
-                return redirect(url_for('login'))
-                
-            #Algoritma ketika NIP tidak ditemukan
-            elif not Verify_Pass == password:
-                print("\nWrong Password!")
-                return redirect(url_for('login'))
-        
-        #jika ada error dalam masukan data
-        except ValueError:
-            return 'There was an issue'
-    else:
-        #Render login.html jika ada request dari client
-        return render_template('Login.html')
 
 #Backend laman pengecekan pembayaran siswa
 @app.route('/pengecekan_pembayaran_siswa', methods=['POST', 'GET'])
@@ -119,10 +64,9 @@ def pengecekan_pembayaran_siswa():
                 print("Wrong ID")
                 return render_template('cek_pembayaran.html')
         except:
-            print("Something wrong just happen")
+            print("Wrong ID")
             return render_template('cek_pembayaran.html')
     else:
-        print("Wrong ID")
         return render_template('cek_pembayaran.html')
 
 @app.route('/detail_pembayaran/<nis>', methods=['POST', 'GET'])
@@ -133,8 +77,6 @@ def detail_pembayaran(nis):
     else:
         bulan_sdh_dibayar=[]
         bulan_x_bayar=[]
-        
-        
         #Pengambilan data dari database (siswa_sd)
         cursor.execute(f'SELECT * FROM siswa_sd where nis = \'{nis}\'')
         data_siswa = cursor.fetchall()
@@ -143,7 +85,6 @@ def detail_pembayaran(nis):
             data_pembayaran_spp = cursor.fetchall()
             for z in data_siswa:
                 temp3 = z.Status
-            print(temp3)
             cursor.execute(f'SELECT Biaya FROM biaya_spp_sd where Katagori_siswa = \'{temp3}\'')
             biaya_spp = cursor.fetchall()
             for a in biaya_spp:
@@ -242,18 +183,17 @@ def detail_pembayaran(nis):
 
 
 #Backend laman home
-@app.route('/home', methods=['POST', 'GET'])
-def home():
-    if request.method == 'POST':
-        print("\n")
-    else:
-        #Render home.html jika ada request dari client
-        return render_template('home.html')
-
+# @app.route('/home', methods=['POST', 'GET'])
+# def home():
+#     if request.method == 'POST':
+#         print("\n")
+#     else:
+#         #Render home.html jika ada request dari client
+#         return render_template('home.html')
 
 #run program
 if __name__ == "__main__": 
     # app.secret_key = 'super secret key'
     # app.config["SESSION_PERMANENT"] = False
     # app.config["SESSION_TYPE"] = "filesystem"
-    app.run(host='192.168.0.145', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True)

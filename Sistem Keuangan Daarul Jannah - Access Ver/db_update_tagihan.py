@@ -32,7 +32,17 @@ def update_tagihan_sd():
                             biaya_spp = cursor.fetchall()
                             for a in biaya_spp:
                                 biaya_spp_temp = a[0]
-                            update_tagihan_spp(y.NIS, i, biaya_spp_temp, tagihan_sekolah = "tagihan_sd")
+                            try:
+                                cursor.execute(f'SELECT Tagihan_bulan, Tagihan_tahun FROM tagihan_sd where NIS = \'{y.NIS}\'')
+                                data_tagihan = cursor.fetchall()
+                                for temp in data_tagihan:
+                                    tahun_tagihan = temp.Tagihan_tahun
+                                    bulan_tagihan = temp.Tagihan_bulan
+                                
+                                if not tahun_tagihan == Tahun_Pembayaran and not bulan_tagihan == i:
+                                    update_tagihan_spp(y.NIS, i, biaya_spp_temp, Tahun_Pembayaran, tagihan_sekolah = "tagihan_sd")
+                            except:
+                                update_tagihan_spp(y.NIS, i, biaya_spp_temp, Tahun_Pembayaran, tagihan_sekolah = "tagihan_sd")
                 else:
                     for i in range(7,13):
                         if convert_bln(y.Untuk_bulan) == i:
@@ -49,10 +59,25 @@ def update_tagihan_sd():
                             biaya_spp = cursor.fetchall()
                             for a in biaya_spp:
                                 biaya_spp_temp = a[0]
-                            update_tagihan_spp(y.NIS, i, biaya_spp_temp, tagihan_sekolah = "tagihan_sd")
+                            # try:
+                            #     cursor.execute(f'SELECT Tagihan_bulan, Tagihan_tahun FROM tagihan_sd where NIS = \'{y.NIS}\'')
+                            #     data_tagihan = cursor.fetchall()
+                            #     print(data_tagihan)
+                            #     for temp in data_tagihan:
+                            #         tahun_tagihan = temp.Tagihan_tahun
+                            #         bulan_tagihan = temp.Tagihan_bulan
+                                
+                            #     if not tahun_tagihan == Tahun_Pembayaran and not bulan_tagihan == i:
+                            #         print("try")
+                            #         update_tagihan_spp(y.NIS, i, biaya_spp_temp, Tahun_Pembayaran, tagihan_sekolah = "tagihan_sd")
+                            # except:
+                            #     print("except")
+                            update_tagihan_spp(y.NIS, i, biaya_spp_temp, Tahun_Pembayaran, tagihan_sekolah = "tagihan_sd")
+                            
+                            
 
-def update_tagihan_spp(nis, i, biaya_spp,tagihan_sekolah):
-    cursor.execute(f'INSERT INTO \'{tagihan_sekolah}\' (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan) VALUES (\'{nis}\', \'{str(i)}\',\'SPP\',\'{biaya_spp}\')')
+def update_tagihan_spp(nis, i, biaya_spp, Tahun_Pembayaran ,tagihan_sekolah):
+    cursor.execute(f'INSERT INTO {tagihan_sekolah} (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan, Tagihan_tahun) VALUES (\'{nis}\', \'{str(i)}\',\'SPP\',\'{biaya_spp}\',\'{Tahun_Pembayaran}\')')
     conn.commit()
 
 def update_tagihan_tabungan_wajib():
