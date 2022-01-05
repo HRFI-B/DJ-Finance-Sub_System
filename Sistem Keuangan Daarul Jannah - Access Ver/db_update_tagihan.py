@@ -17,10 +17,10 @@ def update_tagihan_sd():
         bulan_sdh_dibayar=[]
         bulan_x_bayar=[]
         #Pengambilan data dari database (siswa_sd)
-        cursor.execute(f'SELECT * FROM siswa_sd where nis = \'{x.NIS}\'')
+        cursor.execute(f'SELECT * FROM siswa_sd where NIS = \'{x.NIS}\'')
         data_siswa = cursor.fetchall()
         if not len(data_siswa) == 0:
-            cursor.execute(f'SELECT * FROM pembayaran_sd where nis = \'{x.NIS}\' and Jenis_Pembayaran = \'SPP\'')
+            cursor.execute(f'SELECT * FROM pembayaran_sd where NIS = \'{x.NIS}\' and Jenis_Pembayaran = \'SPP\'')
             data_pembayaran_spp = cursor.fetchall()
             for z in data_siswa:
                 temp3 = z.Status
@@ -38,7 +38,7 @@ def update_tagihan_sd():
             for i in range(datem.month):
                 if not i+1 in bulan_sdh_dibayar:
                     if not i+1 in bulan_x_bayar:
-                        cursor.execute(f'INSERT INTO tagihan_sd (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan, Tagihan_tahun) VALUES (\'{str(x.NIS)}\', \'{i+1}\',\'SPP\',\'{biaya_spp}\',2021)')
+                        cursor.execute(f'INSERT INTO tagihan_sd (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan, Tagihan_tahun) VALUES (\'{x.NIS}\', \'{i+1}\',\'SPP\',\'{biaya_spp}\',\'2021\');)')
                         conn.commit()
                 elif i+1 in bulan_sdh_dibayar:   
                     try:
