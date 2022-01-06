@@ -75,109 +75,31 @@ def detail_pembayaran(nis):
     if request.method == 'POST':
         return None
     else:
-        bulan_sdh_dibayar=[]
-        bulan_x_bayar=[]
+        update_tagihan_sd()
         #Pengambilan data dari database (siswa_sd)
         cursor.execute(f'SELECT * FROM siswa_sd where nis = \'{nis}\'')
         data_siswa = cursor.fetchall()
         if not len(data_siswa) == 0:
             cursor.execute(f'SELECT * FROM pembayaran_spp_sd where nis = \'{nis}\'')
             data_pembayaran_spp = cursor.fetchall()
-            for z in data_siswa:
-                temp3 = z.Status
-            cursor.execute(f'SELECT Biaya FROM biaya_spp_sd where Katagori_siswa = \'{temp3}\'')
-            biaya_spp = cursor.fetchall()
-            for a in biaya_spp:
-                biaya_spp = a[0]
-            for x in data_pembayaran_spp:
-                temp = convert_bln(x.Untuk_bulan)
-                bulan_sdh_dibayar.append(temp)
             cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\'')
-            temp2 = cursor.fetchall()
-            for y in temp2:
-                bulan_x_bayar.append(y.Tagihan_bulan)
-            for i in range(datem.month):
-                if not i+1 in bulan_sdh_dibayar:
-                    if not i+1 in bulan_x_bayar:
-                        cursor.execute(f'INSERT INTO tagihan_sd (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan) VALUES (\'{nis}\', \'{str(i+1)}\',\'SPP\',\'{biaya_spp}\')')
-                        conn.commit()
-                elif i+1 in bulan_sdh_dibayar:   
-                    try:
-                        cursor.execute(f'DELETE FROM tagihan_sd WHERE NIS =\'{nis}\' AND Tagihan_bulan =\'{str(i+1)}\'')
-                        conn.commit()
-                    except:
-                        pass
-            cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\'')
-            temp2 = cursor.fetchall()            
-        
+            tagihan_siswa = cursor.fetchall()           
+            
         #jika tidak ditemukan nis yang dicari di tabel siswa_sd, pencarian dilanjutkan ke tabel siswa_smp
         if len(data_siswa) == 0:
-            cursor.execute(f'SELECT * FROM siswa_smp where nis = \'{nis}\'')
-            data_siswa = cursor.fetchall()
-            if not len(data_siswa) == 0:
-                cursor.execute(f'SELECT * FROM pembayaran_spp_smp where nis = \'{nis}\'')
-                data_pembayaran_spp = cursor.fetchall()
-                for z in data_siswa:
-                    temp3 = z.Status
-                cursor.execute(f'SELECT Biaya FROM biaya_spp_smp where Katagori_siswa = \'{temp3}\'')
-                biaya_spp = cursor.fetchall()
-                for a in biaya_spp:
-                    biaya_spp = a[0]
-                for x in data_pembayaran_spp:
-                    temp = convert_bln(x.Untuk_bulan)
-                    bulan_sdh_dibayar.append(temp)
-                cursor.execute(f'SELECT * FROM tagihan_smp where nis = \'{nis}\'')
-                temp2 = cursor.fetchall()
-                for y in temp2:
-                    bulan_x_bayar.append(y.Tagihan_bulan)
-                for i in range(datem.month):
-                    if not i+1 in bulan_sdh_dibayar:
-                        if not i+1 in bulan_x_bayar:
-                            cursor.execute(f'INSERT INTO tagihan_smp (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan) VALUES (\'{nis}\', \'{str(i+1)}\',\'SPP\',\'{biaya_spp}\')')
-                            conn.commit()
-                    elif i+1 in bulan_sdh_dibayar:   
-                        try:
-                            cursor.execute(f'DELETE FROM tagihan_smp WHERE NIS =\'{nis}\' AND Tagihan_bulan =\'{str(i+1)}\'')
-                            conn.commit()
-                        except:
-                            pass
-                cursor.execute(f'SELECT * FROM tagihan_smp where nis = \'{nis}\'')
-                temp2 = cursor.fetchall()                  
+            cursor.execute(f'SELECT * FROM pembayaran_spp_smp where nis = \'{nis}\'')
+            data_pembayaran_spp = cursor.fetchall()
+            cursor.execute(f'SELECT * FROM tagihan_smp where nis = \'{nis}\'')
+            tagihan_siswa = cursor.fetchall()     
+                        
         #jika tidak ditemukan nis yang dicari di tabel siswa_smp, pencarian dilanjutkan ke tabel siswa_tk    
         if len(data_siswa) == 0:
-            cursor.execute(f'SELECT * FROM siswa_tk where nis = \'{nis}\'')
-            data_siswa = cursor.fetchall()
-            if not len(data_siswa) == 0:
-                cursor.execute(f'SELECT * FROM pembayaran_spp_tk where nis = \'{nis}\'')
-                data_pembayaran_spp = cursor.fetchall()
-                for z in data_siswa:
-                    temp3 = z.Status
-                cursor.execute(f'SELECT Biaya FROM biaya_spp_tk where Katagori_siswa = \'{temp3}\'')
-                biaya_spp = cursor.fetchall()
-                for a in biaya_spp:
-                    biaya_spp = a[0]
-                for x in data_pembayaran_spp:
-                    temp = convert_bln(x.Untuk_bulan)
-                    bulan_sdh_dibayar.append(temp)
-                cursor.execute(f'SELECT * FROM tagihan_tk where nis = \'{nis}\'')
-                temp2 = cursor.fetchall()
-                for y in temp2:
-                    bulan_x_bayar.append(y.Tagihan_bulan)
-                for i in range(datem.month):
-                    if not i+1 in bulan_sdh_dibayar:
-                        if not i+1 in bulan_x_bayar:
-                            cursor.execute(f'INSERT INTO tagihan_tk (NIS, Tagihan_bulan, Jenis_tagihan, Jumlah_tagihan) VALUES (\'{nis}\', \'{str(i+1)}\',\'SPP\',\'{biaya_spp}\')')
-                            conn.commit()
-                    elif i+1 in bulan_sdh_dibayar:   
-                        try:
-                            cursor.execute(f'DELETE FROM tagihan_tk WHERE NIS =\'{nis}\' AND Tagihan_bulan =\'{str(i+1)}\'')
-                            conn.commit()
-                        except:
-                            pass
-                cursor.execute(f'SELECT * FROM tagihan_tk where nis = \'{nis}\'')
-                temp2 = cursor.fetchall()                    
+            cursor.execute(f'SELECT * FROM pembayaran_spp_sd where nis = \'{nis}\'')
+            data_pembayaran_spp = cursor.fetchall()
+            cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\'')
+            tagihan_siswa = cursor.fetchall()                   
             #Render tabel-pembayaran.html jika ada request dari client
-        return render_template('tabel-pembayaran.html', siswa=data_siswa, spp=data_pembayaran_spp, tagihan=temp2)
+        return render_template('tabel-pembayaran.html', siswa=data_siswa, spp=data_pembayaran_spp, tagihan=tagihan_siswa)
     # except:
         print("error")
 
