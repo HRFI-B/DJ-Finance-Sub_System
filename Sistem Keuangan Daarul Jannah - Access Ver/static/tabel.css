@@ -28,7 +28,7 @@ a{
 }
 
 a:hover{
-    color: #056A31;
+    color: #056A31 ; 
 }
 
 .navbar{
@@ -39,7 +39,7 @@ a:hover{
 
 .box-menu{
         border: none;
-        background-color: 056A31 !important;
+        background-color: #056A31 !important;
         color: white;
         padding: 18px 18px;
         font-size: 16px;
