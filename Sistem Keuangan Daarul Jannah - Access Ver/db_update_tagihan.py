@@ -33,7 +33,7 @@ def update_tagihan_spp_sd(NIS):
                 temp3 = z.Status
                             
             for x in data_pembayaran_spp:
-                if x.Status == "Lunas" or x.Status == "Overpaid":
+                if x.Status == "Lunas" or x.Status == "Overpaid": 
                     temp = convert_bln(x.Untuk_bulan)
                     bulan_sdh_dibayar.append(temp)
                     
