@@ -3,15 +3,12 @@ from flask import Flask,render_template,url_for, request,jsonify,session,flash
 from werkzeug.utils import redirect
 import pyodbc
 from datetime import *
-from konversi_bulan import convert_bln
-import time
 from db_update_tagihan import update_tagihan_sd
+# from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 #get date
 current_date = date.today()
 datem = datetime.strptime(str(current_date), "%Y-%m-%d")
-
-# from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 #inisialisasi variabel app
 # login_manager = LoginManager()
@@ -26,7 +23,6 @@ cursor = conn.cursor()
 @app.route('/', methods=['POST', 'GET'])
 def function():
     return redirect('/pengecekan_pembayaran_siswa')
-
 
 #Backend laman pengecekan pembayaran siswa
 @app.route('/pengecekan_pembayaran_siswa', methods=['POST', 'GET'])
@@ -49,7 +45,7 @@ def pengecekan_pembayaran_siswa():
             result = cursor.fetchall()
         #konversi bentuk array ke variabel string
         for x in result:
-            nama = x[0] 
+            nama = x.Nama 
             if nama == "":
                 nama = None
             
@@ -80,29 +76,27 @@ def detail_pembayaran(nis):
         cursor.execute(f'SELECT * FROM siswa_sd where nis = \'{nis}\'')
         data_siswa = cursor.fetchall()
         if not len(data_siswa) == 0:
-            cursor.execute(f'SELECT * FROM pembayaran_spp_sd where nis = \'{nis}\'')
-            data_pembayaran_spp = cursor.fetchall()
-            cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\'')
+            cursor.execute(f'SELECT * FROM pembayaran_sd where nis = \'{nis}\' ORDER by Waktu_Pembayaran DESC')
+            data_pembayaran = cursor.fetchall()
+            cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\' ORDER by Tagihan_bulan ASC')
             tagihan_siswa = cursor.fetchall()           
             
         #jika tidak ditemukan nis yang dicari di tabel siswa_sd, pencarian dilanjutkan ke tabel siswa_smp
         if len(data_siswa) == 0:
-            cursor.execute(f'SELECT * FROM pembayaran_spp_smp where nis = \'{nis}\'')
-            data_pembayaran_spp = cursor.fetchall()
+            cursor.execute(f'SELECT * FROM pembayaran_smp where nis = \'{nis}\'')
+            data_pembayaran = cursor.fetchall()
             cursor.execute(f'SELECT * FROM tagihan_smp where nis = \'{nis}\'')
             tagihan_siswa = cursor.fetchall()     
                         
         #jika tidak ditemukan nis yang dicari di tabel siswa_smp, pencarian dilanjutkan ke tabel siswa_tk    
         if len(data_siswa) == 0:
-            cursor.execute(f'SELECT * FROM pembayaran_spp_sd where nis = \'{nis}\'')
-            data_pembayaran_spp = cursor.fetchall()
-            cursor.execute(f'SELECT * FROM tagihan_sd where nis = \'{nis}\'')
-            tagihan_siswa = cursor.fetchall()                   
-            #Render tabel-pembayaran.html jika ada request dari client
-        return render_template('tabel-pembayaran.html', siswa=data_siswa, spp=data_pembayaran_spp, tagihan=tagihan_siswa)
-    # except:
-        print("error")
-
+            cursor.execute(f'SELECT * FROM pembayaran_tk where nis = \'{nis}\'')
+            data_pembayaran = cursor.fetchall()
+            cursor.execute(f'SELECT * FROM tagihan_tk where nis = \'{nis}\'')
+            tagihan_siswa = cursor.fetchall()  
+        
+        #Render tabel-pembayaran.html jika ada request dari client
+        return render_template('tabel-pembayaran.html', siswa=data_siswa, spp=data_pembayaran, tagihan=tagihan_siswa)
 
 #Backend laman home
 # @app.route('/home', methods=['POST', 'GET'])
