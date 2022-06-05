@@ -81,5 +81,48 @@ def home():
             return render_template('maintenance.html')
     return redirect('/login')
 
+@app.route('/histori_pembayaran/<nis>', methods=['GET'])
+def histori_pembayaran(nis):
+    if request.method == 'GET':
+        # update_tagihan_sd()
+        #Pengambilan data dari database (siswa_sd)
+        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+            cursor.execute('SELECT * FROM siswa_sd where nis = %s', ([nis]))
+            data_siswa = cursor.fetchone()
+            
+        if data_siswa:
+            cursor.execute('SELECT * FROM pembayaran_sd where nis = %s ORDER by Waktu_Pembayaran DESC', ([nis]))
+            data_pembayaran = cursor.fetchall()
+            cursor.execute('SELECT * FROM tagihan_sd where nis = %s ORDER by Tagihan_bulan ASC', ([nis]))
+            tagihan_siswa = cursor.fetchall()      
+            
+        if not data_siswa:
+            with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                cursor.execute('SELECT * FROM siswa_smp where nis = %s', ([nis]))
+                data_siswa = cursor.fetchone()
+            
+                if data_siswa:
+                    cursor.execute('SELECT * FROM pembayaran_smp where nis = %s', ([nis]))
+                    data_pembayaran = cursor.fetchall()
+                    cursor.execute('SELECT * FROM tagihan_smp where nis = %s', ([nis]))
+                    tagihan_siswa = cursor.fetchall()    
+                        
+            #jika tidak ditemukan nis yang dicari di tabel siswa_smp, pencarian dilanjutkan ke tabel siswa_tk    
+            if not data_siswa:
+                with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                    cursor.execute('SELECT * FROM siswa_tk where nis = %s', ([nis]))
+                    data_siswa = cursor.fetchone()
+                
+                    if data_siswa:
+                        cursor.execute('SELECT * FROM pembayaran_tk where nis = %s', ([nis]))
+                        data_pembayaran = cursor.fetchall()
+                        cursor.execute('SELECT * FROM tagihan_tk where nis = %s', ([nis]))
+                        tagihan_siswa = cursor.fetchall()  
+        
+        #Render tabel-pembayaran.html jika ada request dari client
+        return render_template('histori-pembayaran.html', siswa=data_siswa, spp=data_pembayaran, tagihan=tagihan_siswa)
+
+
 if __name__ == '__main__':
+    app.secret_key = 'mysecret'
     app.run(host='0.0.0.0',port=2431 ,debug=True)
