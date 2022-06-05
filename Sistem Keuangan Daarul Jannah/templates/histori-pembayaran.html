@@ -45,14 +45,11 @@
             <div class="tabel-siswa">
                 <img src="{{ url_for('static', filename='1549425553128.png') }}" class="foto-siswa" alt="">
                 <div class="detail-siswa">
-                    {% for data_siswa in siswa %}
-                    <p><b>Nama     :</b> {{data_siswa.Nama}} </p>
-                    <p><b>Kelas    :</b> {{data_siswa.Kelas}}</p>
-                    <p><b>Kelamin  :</b> {{data_siswa.Kelamin}}</p>
-                    <p><b>Status   :</b> {{data_siswa.Status}}</p>
-                    <p><b>NIS      :</b> {{data_siswa.NIS}}</p>
-                    <p><b>NISN     :</b> {{data_siswa.NISN}}</p>
-                    {% endfor %}
+                    <p><b>Nama     :</b> {{siswa['nama_siswa']}} </p>
+                    <p><b>Kelas    :</b> {{siswa['kelas']}}</p>
+                    <p><b>Kelamin  :</b> {{siswa['jenis_kelamin']}}</p>
+                    <p><b>Status   :</b> {{siswa['status']}}</p>
+                    <p><b>NIS      :</b> {{siswa['nis']}}</p>
                 </div>
             </div>  
         </div>
@@ -64,7 +61,7 @@
                     <div class="detail-tagihan">
                         <ul>
                             {% for tagihan_siswa in tagihan %}
-                            <li><b>{{ tagihan_siswa.Jenis_tagihan }} {{tagihan_siswa.Tagihan_bulan}}/{{ tagihan_siswa.Tagihan_tahun }} : </b> Rp.{{tagihan_siswa.Jumlah_tagihan}},-</li>
+                            <li><b>{{ tagihan_siswa['jenis_tagihan'] }} {{tagihan_siswa['tagihan_bulan']}}/{{ tagihan_siswa['tagihan_tahun'] }} : </b> Rp.{{tagihan_siswa['jumlah_tagihan']}},-</li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -87,18 +84,18 @@
                             {% for data_pembayaran in spp%}
                             <tr>
                                 <td> 
-                                    {%if not data_pembayaran.Waktu_pembayaran == None%} 
-                                    {{ data_pembayaran.Waktu_pembayaran }}
+                                    {%if not data_pembayaran['waktu_pembayaran'] == None%} 
+                                    {{ data_pembayaran['waktu_pembayaran'] }}
                                     {% else %}
                                     N/A
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {%if data_pembayaran.Jenis_Pembayaran == "SPP" and data_pembayaran.Status == "Lunas"%} 
-                                    Rp.{{ data_pembayaran.Pembayaran }},-
-                                    {%elif data_pembayaran.Jenis_Pembayaran == "SPP" and data_pembayaran.Status == "Overpaid"%} 
-                                    {% if not data_pembayaran.Pembayaran == None%}
-                                    Rp.{{data_pembayaran.Pembayaran}},-
+                                    {%if data_pembayaran['jenis_pembayaran'] == "SPP" and data_pembayaran['status'] == "Lunas"%} 
+                                    Rp.{{ data_pembayaran['jumlah_pembayaran'] }},-
+                                    {%elif data_pembayaran['jenis_pembayaran'] == "SPP" and data_pembayaran['status'] == "Overpaid"%} 
+                                    {% if not data_pembayaran['jumlah_pembayaran'] == None%}
+                                    Rp.{{data_pembayaran['jumlah_pembayaran']}},-
                                     {%else%}
                                     Overpayment 
                                     {% endif %}
@@ -106,23 +103,6 @@
                                     -
                                     {% endif %}
                                 </td>
-                                <td>
-                                    {%if data_pembayaran.Jenis_Pembayaran == "Tabungan Wajib" and data_pembayaran.Status == "Lunas"%} 
-                                    Rp.{{ data_pembayaran.Pembayaran }},-
-                                    {%elif data_pembayaran.Jenis_Pembayaran == "Tabungan Wajib" and data_pembayaran.Status == "Overpaid"%} 
-                                    {% if not data_pembayaran.Pembayaran == None%}
-                                    Rp.{{data_pembayaran.Pembayaran}},-
-                                    {%else%}
-                                    Overpayment 
-                                    {% endif %}
-                                    {% else %}
-                                    -
-                                    {% endif %}
-                                </td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
                             </tr>
                             {% endfor %}
                         </table>
