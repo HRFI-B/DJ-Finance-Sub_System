@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+    <head>
+        {% block head%}
+            <title>Dashboard - Sistem Pembayaran DJ</title>
+            <!-- CSS Custom -->
+            <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
+        {% endblock %}
+    </head>
+
+    <body>
+    {% block body %}
+    <div class="box-area">
+        <img src="{{ url_for('static', filename='Image/Icon1.png') }}" style="opacity: 0.25; width:298px; height:auto;">
+    </div>
+    {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,137 @@
+html, body {
+  height: 100%;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.header{
+    position: sticky;
+    background-color: 056A31;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0px;
+    background-color: White !important;
+    color: #B5B5B5;
+}
+
+.h1{
+    padding-top: 50px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.searchbar-pos{
+    width: 636px;
+    background: #FFFFFF;
+    padding-top:80px;
+
+}
+
+.shadow{
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+}
+.searchbar{
+    /* soft shadow */
+    
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+    border-bottom-left-radius:10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}   
+
+.searchbar-padding img{
+    position: absolute;
+}
+
+.btn{
+    padding-left:20px;
+    padding-right:20px;
+    border-bottom-left-radius:0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.5s ease;
+}
+
+.btn:hover{
+    background-color:#07361B;
+}
+
+.img{
+    padding-top: 5.10rem;
+}
+
+.form-control{
+    transition:none;
+}
+
+.form-control:focus{
+    color: #212529;
+    background-color: #fff;
+    border-color: rgba(13, 181, 18, 1);
+    outline: 0;
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+
+}
+
+span {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
+
+.logo-header{
+    position: flex;
+    margin-right: 42rem !important;
+}
+
+
+.navbar{
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    height:75px !important;
+}
+
+.box-menu{
+        border: none;
+        background-color: 056A31 !important;
+        color: white;
+        padding: 18px 18px;
+        font-size: 16px;
+        cursor: pointer;
+
+}
+.user-box{
+    /* user-box */
+
+    position: flex;
+    width: 213px;
+    height: 75px;
+    left: 1323px;
+    top: 0px;
+
+    /* Fill color2 */
+
+    background: #07361B;
+}
+
+.nama{
+    color: white;
+    weight: bold;
+    text-align: right;
+    padding-right: 60px;
+    padding-top: 14px;
+}
+
+
+.fa-user-circle{
+    position: absolute;
+    color: white;
+    font-size: 38px;
+    display: inline-block;
+    margin-left:10.5rem;
+    margin-top: 1.15rem;
+}
+
+

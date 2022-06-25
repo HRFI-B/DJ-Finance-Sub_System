@@ -1,4 +1,2 @@
-from datetime import *
-current_date = date.today()
-datem = datetime.strptime(str(current_date), "%Y-%m-%d")
-print(datem.month)
+from math import floor
+print(type(floor(3.4)))
