@@ -5,17 +5,13 @@ html, body {
 }
 
 .header{
-    position: sticky;
-    background-color: #056A31;
+    border-bottom: 1px solid #CCCCCC;
+    /* background-color: #056A31; */
+    width: 100%;
+    height: fit-content;
 }
 
-.footer{
-    position: absolute;
-    bottom: 0px;
-    padding-top: 10px;
-    background-color: #FAFAFA !important;
-    color: #B5B5B5;
-}
+
 
 .h1{
     padding-top: 50px;
@@ -79,7 +75,7 @@ a:hover{
 
 .nama{
     color: white;
-    weight: bold;
+    font-weight: bold;
     text-align: right;
     padding-right: 60px;
     padding-top: 14px;
@@ -145,9 +141,7 @@ nav ul li a:before{
     transition:all 1s;
 }
 
-.text-right{
-    text-align: right !important;
-}
+
 
 nav ul li a:hover{
     color:#2b2626;
@@ -164,7 +158,6 @@ nav ul li a:hover:before{
 
 .section{
     display:grid;
-    place-items:center;
     min-height:100vh;
     text-align:center;
 }
@@ -172,4 +165,68 @@ nav ul li a:hover:before{
 .box-area h2{
     text-transform:uppercase;
     font-size:30px;
+}
+.profil{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+   
+}
+
+.konten-profil:hover{
+    cursor:pointer;
+}
+
+.konten-profil{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    padding: 10px;
+}
+
+.teks-profil{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    
+}
+
+.teks-profil h5, h6{
+    margin-bottom: 0px;
+    margin-top: 1px;
+    margin-right: 10px;
+}
+
+.teks-profil h5{
+    font-weight: bolder;
+    font-size: medium;
+    margin-bottom: 2px;
+}
+
+.foto-profil{
+    width:50px; 
+    height:50px;
+    border-radius:100px;
+}
+
+.disabled {
+    pointer-events:none;     
+}
+
+.logout-btn{
+    background-color: #A60000;
+    padding: 5px;
+    border-radius: 5px;
+    color: white!important; 
+}
+
+.logout-btn:hover{
+    background-color: #820000  !important;
+}
+
+.dropdown-menu li{
+    margin-top: 5px;
 }
