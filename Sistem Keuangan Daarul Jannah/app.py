@@ -265,6 +265,11 @@ def detail_siswa(nis):
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
+@app.route('/tambah_siswa')
+def tambah_siswa():
+    if 'loggedin' in session:
+        return ('tambah siswa')
+    return redirect('/login')
 
 @app.route('/ubah_siswa/<nis>')
 def ubah_siswa():
