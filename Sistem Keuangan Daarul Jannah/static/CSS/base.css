@@ -7,7 +7,7 @@ html, body {
 }
 .parent {
     display: grid;
-    grid-template-columns: 0.65fr repeat(3, 1fr);
+    grid-template-columns: 0.75fr repeat(3, 1fr);
     grid-template-rows: repeat(7, 1fr) 0.75fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
