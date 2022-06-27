@@ -273,11 +273,15 @@ def tambah_siswa():
 
 @app.route('/ubah_siswa/<nis>')
 def ubah_siswa(nis):
-    pass
+    if 'loggedin' in session:
+        return ('ubah' + nis)
+    return redirect('/login')
 
 @app.route('/hapus_siswa/<nis>')
 def hapus_siswa(nis):
-    pass
+    if 'loggedin' in session:
+        return ('hapus' + nis)
+    return redirect('/login')
 
 @app.route('/riwayat_pembayaran/<nis>', methods=['GET'])
 def riwayat_pembayaran(nis):
