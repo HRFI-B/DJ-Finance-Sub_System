@@ -265,10 +265,34 @@ def detail_siswa(nis):
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
-@app.route('/tambah_siswa')
+
+@app.route('/tambah_siswa', methods=['POST', 'GET'])
 def tambah_siswa():
     if 'loggedin' in session:
-        return ('tambah siswa')
+        if request.method == 'POST':
+            # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+            if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                nis = request.form['nis']
+                nisn = request.form['nisn']
+                nama_siswa = request.form['nama_siswa']
+                jenis_kelamin = request.form['jenis_kelamin']
+                kelas = request.form['kelas']
+                status = request.form['status']
+                tingkat = request.form['tingkat']
+                with mysql.connection.cursor() as cursor:
+                    if tingkat == "TK":
+                        cursor.execute('INSERT IGNORE INTO siswa_tk (nis, nisn, nama_siswa, jenis_kelamin, kelas, status) VALUES (%s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status))
+                        mysql.connection.commit()
+                    elif tingkat == "SD":
+                        cursor.execute('INSERT IGNORE INTO siswa_sd (nis, nisn, nama_siswa, jenis_kelamin, kelas, status) VALUES (%s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status))
+                        mysql.connection.commit()
+                    elif tingkat == "SMP":
+                        cursor.execute('INSERT IGNORE INTO siswa_smp (nis, nisn, nama_siswa, jenis_kelamin, kelas, status) VALUES (%s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status))
+                        mysql.connection.commit()
+                return redirect('/manajemen_siswa')
+        elif request.method == 'GET':
+            if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                return render_template('tambahdatasiswa.html')
     return redirect('/login')
 
 @app.route('/ubah_siswa/<nis>', methods=['GET', 'POST'])
@@ -304,7 +328,15 @@ def ubah_siswa(nis):
 @app.route('/hapus_siswa/<nis>', methods=['GET', 'POST'])
 def hapus_siswa(nis):
     if 'loggedin' in session:
-        return ('hapus' + nis)
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+            with mysql.connection.cursor() as cursor:
+                cursor.execute('DELETE IGNORE FROM siswa_tk WHERE nis = %s', ([nis]))
+                mysql.connection.commit()
+                cursor.execute('DELETE IGNORE FROM siswa_sd WHERE nis = %s', ([nis]))
+                mysql.connection.commit()
+                cursor.execute('DELETE IGNORE FROM siswa_smp WHERE nis = %s', ([nis]))
+                mysql.connection.commit()
+            return redirect('/manajemen_siswa')
     return redirect('/login')
 
 @app.route('/riwayat_pembayaran/<nis>', methods=['GET'])

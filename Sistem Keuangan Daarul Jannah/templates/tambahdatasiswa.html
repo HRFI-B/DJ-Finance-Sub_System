@@ -3,14 +3,13 @@
 <html>
     <head>
         {% block head%}
-        <title>Dashboard - Sistem Pembayaran DJ</title>
-        
+        <title>Tambah Data Siswa - Sistem Pembayaran DJ</title>
+        <script>document.title = "Tambah Data Siswa - Sistem Pembayaran DJ"</script>
         {% endblock %}
     </head>
 
-<body>
-    <!-- Sidebar -->
-            {% block body %}
+    <body>
+        {% block body %}
             <div class="container">
                 <h1 class="page-title">Detail Data Siswa/i Daarul Jannah</h1>
                 <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
@@ -19,56 +18,50 @@
                     <div class="wrap-data">
                         <img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="ft-siswa" alt="">
                         <table class="tb-detail-siswa">
-                            <form>
+                            <form action="/tambah_siswa" method="post">
                                 <tr>
                                     <td><b>Nama</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" ></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa"></td>
                                 </tr>
                                 <tr>
                                     <td><b>Kelas</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Kelas" ></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Kelas" name="kelas"></td>
                                 </tr>
                                 <tr>
                                     <td><b>Jenis Kelamin</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Jenis Kelamin" ></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Jenis Kelamin" name="jenis_kelamin"></td>
                                 </tr>
                                 <tr>
                                     <td><b>Status</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Status" ></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Status" name="status"></td>
                                 </tr>
                                 <tr>
                                     <td><b>NIS</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NIS" ></td>
+                                    <td><input type="number" id="floatingInput" placeholder="Masukkan NIS" name="nis"></td>
                                 </tr>
                                 <tr>
                                     <td><b>NISN</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NISN" ></td>
+                                    <td><input type="number" id="floatingInput" placeholder="Masukkan NISN" name="nisn"></td>
                                 </tr>
-                                
+                                <tr>
+                                    <td><b>Tingkat</b></td>
+                                    <td><b>:</b></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Tingkat" name="tingkat"></td>
+                                </tr>
+                                <input type="submit" value="submit">
                             </form>
                         </table>
                         
                     </div>
-                    <div class="cmd-btn">
-                        <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}">
-                            <p class="btn btn-success">Ubah Data Siswa/i</p>
-                        </a>
-                        <a href="{{ url_for('hapus_siswa', nis = siswa['nis']) }}">
-                            <p class="btn btn-danger">Hapus Data Siswa/i</p>
-                        </a>
-                    </div>
                 </div>
-                    
-                    <br>
-                    
-                </div>
+                <br>
             </div>
-            {% endblock %}
-
-</body>
+        {% endblock %}
+    </body>
+</html> 
