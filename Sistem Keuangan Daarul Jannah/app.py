@@ -271,13 +271,37 @@ def tambah_siswa():
         return ('tambah siswa')
     return redirect('/login')
 
-@app.route('/ubah_siswa/<nis>')
+@app.route('/ubah_siswa/<nis>', methods=['GET', 'POST'])
 def ubah_siswa(nis):
     if 'loggedin' in session:
+        if request.method == 'POST':
+            nis = request.form['nis']
+            nama = request.form['nama']
+            jenis_kelamin = request.form['jenis_kelamin']
+            kelas = request.form['kelas']
+            status = request.form['status']
+            nisn = request.form['nisn']
+            
+            with mysql.connection.cursor() as cursor:
+                cursor.execute('UPDATE siswa_tk SET nama = %s, jenis_kelamin = %s, kelas = %s, status = %s, nisn = %s WHERE nis = %s', (nama, jenis_kelamin, kelas, status, nisn, nis))
+                mysql.connection.commit()
+            return redirect('/manajemen_siswa')
+        
+        elif request.method == 'GET':
+            with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                cursor.execute('SELECT * FROM siswa_tk WHERE nis = %s', ([nis]))
+                siswa = cursor.fetchone()
+                if not siswa:
+                    cursor.execute('SELECT * FROM siswa_sd WHERE nis = %s', ([nis]))
+                    siswa = cursor.fetchone()
+                    if not siswa:
+                        cursor.execute('SELECT * FROM siswa_smp WHERE nis = %s', ([nis]))
+                        siswa = cursor.fetchone()
+            return render_template('ubahdatasiswa.html',siswa=siswa)
         return ('ubah' + nis)
     return redirect('/login')
 
-@app.route('/hapus_siswa/<nis>')
+@app.route('/hapus_siswa/<nis>', methods=['GET', 'POST'])
 def hapus_siswa(nis):
     if 'loggedin' in session:
         return ('hapus' + nis)
