@@ -321,6 +321,12 @@ def riwayat_pembayaran(nis):
         #Render tabel-pembayaran.html jika ada request dari client
         return render_template('riwayat_pembayaran.html', siswa=data_siswa, spp=data_pembayaran, tagihan=tagihan_siswa)
 
+@app.route('/pembayaran_spp/<nis>', methods=['GET','POST'])
+def pembayaran_spp(nis):
+    if 'loggedin' in session:
+        return ('pembayaran spp')
+    return redirect('/login')
+
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(host='0.0.0.0',port=2431 ,debug=True)
