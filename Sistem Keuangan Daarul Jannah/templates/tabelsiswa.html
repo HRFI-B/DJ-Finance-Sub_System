@@ -10,116 +10,105 @@
     </head>
 
     <body>
-        <!-- Header -->
-        <!-- <header id="header">
-            <div class="akun">
-                <div class="akun-teks" style="color:black;">
-                    Andy Rusman<br>
-                    018273282
-                </div>
-            </div>
-        </header> -->
-
         {%block body%}
-            <div class="box-area">
-                <div class="heading">
-                    <div class="ml-auto">
-                        <i class="fas fa-chevron-left"></i>
-                        <div class="head-pack">
-                            <h1>Data Siswa/i Daarul Jannah</h1>
-                            <h2>Sistem Cek Pembayaran Sekolah Daarul Jannah</h2>
-                        </div>
-                    </div>
+        <div class="container">
+            <h1 class="page-title">Data Siswa/i Sekolah Daarul Jannah</h1>
+            <h4 class="sub-title">Sistem Keuangan Sekolah Daarul Jannah</h4>
+
+            <div class="filter">
+                <div class="filter-kiri">
+                    <select class="filter-tingkat" id="filter-tingkat">
+                        <option value="Tingkat" disabled>Tingkat</option>
+                        <option value="TK">TK</option>
+                        <option value="SD" >SD</option>
+                        <option value="SMP">SMP</option>
+                    </select>
+                    <select class="filter-kelas" id="filter-kelas">
+                        <option value="Kelas" disabled>Kelas</option>
+                        <option value="1">1</option>
+                        <option value="2" >2</option>
+                        <option value="3">3</option>
+                    </select>
                 </div>
-        
-                <div class="data-container mx-auto">
-                    <form>
-                        <select id="kelas" name="kelas">
-                            <option value="1D">Kelas 1D</option>
-                            <option value="1J">Kelas 1J</option>
-                            <option value="1P">Kelas 1P</option>
-                            <option value="1I">Kelas 1I</option>
+                <div class="filter-kanan">
+                    <a>
+                        <p class="p-btn">Tambah Data Siswa/i</p>
+                    </a>
+                    <div class="search-bar">
+                        <select id="search-bar-filter">
+                            <option value="NIS">NIS</option>
+                            <option value="Nama">Nama</option>
+                            <option value="Kelas">Kelas</option>
                         </select>
-                        </form>
-                        <a href="datasiswa.html">
-                            <a class="btn btn-success" id="add-mrd">Tambah Data Siswa/i</button>
-                        </a>
-                        <label for="cari">
-                            <select id="att-cari" name="att-cari">
-                                <option value="nis-src">NIS</option>
-                                <option value="kelas-src">Kelas</option>
-                                <option value="nama-src">Nama</option>
-                            </select>
-                        </label>
-                        <input type="search" class="searchbox" id="cari-value" name="cari-value">
-                        <input type="submit" name="cari-btn" id="cari-value" value="Search"> 
-                    </form>
-                    <div class="tabel-siswa mx-auto">
-                        <div class="scrollable1">
-                            <table border='1' class="table table-hover mx-auto">
-                                <thead>
-                                    <th class="start">NISN</th>
-                                    <th>Nama Siswa  </th>
-                                    <th>Sex</th>
-                                    <th>Status Siswa/i</th>
-                                    <th>Kelas</th>
-                                    <th class="end">Menu Fungsional</th>
-                                </thead>
-                                    {% for siswa_tk in siswa_tk %}
-                                    <tr>
-                                        <td name="nisn">{{siswa_tk.nis}}</td>
-                                        <td name="name">
-                                            <a href="{{ url_for('detail_siswa', nis = siswa_tk['nis']) }}">
-                                                {{siswa_tk.nama_siswa}}
-                                            </a>
-                                        </td>
-                                        <td name="sex">{{siswa_tk.jenis_kelamin}}</td>
-                                        <td name="status">{{siswa_tk.status}}</td>
-                                        <td name="kelas">{{siswa_tk.kelas}}</td>
-                                        <td><a class="btn btn-success" id="detail" onclick= "window.open('tabel-pembayaran.html','_blank', 'height=1195px','width=500px')">Detail Data Pembayaran</a>
-                                        <a class="btn btn-success" id="input" onclick= "window.open('datasiswa.html','_blank', 'height=1195px','width=500px')">Input Data Pembayaran</a>
-                                    </tr>
-                                    {% endfor %}
-                                    {% for siswa_sd in siswa_sd %}
-                                    <tr>
-                                        <td name="nisn">{{siswa_sd.nis}}</td>
-                                        <td name="name">
-                                            <a href="{{ url_for('detail_siswa', nis = siswa_sd['nis']) }}">
-                                                {{siswa_sd.nama_siswa}}
-                                            </a>
-                                        </td>
-                                        <td name="sex">{{siswa_sd.jenis_kelamin}}</td>
-                                        <td name="status">{{siswa_sd.status}}</td>
-                                        <td name="kelas">{{siswa_sd.kelas}}</td>
-                                        <td><a class="btn btn-success" id="detail" onclick= "window.open('tabel-pembayaran.html','_blank', 'height=1195px','width=500px')">Detail Data Pembayaran</a>
-                                        <a class="btn btn-success" id="input" onclick= "window.open('datasiswa.html','_blank', 'height=1195px','width=500px')">Input Data Pembayaran</a>
-                                    </tr>
-                                    {% endfor %}
-                                    {% for siswa_smp in siswa_smp %}
-                                    <tr>
-                                        <td name="nisn">{{siswa_smp.nis}} </td>
-                                        <td name="name">
-                                            <a href="{{ url_for('detail_siswa', nis = siswa_smp['nis']) }}">
-                                                {{siswa_smp.nama_siswa}}
-                                            </a>
-                                        </td>
-                                        <td name="sex">{{siswa_smp.jenis_kelamin}}</td>
-                                        <td name="status">{{siswa_smp.status}}</td>
-                                        <td name="kelas">{{siswa_smp.kelas}}</td>
-                                        <td>
-                                            <a class="btn btn-success" id="detail">Detail Data Pembayaran</a>
-                                            <a class="btn btn-success" id="input">Input Data Pembayaran</a>
-                                        
-                                            <!-- <a class="btn btn-success" id="detail" onclick= "window.open('tabel-pembayaran.html','_blank', 'height=1195px','width=500px')">Detail Data Pembayaran</a>
-                                            <a class="btn btn-success" id="input" onclick= "window.open('datasiswa.html','_blank', 'height=1195px','width=500px')">Input Data Pembayaran</a> -->
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                            </table>
-                        </div>
+                        <input type="text" placeholder="Cari..." id="search-txt">
                     </div>
                 </div>
             </div>
+            
+            <div class="table">
+                <table>
+                    <tr>
+                        <th>NIS</th>
+                        <th>Nama Siswa/i</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Status Siswa/i</th>
+                        <th>Tingkat</th>
+                        <th>Kelas</th>
+                        <th>Menu Fungsi</th>
+                    </tr>
+                    {% for siswa_tk in siswa_tk %}
+                    <tr>
+                        <td>{{ siswa_tk.nis }}</td>
+                        <td><a href="{{ url_for('detail_siswa', nis = siswa_tk['nis']) }}">
+                            {{siswa_tk.nama_siswa}}
+                        </a></td>
+                        <td>{{ siswa_tk.jenis_kelamin }}</td>
+                        <td>{{ siswa_tk.status }}</td>
+                        <td>{{ siswa_tk.tingkat }}</td>
+                        <td>{{ siswa_tk.kelas }}</td>
+                        <td>
+                            <a class="btn-detail"></a>
+                            <a class="btn-input"></a>
+                        </td>
+                    </tr>
+                    {% endfor%}
+                    {% for siswa_sd in siswa_sd %}
+                    <tr>
+                        <td>{{ siswa_sd.nis }}</td>
+                        <td><a href="{{ url_for('detail_siswa', nis = siswa_sd['nis']) }}">
+                            {{siswa_sd.nama_siswa}}
+                        </a></td>
+                        <td>{{ siswa_sd.jenis_kelamin }}</td>
+                        <td>{{ siswa_sd.status }}</td>
+                        <td>{{ siswa_sd.tingkat }}</td>
+                        <td>{{ siswa_sd.kelas }}</td>
+                        <td>
+                            <a class="btn-detail"></a>
+                            <a class="btn-input"></a>
+                        </td>
+                    </tr>
+                    {% endfor%}
+                    {% for siswa_smp in siswa_smp %}
+                    <tr>
+                        <td>{{ siswa_smp.nis }}</td>
+                        <td>
+                            <a href="{{ url_for('detail_siswa', nis = siswa_smp['nis']) }}">
+                                {{siswa_smp.nama_siswa}}
+                            </a>
+                        </td>
+                        <td>{{ siswa_smp.jenis_kelamin }}</td>
+                        <td>{{ siswa_smp.status }}</td>
+                        <td>{{ siswa_smp.tingkat }}</td>
+                        <td>{{ siswa_smp.kelas }}</td>
+                        <td>
+                            <a class="btn-detail"></a>
+                            <a class="btn-input"></a>
+                        </td>
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
+        </div>
         {% endblock %}
     </body>
 </html>

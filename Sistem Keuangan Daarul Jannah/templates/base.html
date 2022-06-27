@@ -33,27 +33,28 @@
         </nav>
 
         <div class="wrapper">
+            <div class="header">
+                <div class="profil">
+                    <div class="wrap-profil-konten dropdown">
+                        <a class="konten-profil dropdown-toggle"data-toggle="dropdown">
+                            <div class="teks-profil">
+                                <h5>{{session['nama']}}</h5>
+                                <h6>{{session['nip']}}</h6>
+                            </div>
+                            <img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="foto-profil">
+                        </a>
+                        <ul class="dropdown-menu" style="width:200px;padding:10px ">
+                          <li><a href="" class="disabled">Otoritas: {{session['otoritas']}}</a></li>
+                          <li><a href="/logout" class="logout-btn">logout</a></li>
+                        </ul>
+                      </div>
+                   
+                </div>
+                
+            </div>
             <div class="section">
 
-                <div class="header">
-                    <div class="profil">
-                        <div class="wrap-profil-konten dropdown">
-                            <a class="konten-profil dropdown-toggle"data-toggle="dropdown">
-                                <div class="teks-profil">
-                                    <h5>{{session['nama']}}</h5>
-                                    <h6>{{session['nip']}}</h6>
-                                </div>
-                                <img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="foto-profil">
-                            </a>
-                            <ul class="dropdown-menu" style="width:200px;padding:10px ">
-                              <li><a href="" class="disabled">Otoritas: {{session['otoritas']}}</a></li>
-                              <li><a href="/logout" class="logout-btn">logout</a></li>
-                            </ul>
-                          </div>
-                       
-                    </div>
-                    
-                </div>
+                
 
                 {% block body %}
                 {% endblock %}
