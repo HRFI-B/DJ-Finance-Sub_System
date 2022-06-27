@@ -90,6 +90,55 @@ function filterTingkat(){
             }
         }
     }
+    var kelas = document.getElementById("filter-kelas");
+        kelas.options.length = 0;
+    if (filter == "TK"){
+        kelas.options.add(new Option("A Dahlia", "A DAHLIA"));
+        kelas.options.add(new Option("A Melati", "A MELATI"));
+        kelas.options.add(new Option("B Lily", "B LILY"));
+        kelas.options.add(new Option("B Matahari", "B MATAHARI"));
+    }
+    else if (filter == "SD"){
+        kelas.options.add(new Option("1D", "1D"));
+        kelas.options.add(new Option("1J", "1J"));
+        kelas.options.add(new Option("1I", "1I"));
+        kelas.options.add(new Option("1P", "1P"));
+        kelas.options.add(new Option("2D", "2D"));
+        kelas.options.add(new Option("2J", "2J"));
+        kelas.options.add(new Option("2I", "2I"));
+        kelas.options.add(new Option("2P", "2P"));
+        kelas.options.add(new Option("3D", "3D"));
+        kelas.options.add(new Option("3J", "3J"));
+        kelas.options.add(new Option("3I", "3I"));
+        kelas.options.add(new Option("3P", "3P"));
+        kelas.options.add(new Option("4D", "4D"));
+        kelas.options.add(new Option("4J", "4J"));
+        kelas.options.add(new Option("4I", "4I"));
+        kelas.options.add(new Option("4P", "4P"));
+        kelas.options.add(new Option("5D", "5D"));
+        kelas.options.add(new Option("5J", "5J"));
+        kelas.options.add(new Option("5I", "5I"));
+        kelas.options.add(new Option("5P", "5P"));
+        kelas.options.add(new Option("6D", "6D"));
+        kelas.options.add(new Option("6J", "6J"));
+        kelas.options.add(new Option("6I", "6I"));
+        kelas.options.add(new Option("6P", "6P"));
+    }
+    else if(filter == "SMP"){
+        kelas.options.add(new Option("7D", "7D"));
+        kelas.options.add(new Option("7J", "7J"));
+        kelas.options.add(new Option("7I", "7I"));
+        kelas.options.add(new Option("7P", "7P"));
+        kelas.options.add(new Option("8D", "8D"));
+        kelas.options.add(new Option("8J", "8J"));
+        kelas.options.add(new Option("8I", "8I"));
+        kelas.options.add(new Option("8P", "8P"));
+        kelas.options.add(new Option("9D", "9D"));
+        kelas.options.add(new Option("9J", "9J"));
+        kelas.options.add(new Option("9I", "9I"));
+        kelas.options.add(new Option("9P", "9P"));
+    }
+    
 }
 
 function filterKelas(){

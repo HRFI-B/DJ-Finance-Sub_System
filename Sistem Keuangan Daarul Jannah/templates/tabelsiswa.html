@@ -3,7 +3,7 @@
 <html>
     <head>
         {% block head%}
-            <!-- <title>Manajemen Siswa - Sistem Pembayaran DJ</title> -->
+            <title>Manajemen Siswa - Sistem Pembayaran DJ</title>
             <!-- JS Script -->
             <script>document.title = "Manajemen Siswa - Sistem Pembayaran DJ"</script>
             <script src="{{ url_for('static', filename='Javascript/filter_siswa.js') }}" type="text/javascript"></script>
@@ -27,9 +27,6 @@
                     
                     <select class="filter-kelas" id="filter-kelas" onchange="filterKelas()">
                         <option value="Kelas" disabled selected>Kelas</option>
-                        <option value="1D">1D</option>
-                        <option value="2D">2D</option>
-                        <option value="3D">3D</option>
                     </select>
                 </div>
                 <div class="filter-kanan">
@@ -103,7 +100,7 @@
                         <td> SMP </td>
                         <td>{{ siswa_smp.kelas }}</td>
                         <td>
-                            <a class="btn-detail"href="{{ url_for('riwayat_pembayaran', nis = siswa_smp['nis']) }}">Riwayat Pembayaran</a>
+                            <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_smp['nis']) }}">Riwayat Pembayaran</a>
                             <a class="btn-input"></a>
                         </td>
                     </tr>
