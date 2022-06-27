@@ -4,58 +4,61 @@
     <head>
         {% block head%}
         <title>Dashboard - Sistem Pembayaran DJ</title>
-        <!-- CSS Custom -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
+        
         {% endblock %}
     </head>
 
 <body>
     <!-- Sidebar -->
             {% block body %}
-            <div class="box-area">
-                <div class="back-btn">
-                    <div class="head-pack">
-                        <br>
-                        <h2>Data Siswa/i Daarul Jannah</h2>
-                        <h2>Sistem Cek Pembayaran Sekolah Daarul Jannah</h2>
+            <div class="container">
+                <h1 class="page-title">Detail Data Siswa/i Daarul Jannah</h1>
+                <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
+                    
+                <div class="card">
+                    <div class="wrap-data">
+                        <img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="ft-siswa" alt="">
+                        <table class="tb-detail-siswa">
+                            <tr>
+                                <td><b>Nama</b></td>
+                                <td><b>:</b></td>
+                                <td>{{siswa.nama_siswa}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Kelas</b></td>
+                                <td><b>:</b></td>
+                                <td>{{siswa.kelas}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Sex</b></td>
+                                <td><b>:</b></td>
+                                <td>{{siswa.jenis_kelamin}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Status</b></td>
+                                <td><b>:</b></td>
+                                <td>{{siswa.status}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>NIS</b></td>
+                                <td><b>:</b></td>
+                                <td>{{siswa.nis}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>NISN</b></td>
+                                <td><b>:</b></td>
+                                <td>{{siswa.nisn}}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                    <table border=1 class="tbl-dt-siswa tbl-hover">
-                        <tr>
-                            <td rowspan="6" class="cell-foto""><img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="ft-siswa" alt=""></td>
-                            <td><b>Nama</b></td>
-                            <td><b>:</b></td>
-                            <td>{{siswa.nama_siswa}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Kelas</b></td>
-                            <td><b>:</b></td>
-                            <td>{{siswa.kelas}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Sex</b></td>
-                            <td><b>:</b></td>
-                            <td>{{siswa.jenis_kelamin}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Status</b></td>
-                            <td><b>:</b></td>
-                            <td>{{siswa.status}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>NIS</b></td>
-                            <td><b>:</b></td>
-                            <td>{{siswa.nis}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>NISN</b></td>
-                            <td><b>:</b></td>
-                            <td>{{siswa.nisn}}</td>
-                        </tr>
-                    </table>
+                    
                     <br>
                     <div class="cmd-btn">
-                        <input type="submit" class="btn btn-success" id="save" name="save" value = "Ubah Data Siswa/i">
+                        <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}">
+                            <p class="btn btn-success">Ubah Data Siswa/i</p>
+                        </a>
+                        <!-- <input type="submit" class="btn btn-success" id="save" name="save" value = "Ubah Data Siswa/i"> -->
                         <input type="submit" class="btn btn-danger" id="delete" name="delete" value= "Hapus Data Siswa/i">
                     </div>
                 </div>
