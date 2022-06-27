@@ -272,11 +272,11 @@ def tambah_siswa():
     return redirect('/login')
 
 @app.route('/ubah_siswa/<nis>')
-def ubah_siswa():
+def ubah_siswa(nis):
     pass
 
 @app.route('/hapus_siswa/<nis>')
-def hapus_siswa():
+def hapus_siswa(nis):
     pass
 
 @app.route('/riwayat_pembayaran/<nis>', methods=['GET'])
