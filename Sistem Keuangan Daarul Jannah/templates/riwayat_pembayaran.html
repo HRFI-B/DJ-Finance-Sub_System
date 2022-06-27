@@ -1,39 +1,28 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
 <html>
     <head>
-        <title>Cek Pembayaran - Sistem Pembayaran DJ</title>
-        <!--Font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-        <!-- CSS Custom -->
-        <link rel="stylesheet" href="CSS/tabel.css">
-
-        <link rel="icon" type="image/png" href="Image/Icon1.png">
-        <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script>
-        
+        {% block head %}
+            <!-- <title>Riwayat Pembayaran - Sistem Pembayaran DJ</title> -->
+            <script>document.title = "Riwayat Pembayaran - Sistem Pembayaran DJ"</script>
+        {% endblock %}
     </head>
 
     <body>
+        {% block body %}
         <div class="data-container mx-auto">
             <div class="siswa-group">
                 <div class="text">Data Siswa/i</div>
                 <div class="tabel-siswa">
                     <img src="Image/foto-siswa.png" class="foto-siswa" alt="">
                     <div class="detail-siswa">
-                        <p><b>Nama     :</b> Muhammad Helmi Muzakki </p>
-                        <p><b>Kelas    :</b> 9D</p>
-                        <p><b>Kelamin  :</b> Laki-laki</p>
-                        <p><b>Status   :</b> Reguler</p>
-                        <p><b>NIS      :</b> 69420</p>
-                        <p><b>NISN     :</b> 019181445323</p>
+                        <p><b>Nama     :</b> {{siswa.nama_siswa}} </p>
+                        <p><b>Kelas    :</b> {{siswa.kelas}}</p>
+                        <p><b>Kelamin  :</b> {{siswa.jenis_kelamin}}</p>
+                        <p><b>Status   :</b> {{siswa.status}}</p>
+                        <p><b>NIS      :</b> {{siswa.nis}}</p>
+                        <p><b>NISN     :</b> {{siswa.nisn}}</p>
                     </div>
                 </div>  
             </div>
@@ -86,21 +75,6 @@
                 </div>
             </div>
         </div>
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <footer class="bg-light text-center text-lg-start footer mt-auto">
-            <!-- Copyright -->
-            <div class="text-left p-3 mt-auto">
-              Copyright © 2021 Sekolah Daarul Jannah
-            </div>
-        </footer>
+        {% endblock %}
     </body>
 </html>

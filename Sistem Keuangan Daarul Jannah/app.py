@@ -118,16 +118,26 @@ def login():
             # jika user ditemukan
             if user:
                 # inisiasi data session
+
+                # menyatakan bahwa user telah login
                 session['loggedin'] = True
+
+                # menyimpan data nip user
+                session['nip'] = user['nip']
+
+                # menyimpan data username user
                 session['username'] = user['username']
+
+                # menyimpan data otoritas user
                 session['otoritas'] = user['otoritas']
                 
                 # pengambilan data nama pegawai dari database
-                nip = user['nip']
                 with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                    cursor.execute('SELECT nama_pegawai FROM pegawai where nip = %s', ([nip]))
-                    nama = cursor.fetchone()
-                session['nama'] = nama['nama_pegawai']
+                    cursor.execute('SELECT nama_pegawai FROM pegawai where nip = %s', ([user['nip']]))
+                    pegawai = cursor.fetchone()
+
+                # menyimpan data nama pegawai user
+                session['nama'] = pegawai['nama_pegawai']
                 
                 # Redirect to home page
                 return redirect(url_for('home'))
@@ -254,6 +264,11 @@ def detail_siswa(nis):
             return render_template('datasiswa.html',siswa=siswa)
 
     # jika user belum login, maka user akan diredirect ke halaman login
+    return redirect('/login')
+@app.route('/tambah_siswa')
+def tambah_siswa():
+    if 'loggedin' in session:
+        return ('tambah siswa')
     return redirect('/login')
 
 @app.route('/ubah_siswa/<nis>')

@@ -3,9 +3,10 @@
 <html>
     <head>
         {% block head%}
-            <title>Cek Pembayaran - Sistem Pembayaran DJ</title>
-            <!-- CSS Custom -->
-            <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
+            <!-- <title>Manajemen Siswa - Sistem Pembayaran DJ</title> -->
+            <!-- JS Script -->
+            <script>document.title = "Manajemen Siswa - Sistem Pembayaran DJ"</script>
+            <script src="{{ url_for('static', filename='Javascript/filter_siswa.js') }}" type="text/javascript"></script>
         {% endblock %}
     </head>
 
@@ -17,21 +18,22 @@
 
             <div class="filter">
                 <div class="filter-kiri">
-                    <select class="filter-tingkat" id="filter-tingkat">
-                        <option value="Tingkat" disabled>Tingkat</option>
+                    <select class="filter-tingkat" id="filter-tingkat" onchange="filterTingkat()">
+                        <option value="Tingkat" disabled selected>Tingkat</option>
                         <option value="TK">TK</option>
                         <option value="SD" >SD</option>
                         <option value="SMP">SMP</option>
                     </select>
-                    <select class="filter-kelas" id="filter-kelas">
-                        <option value="Kelas" disabled>Kelas</option>
-                        <option value="1">1</option>
-                        <option value="2" >2</option>
-                        <option value="3">3</option>
+                    
+                    <select class="filter-kelas" id="filter-kelas" onchange="filterKelas()">
+                        <option value="Kelas" disabled selected>Kelas</option>
+                        <option value="1D">1D</option>
+                        <option value="2D">2D</option>
+                        <option value="3D">3D</option>
                     </select>
                 </div>
                 <div class="filter-kanan">
-                    <a>
+                    <a href="/tambah_siswa">
                         <p class="p-btn">Tambah Data Siswa/i</p>
                     </a>
                     <div class="search-bar">
@@ -40,12 +42,12 @@
                             <option value="Nama">Nama</option>
                             <option value="Kelas">Kelas</option>
                         </select>
-                        <input type="text" placeholder="Cari..." id="search-txt">
+                        <input type="text" placeholder="Cari..." id="search-txt" onkeyup="searchBar()">
                     </div>
                 </div>
             </div>
             
-            <div class="table">
+            <div class="table" id="data_siswa">
                 <table>
                     <tr>
                         <th>NIS</th>
@@ -64,10 +66,10 @@
                         </a></td>
                         <td>{{ siswa_tk.jenis_kelamin }}</td>
                         <td>{{ siswa_tk.status }}</td>
-                        <td>{{ siswa_tk.tingkat }}</td>
+                        <td> TK </td>
                         <td>{{ siswa_tk.kelas }}</td>
                         <td>
-                            <a class="btn-detail"></a>
+                            <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_tk['nis']) }}">Riwayat Pembayaran</a>
                             <a class="btn-input"></a>
                         </td>
                     </tr>
@@ -80,10 +82,10 @@
                         </a></td>
                         <td>{{ siswa_sd.jenis_kelamin }}</td>
                         <td>{{ siswa_sd.status }}</td>
-                        <td>{{ siswa_sd.tingkat }}</td>
+                        <td> SD </td>
                         <td>{{ siswa_sd.kelas }}</td>
                         <td>
-                            <a class="btn-detail"></a>
+                            <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_sd['nis']) }}">Riwayat Pembayaran</a>
                             <a class="btn-input"></a>
                         </td>
                     </tr>
@@ -98,10 +100,10 @@
                         </td>
                         <td>{{ siswa_smp.jenis_kelamin }}</td>
                         <td>{{ siswa_smp.status }}</td>
-                        <td>{{ siswa_smp.tingkat }}</td>
+                        <td> SMP </td>
                         <td>{{ siswa_smp.kelas }}</td>
                         <td>
-                            <a class="btn-detail"></a>
+                            <a class="btn-detail"href="{{ url_for('riwayat_pembayaran', nis = siswa_smp['nis']) }}">Riwayat Pembayaran</a>
                             <a class="btn-input"></a>
                         </td>
                     </tr>
