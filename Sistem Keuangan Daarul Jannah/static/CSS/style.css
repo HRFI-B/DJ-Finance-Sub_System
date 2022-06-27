@@ -310,6 +310,7 @@ tr:nth-child(even) {
 .ft-siswa{
     width: 20%;
     height: 90%;
+    margin-right: 20px;
 }
 
 .wrap-data{
@@ -326,6 +327,11 @@ tr:nth-child(even) {
 
 .tb-detail-siswa tr:nth-child(even) {
     background-color: white;
+}
+
+.tb-detail-siswa td{
+    padding: 8px;
+    text-align: justify;
 }
 
 .cmd-btn{
