@@ -18,14 +18,14 @@
 
             <div class="filter">
                 <div class="filter-kiri">
-                    <select class="filter-tingkat" id="filter-tingkat" onchange="filterTingkat()">
+                    <select class="filter-tingkat" id="filter-tingkat" onchange="filterTingkat()" title="Filter Tingkat Pendidikan">
                         <option value="Tingkat" disabled selected>Tingkat</option>
                         <option value="TK">TK</option>
                         <option value="SD" >SD</option>
                         <option value="SMP">SMP</option>
                     </select>
                     
-                    <select class="filter-kelas" id="filter-kelas" onchange="filterKelas()">
+                    <select class="filter-kelas" id="filter-kelas" onchange="filterKelas()" title="Filter Kelas">
                         <option value="Kelas" disabled selected>Kelas</option>
                     </select>
                 </div>
@@ -34,12 +34,12 @@
                         <p class="p-btn">Tambah Data Siswa/i</p>
                     </a>
                     <!-- <div class="search-bar"> -->
-                        <select id="search-bar-filter">
-                            <option value="NIS">NIS</option>
+                        <select id="search-bar-filter" onchange="searchBarClear()">
+                            <option value="NIS" selected>NIS</option>
                             <option value="Nama">Nama</option>
                             <option value="Kelas">Kelas</option>
                         </select>
-                        <input type="text" placeholder="Cari..." id="search-txt" onkeyup="searchBar()">
+                        <input type="text" placeholder="Cari Berdasarkan NIS" id="search-txt" onkeyup="searchBar()">
                     <!-- </div> -->
                 </div>
             </div>
@@ -58,32 +58,36 @@
                     {% for siswa_tk in siswa_tk %}
                     <tr>
                         <td>{{ siswa_tk.nis }}</td>
-                        <td><a href="{{ url_for('detail_siswa', nis = siswa_tk['nis']) }}">
-                            {{siswa_tk.nama_siswa}}
-                        </a></td>
+                        <td style="font-weight:bold;">
+                            <a href="{{ url_for('detail_siswa', nis = siswa_tk['nis']) }}">
+                                {{siswa_tk.nama_siswa}}
+                            </a>
+                        </td>
                         <td>{{ siswa_tk.jenis_kelamin }}</td>
                         <td>{{ siswa_tk.status }}</td>
                         <td> TK </td>
                         <td>{{ siswa_tk.kelas }}</td>
                         <td>
                             <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_tk['nis']) }}">Riwayat Pembayaran</a>
-                            <a class="btn-input"></a>
+                            <a class="btn-input" href="{{ url_for('pembayaran_spp', nis = siswa_tk['nis']) }}">Pembayaran SPP</a>
                         </td>
                     </tr>
                     {% endfor%}
                     {% for siswa_sd in siswa_sd %}
                     <tr>
                         <td>{{ siswa_sd.nis }}</td>
-                        <td><a href="{{ url_for('detail_siswa', nis = siswa_sd['nis']) }}">
-                            {{siswa_sd.nama_siswa}}
-                        </a></td>
+                        <td>
+                            <a href="{{ url_for('detail_siswa', nis = siswa_sd['nis']) }}">
+                                {{siswa_sd.nama_siswa}}
+                            </a>
+                        </td>
                         <td>{{ siswa_sd.jenis_kelamin }}</td>
                         <td>{{ siswa_sd.status }}</td>
                         <td> SD </td>
                         <td>{{ siswa_sd.kelas }}</td>
                         <td>
                             <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_sd['nis']) }}">Riwayat Pembayaran</a>
-                            <a class="btn-input"></a>
+                            <a class="btn-input" href="{{ url_for('pembayaran_spp', nis = siswa_sd['nis']) }}">Pembayaran SPP</a>
                         </td>
                     </tr>
                     {% endfor%}
@@ -101,7 +105,7 @@
                         <td>{{ siswa_smp.kelas }}</td>
                         <td>
                             <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_smp['nis']) }}">Riwayat Pembayaran</a>
-                            <a class="btn-input"></a>
+                            <a class="btn-input" href="{{ url_for('pembayaran_spp', nis = siswa_smp['nis']) }}">Pembayaran SPP</a>
                         </td>
                     </tr>
                     {% endfor%}
