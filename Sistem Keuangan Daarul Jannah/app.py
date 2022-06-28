@@ -3,7 +3,7 @@ from datetime import *
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from threading import Thread
-from werkzeug.utils import secure_filename
+import os
 
 #Koneksi, inisialisasi DB
 def connect_db():
@@ -305,7 +305,7 @@ def tambah_siswa():
                         # foto siswa
                         foto_profil = request.files['foto_siswa']
                         nama_foto = str(foto_profil.filename)
-                        foto_profil.save(secure_filename(foto_profil.filename))
+                        foto_profil.save(os.path.join(app.config['UPLOAD_FOLDER'], nama_foto))
 
                         # pemasukan data siswa baru ke database
                         with mysql.connection.cursor() as cursor:
