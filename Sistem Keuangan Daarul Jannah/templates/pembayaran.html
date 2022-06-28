@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+<html>
+    <head>
+        {% block head %}
+            <!-- <title>Riwayat Pembayaran - Sistem Pembayaran DJ</title> -->
+            <script>document.title = "Riwayat Pembayaran - Sistem Pembayaran DJ"</script>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block body %}
+        <div class="container mx-auto">
+            <h1 class="page-title">Data Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
+            <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
+            
+            <div class="card">
+                <div class="riwayat">
+                    <div class="siswa-group">
+                        <h4 class="text">Data Siswa/i</h4>
+                        <div class="tabel-siswa wrap-data half-card">
+                            <img src="../static/Image/foto-siswa.png" class="foto-siswa" alt="">
+                            <div class="detail-siswa">
+                                <!-- <p><b>Nama     :</b> {{siswa.nama_siswa}} </p>
+                                <p><b>Kelas    :</b> {{siswa.kelas}}</p>
+                                <p><b>Kelamin  :</b> {{siswa.jenis_kelamin}}</p>
+                                <p><b>Status   :</b> {{siswa.status}}</p>
+                                <p><b>NIS      :</b> {{siswa.nis}}</p>
+                                <p><b>NISN     :</b> {{siswa.nisn}}</p> -->
+                                <table class="tb-detail-siswa">
+                                    <tr>
+                                        <td><b>Nama</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.nama_siswa}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Kelas</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.kelas}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Sex</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.jenis_kelamin}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Status</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.status}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>NIS</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.nis}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>NISN</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.nisn}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>  
+                    </div>
+        
+                    <div class="rincian-group">
+                        <h4 class="text">Rincian Tagihan</h4>
+                        <div class="tabel-rincian half-card">
+                                <div class="scrollable2">
+                                <div class="detail-tagihan">
+                                    <p><b>Periode Pembayaran :</b> Agustus</p>
+                                    <p><b>SPP : </b>Rp. 690.000,-</p>
+                                    <p><b>Tabungan Wajib :</b> Rp.200.000,-</p>
+                                    <p>Biaya Tambahan</p>
+                                    <ul>
+                                        <li><b>Katering : </b> Rp.120.000,-</li>
+                                        <li><b>Jemputan : </b> Rp.150.000,-</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    
+                <div class="histori-group">
+                    <h4 class="text text-histori">Riwayat Pembayaran Siswa/i</h4>
+                        <div class="tabel-histori mx-auto">
+                        <div class="scrollable1">
+                            <table border='1' class="table table-borderless table-hover mx-auto">
+                                <thead>
+                                    <th>Tanggal Pembayaran</th>
+                                    <th>SPP</th>
+                                    <th>Tabungan Wajib</th>
+                                    <th>Katering</th>
+                                    <th>Jemputan</th>
+                                    <th>Ekskul</th>
+                                    <th>Majelis Sekolah</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>09/02/2021</td>
+                                        <td>Rp.690.000,-</td>
+                                        <td>Rp.690.000,-</td>
+                                        <td>Rp.690.000,-</td>
+                                        <td>Rp.690.000,-</td>
+                                        <td>Rp.690.000,-</td>
+                                        <td>Rp.690.000,-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        {% endblock %}
+    </body>
+</html>

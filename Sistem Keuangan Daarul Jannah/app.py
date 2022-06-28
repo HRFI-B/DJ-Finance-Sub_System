@@ -511,7 +511,7 @@ def pembayaran_spp(nis):
     # halaman pembayaran spp
     # jika user sudah login, maka user tidak akan diredirect ke halaman login
     if 'loggedin' in session:
-        return ('pembayaran spp')
+        return render_template('pembayaran.html')
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
