@@ -511,7 +511,59 @@ def pembayaran_spp(nis):
     # halaman pembayaran spp
     # jika user sudah login, maka user tidak akan diredirect ke halaman login
     if 'loggedin' in session:
-        return render_template('pembayaran.html')
+        # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                
+                # instruksi yang dijalankan ketika request method GET
+                if request.method == 'GET':
+    
+                    # Pengecekan dan pengambilan data siswa dari database jika nis siswa ada di database siswa_sd
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT * FROM siswa_sd where nis = %s', ([nis]))
+                        data_siswa = cursor.fetchone()
+                        
+                    # jika data siswa ditemukan di database siswa_sd
+                    if data_siswa:
+                        
+                        # pengambilan data tagihan siswa sd dari database tagihan_sd
+                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                            cursor.execute('SELECT * FROM tagihan_sd where nis = %s', ([nis]))
+                            data_tagihan = cursor.fetchall()
+
+                    # jika data siswa tidak ditemukan di database siswa_sd
+                    elif not data_siswa:
+                            
+                            # pengecekan dan pengambilan data siswa dari database jika nis siswa ada di database siswa_smp
+                            with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                                cursor.execute('SELECT * FROM siswa_smp where nis = %s', ([nis]))
+                                data_siswa = cursor.fetchone()
+                            
+                            # jika data siswa ditemukan di database siswa_smp
+                            if data_siswa:
+                                
+                                # pengambilan data tagihan siswa smp dari database tagihan_smp
+                                with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                                    cursor.execute('SELECT * FROM tagihan_smp where nis = %s', ([nis]))
+                                    data_tagihan = cursor.fetchall()
+
+                            # jika data siswa tidak ditemukan di database siswa_smp
+                            elif not data_siswa:
+                                        
+                                # pengecekan dan pengambilan data siswa dari database jika nis siswa ada di database siswa_tk
+                                with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                                    cursor.execute('SELECT * FROM siswa_tk where nis = %s', ([nis]))
+                                    data_siswa = cursor.fetchone()
+
+                                # jika data siswa ditemukan di database siswa_tk
+                                if data_siswa:
+                                        
+                                        # pengambilan data tagihan siswa tk dari database tagihan_tk
+                                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                                            cursor.execute('SELECT * FROM tagihan_tk where nis = %s', ([nis]))
+                                            data_tagihan = cursor.fetchall()                           
+
+                #Render tabel-pembayaran.html jika ada request dari client
+                return render_template('pembayaran.html', siswa=data_siswa, tagihan=data_tagihan)
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
