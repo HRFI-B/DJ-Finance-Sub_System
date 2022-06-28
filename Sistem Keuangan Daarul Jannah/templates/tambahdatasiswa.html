@@ -11,14 +11,16 @@
     <body>
         {% block body %}
             <div class="container">
-                <h1 class="page-title">Detail Data Siswa/i Daarul Jannah</h1>
-                <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
+                <h1 class="page-title">Tambah Data Siswa/i Sekolah Daarul Jannah</h1>
+                <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
                     
                 <div class="card">
                     <div class="wrap-data">
                         <img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="ft-siswa" alt="">
+                        <form action="/tambah_siswa" method="post">
+                            
                         <table class="tb-detail-siswa">
-                            <form action="/tambah_siswa" method="post">
+                            
                                 <tr>
                                     <td><b>Nama</b></td>
                                     <td><b>:</b></td>
@@ -54,10 +56,10 @@
                                     <td><b>:</b></td>
                                     <td><input type="text" id="floatingInput" placeholder="Masukkan Tingkat" name="tingkat"></td>
                                 </tr>
-                                <input type="submit" value="submit">
-                            </form>
+                                
                         </table>
-                        
+                        <input type="submit" value="submit">
+                        </form>
                     </div>
                 </div>
                 <br>
