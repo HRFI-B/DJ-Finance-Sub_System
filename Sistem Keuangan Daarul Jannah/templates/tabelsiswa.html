@@ -58,7 +58,7 @@
                     {% for siswa_tk in siswa_tk %}
                     <tr>
                         <td>{{ siswa_tk.nis }}</td>
-                        <td style="font-weight:bold;">
+                        <td>
                             <a href="{{ url_for('detail_siswa', nis = siswa_tk['nis']) }}">
                                 {{siswa_tk.nama_siswa}}
                             </a>
