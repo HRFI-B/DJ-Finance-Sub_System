@@ -18,7 +18,7 @@
                     <div class="wrap-data">
                         <img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="ft-siswa" alt="">
                         <table class="tb-detail-siswa">
-                            <form action="/tambah_siswa" method="post">
+                            <form action="/tambah_siswa" method="post" enctype="multipart/form-data">
                                 <tr>
                                     <td><b>Nama</b></td>
                                     <td><b>:</b></td>
@@ -53,6 +53,13 @@
                                     <td><b>Tingkat</b></td>
                                     <td><b>:</b></td>
                                     <td><input type="text" id="floatingInput" placeholder="Masukkan Tingkat" name="tingkat"></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Foto Siswa</b></td>
+                                    <td><b>:</b></td>
+                                    <td>
+                                        <input type="file" name="foto_siswa">
+                                    </td>
                                 </tr>
                                 <input type="submit" value="submit">
                             </form>

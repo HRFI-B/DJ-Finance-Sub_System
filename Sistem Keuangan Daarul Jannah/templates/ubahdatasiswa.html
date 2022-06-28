@@ -17,7 +17,8 @@
                     
                 <div class="card">
                     <div class="wrap-data">
-                        <img src="{{ url_for('static', filename='Image/foto-siswa.png') }}" class="ft-siswa" alt="">
+                        {% set foto_siswa = "foto_siswa/" + siswa.foto_path %}
+                        <img src="{{ url_for('static', filename = foto_siswa) }}" class="ft-siswa" alt="">
                         <table class="tb-detail-siswa">
                             <form>
                                 <tr>
