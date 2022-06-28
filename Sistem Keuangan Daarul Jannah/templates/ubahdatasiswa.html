@@ -24,35 +24,46 @@
                                 <tr>
                                     <td><b>NIS</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NIS" ></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NIS"  value="{{siswa.nis}}" disabled></td>
                                 </tr>
                                 <tr>
                                     <td><b>NISN</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NISN" ></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NISN" required value="{{siswa.nisn}}"></td>
                                 </tr>
                                 <tr>
                                     <td><b>Nama</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" ></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" required value="{{siswa.nama_siswa}}"></td>
                                 </tr>
                                 <tr>
                                     <td><b>Kelas</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Kelas" ></td>
+                                    <td>
+                                        <select required>
+                                            <option value="1D">1D</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Jenis Kelamin</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Jenis Kelamin" ></td>
+                                    <td>
+                                        <select required>
+                                            <option value="Laki-laki">Laki-laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Status</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Status" ></td>
+                                    <td>
+                                        <select required>
+                                            <option value="Reguler">Reguler</option>
+                                        </select>
+                                    </td>
                                 </tr>
-                                
-                                
                             </form>
                         </table>
                         
