@@ -21,6 +21,16 @@
                         <table class="tb-detail-siswa">
                             <form>
                                 <tr>
+                                    <td><b>NIS</b></td>
+                                    <td><b>:</b></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NIS" ></td>
+                                </tr>
+                                <tr>
+                                    <td><b>NISN</b></td>
+                                    <td><b>:</b></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NISN" ></td>
+                                </tr>
+                                <tr>
                                     <td><b>Nama</b></td>
                                     <td><b>:</b></td>
                                     <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" ></td>
@@ -40,16 +50,7 @@
                                     <td><b>:</b></td>
                                     <td><input type="text" id="floatingInput" placeholder="Masukkan Status" ></td>
                                 </tr>
-                                <tr>
-                                    <td><b>NIS</b></td>
-                                    <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NIS" ></td>
-                                </tr>
-                                <tr>
-                                    <td><b>NISN</b></td>
-                                    <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NISN" ></td>
-                                </tr>
+                                
                                 
                             </form>
                         </table>
@@ -57,10 +58,7 @@
                     </div>
                     <div class="cmd-btn">
                         <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}">
-                            <p class="btn btn-success">Ubah Data Siswa/i</p>
-                        </a>
-                        <a href="{{ url_for('hapus_siswa', nis = siswa['nis']) }}">
-                            <p class="btn btn-danger">Hapus Data Siswa/i</p>
+                            <p class="btn btn-success">Simpan Data Siswa/i</p>
                         </a>
                     </div>
                 </div>

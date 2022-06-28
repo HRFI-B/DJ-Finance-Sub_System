@@ -16,13 +16,13 @@ html, body {
 
 .side { 
     grid-area: 1 / 1 / 9 / 2; 
-    height: 100vh;
+    height: 100%;
     background-color:#056A31;
 }
 .top {
     grid-area: 1 / 2 / 2 / 5;
     border-bottom: 2px solid #056A31;
-    padding-top: 10px;
+    padding: 20px;
     color:black !important;
  }
 .middle { 
@@ -69,7 +69,8 @@ html, body {
 }
 
 .menu i{
-    font-size: 30px;
+    font-size: 20px;
+    padding-top: 10px;
     /* color: white; */
 }
 
@@ -147,42 +148,51 @@ nav a h4{
     margin-bottom: 2px;
 }
 
-
 .dropbtn {
-    background-color: #3498DB;
-    color: white;
-    /* padding: 16px; */
-    font-size: 16px;
+    background-color: #FAFAFA;
     border: none;
     cursor: pointer;
-  }
-  
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  }
-  
-  .dropdown {
+}
+
+.dropdown {
     position: relative;
     display: inline-block;
-  }
+}
   
-  .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    right: 0;
+    background-color: #f9f9f9;
     min-width: 160px;
-    overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-  }
+}
   
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+.dropdown-content a {
+    /* color: black; */
+    /* padding: 12px 16px; */
     text-decoration: none;
     display: block;
-  }
+    font-size: 14px;
+}
   
-  .dropdown a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
   
-  .show {display: block;}
+.disabled {
+    pointer-events:none;     
+}
+
+.logout-btn{
+    background-color: #A60000;
+    padding: 5px;
+    border-radius: 5px;
+    color: white!important; 
+    text-align: center;
+}
+
+.logout-btn:hover{
+    background-color: #820000  !important;
+}
