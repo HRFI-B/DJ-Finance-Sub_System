@@ -28,12 +28,12 @@
                                 <tr>
                                     <td><b>Nama</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa"></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa" required></td>
                                 </tr>
                                 <tr>
                                     <td><b>NIS</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="number" id="floatingInput" placeholder="Masukkan NIS" name="nis"></td>
+                                    <td><input type="number" id="floatingInput" placeholder="Masukkan NIS" name="nis" required></td>
                                     <td><b>NISN</b></td>
                                     <td><b>:</b></td>
                                     <td><input type="number" id="floatingInput" placeholder="Masukkan NISN" name="nisn"></td>
@@ -41,7 +41,19 @@
                                 <tr>
                                     <td><b>Tingkat</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Tingkat" name="tingkat"></td>
+                                    <td>
+                                        <select name="tingkat" required>
+                                            <option value="TK">
+                                                Taman Kanak-Kanak
+                                            </option>
+                                            <option value="SD">
+                                                Sekolah Dasar
+                                            </option>
+                                            <option value="SMP">
+                                                Sekolah Menengah Pertama
+                                            </option>
+                                        </select>
+                                    </td>
                                     <td><b>Kelas</b></td>
                                     <td><b>:</b></td>
                                     <td><input type="text" id="floatingInput" placeholder="Masukkan Kelas" name="kelas"></td>
@@ -49,10 +61,28 @@
                                 <tr>
                                     <td><b>Status</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Status" name="status"></td>
+                                    <td>
+                                        <select name="status" required>
+                                            <option value="Reguler">
+                                                Reguler
+                                            </option>
+                                            <option value="Yayasan">
+                                                Yayasan
+                                            </option>
+                                        </select>
+                                    </td>
                                     <td><b>Jenis Kelamin</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Jenis Kelamin" name="jenis_kelamin"></td>
+                                    <td>
+                                        <select name="jenis_kelamin" required>
+                                            <option value="Laki-laki">
+                                                Laki-laki
+                                            </option>
+                                            <option value="Perempuan">
+                                                Perempuan
+                                            </option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 
                                 <tr>
