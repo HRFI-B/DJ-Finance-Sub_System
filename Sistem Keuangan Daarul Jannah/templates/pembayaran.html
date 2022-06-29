@@ -35,84 +35,72 @@
                                         <td>{{siswa.nama_siswa}}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Kelas</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.kelas}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Sex</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.jenis_kelamin}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Status</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.status}}</td>
-                                    </tr>
-                                    <tr>
                                         <td><b>NIS</b></td>
                                         <td><b>:</b></td>
                                         <td>{{siswa.nis}}</td>
-                                    </tr>
-                                    <tr>
                                         <td><b>NISN</b></td>
                                         <td><b>:</b></td>
                                         <td>{{siswa.nisn}}</td>
                                     </tr>
+                                    <tr>
+                                        <td><b>Tingkat</b></td>
+                                        <td><b>:</b></td>
+                                        <td>smp</td>
+                                        <td><b>Kelas</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.kelas}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td><b>Sex</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.jenis_kelamin}}</td>
+                                        <td><b>Status</b></td>
+                                        <td><b>:</b></td>
+                                        <td>{{siswa.status}}</td>
+                                    </tr>
+                                    
+                                    
+                                    
                                 </table>
                             </div>
                         </div>  
                     </div>
         
                     <div class="rincian-group">
-                        <h4 class="text">Rincian Tagihan</h4>
+                        <h4 class="text">Input Data Rincian Tagihan</h4>
                         <div class="tabel-rincian half-card">
                                 <div class="scrollable2">
                                 <div class="detail-tagihan">
-                                    <p><b>Periode Pembayaran :</b> Agustus</p>
-                                    <p><b>SPP : </b>Rp. 690.000,-</p>
-                                    <p><b>Tabungan Wajib :</b> Rp.200.000,-</p>
+                                    <p><b>Periode Pembayaran :</b></p>
+                                    <select>
+                                        <option>agustus</option>
+                                    </select>
+                                    <select>
+                                        <option>2023/2024 Ganjil</option>
+                                        <option>2023/2024 Genap</option>
+                                    </select>
+                                    <p><b>SPP : </b></p>
+                                    <input type="number" id="floatingInput" placeholder="Masukkan Nominal" >
+                                    <p><b>Tabungan Wajib :</b> </p>
+                                    <input type="number" id="floatingInput" placeholder="Masukkan Nominal" >
                                     <p>Biaya Tambahan</p>
-                                    <ul>
-                                        <li><b>Katering : </b> Rp.120.000,-</li>
-                                        <li><b>Jemputan : </b> Rp.150.000,-</li>
-                                    </ul>
+                                    <select>
+                                        <option>Katering</option>
+                                    </select>
+                                    <input type="number" id="floatingInput" placeholder="Masukkan Nominal" >
+                                    <br>
+                                    <button>
+                                        add biaya tambahan
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-    
-                <div class="histori-group">
-                    <h4 class="text text-histori">Riwayat Pembayaran Siswa/i</h4>
-                        <div class="tabel-histori mx-auto">
-                        <div class="scrollable1">
-                            <table border='1' class="table table-borderless table-hover mx-auto">
-                                <thead>
-                                    <th>Tanggal Pembayaran</th>
-                                    <th>SPP</th>
-                                    <th>Tabungan Wajib</th>
-                                    <th>Katering</th>
-                                    <th>Jemputan</th>
-                                    <th>Ekskul</th>
-                                    <th>Majelis Sekolah</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>09/02/2021</td>
-                                        <td>Rp.690.000,-</td>
-                                        <td>Rp.690.000,-</td>
-                                        <td>Rp.690.000,-</td>
-                                        <td>Rp.690.000,-</td>
-                                        <td>Rp.690.000,-</td>
-                                        <td>Rp.690.000,-</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                <a>
+                <p class="btn btn-success">Simpan Pembayaran</p>
+            </a>
             </div>
             
         </div>
