@@ -33,14 +33,14 @@
                     <a href="/tambah_siswa">
                         <p class="p-btn">Tambah Data Siswa/i</p>
                     </a>
-                    <!-- <div class="search-bar"> -->
+                    <div class="search-bar">
                         <select id="search-bar-filter" onchange="searchBarClear()">
                             <option value="NIS" selected>NIS</option>
                             <option value="Nama">Nama</option>
                             <option value="Kelas">Kelas</option>
                         </select>
                         <input type="text" placeholder="Cari Berdasarkan NIS" id="search-txt" onkeyup="searchBar()">
-                    <!-- </div> -->
+                    </div>
                 </div>
             </div>
             
@@ -58,9 +58,9 @@
                     {% for siswa_tk in siswa_tk %}
                     <tr>
                         <td>{{ siswa_tk.nis }}</td>
-                        <td>
+                        <td class="tb-name">
                             <a href="{{ url_for('detail_siswa', nis = siswa_tk['nis']) }}">
-                                {{siswa_tk.nama_siswa}}
+                                <p>{{siswa_tk.nama_siswa}}</p>
                             </a>
                         </td>
                         <td>{{ siswa_tk.jenis_kelamin }}</td>
