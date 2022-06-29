@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2022 at 05:06 PM
+-- Generation Time: Jun 29, 2022 at 03:19 AM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.28
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -171,12 +171,21 @@ CREATE TABLE `pembayaran_tk` (
 
 CREATE TABLE `siswa_sd` (
   `nis` varchar(9) NOT NULL,
+  `nisn` varchar(20) NOT NULL,
   `nama_siswa` varchar(200) NOT NULL,
   `status` varchar(50) NOT NULL,
   `kelas` varchar(2) NOT NULL,
   `jenis_kelamin` varchar(9) NOT NULL,
   `foto_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `siswa_sd`
+--
+
+INSERT INTO `siswa_sd` (`nis`, `nisn`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
+('119140130', '119140130', 'Ihza', 'Reguler', '1J', 'Laki-laki', '1549425553128.png'),
+('212201001', '', 'Muhammad Helmi Muzakki', 'Reguler', '1D', 'Laki-laki', '119140130.png');
 
 -- --------------------------------------------------------
 
@@ -186,6 +195,7 @@ CREATE TABLE `siswa_sd` (
 
 CREATE TABLE `siswa_smp` (
   `nis` varchar(9) NOT NULL,
+  `nisn` varchar(20) NOT NULL,
   `nama_siswa` varchar(200) NOT NULL,
   `status` varchar(50) NOT NULL,
   `kelas` varchar(2) NOT NULL,
@@ -201,9 +211,10 @@ CREATE TABLE `siswa_smp` (
 
 CREATE TABLE `siswa_tk` (
   `nis` varchar(9) NOT NULL,
+  `nisn` varchar(20) NOT NULL,
   `nama_siswa` varchar(200) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `kelas` varchar(2) NOT NULL,
+  `kelas` varchar(15) NOT NULL,
   `jenis_kelamin` varchar(9) NOT NULL,
   `foto_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -212,8 +223,8 @@ CREATE TABLE `siswa_tk` (
 -- Dumping data for table `siswa_tk`
 --
 
-INSERT INTO `siswa_tk` (`nis`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
-('212201001', 'Abdul Hakim', 'Reguler', '1D', 'Laki-laki', '');
+INSERT INTO `siswa_tk` (`nis`, `nisn`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
+('119140130', '', 'Muhammad Shibgatullah Dzarinal Ghiffar', 'Yayasan', 'A Dahlia', 'Laki-laki', '');
 
 -- --------------------------------------------------------
 
