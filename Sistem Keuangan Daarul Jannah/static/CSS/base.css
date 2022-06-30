@@ -6,6 +6,8 @@ html, body {
     background-color: #FAFAFA;
     margin:0px;
 }
+
+
 .parent {
     display: grid;
     grid-template-columns: 0.75fr repeat(4, 1fr);
@@ -32,6 +34,7 @@ html, body {
     grid-auto-rows: 500px;
     overflow: auto;
 }
+
 .footer { 
     grid-area: 5 / 2 / 6 / 6;  
     text-align: center;
@@ -40,6 +43,16 @@ html, body {
     margin: 0;
 }
 
+
+.middle::-webkit-scrollbar{
+    width:10px;
+    background:#dadada;
+}
+
+.middle::-webkit-scrollbar-thumb{
+    background: #3d4146;
+    border-radius: 10px;
+}
 .sidebar{
     text-align: center;
     padding: 10px;
