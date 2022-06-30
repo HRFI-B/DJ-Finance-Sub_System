@@ -3,8 +3,8 @@
 <html>
     <head>
         {% block head%}
-        <title>Dashboard - Sistem Pembayaran DJ</title>
-        
+        <title>Pengubahan Data Siswa - Sistem Pembayaran DJ</title>
+        <script>document.title = "Pengubahan Data Siswa - Sistem Pembayaran DJ"</script>
         {% endblock %}
     </head>
 
@@ -20,28 +20,70 @@
                         {% set foto_siswa = "foto_siswa/" + siswa.foto_path %}
                         <img src="{{ url_for('static', filename = foto_siswa) }}" class="ft-siswa" alt="">
                         <table class="tb-detail-siswa">
-                            <form>
+                            <form action="{{ url_for('ubah_siswa', nis = siswa['nis']) }}" method="post">
                                 <tr>
                                     <td><b>NIS</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NIS"  value="{{siswa.nis}}" disabled></td>
+                                    <td><input type="number" id="floatingInput" placeholder="Masukkan NIS" name="nis" value="{{siswa.nis}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <td><b>NISN</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan NISN" required value="{{siswa.nisn}}"></td>
+                                    <td><input type="number" id="floatingInput" placeholder="Masukkan NISN" name="nisn" required value="{{siswa.nisn}}"></td>
                                 </tr>
                                 <tr>
                                     <td><b>Nama</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" required value="{{siswa.nama_siswa}}"></td>
+                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa" required value="{{siswa.nama_siswa}}"></td>
                                 </tr>
                                 <tr>
                                     <td><b>Kelas</b></td>
                                     <td><b>:</b></td>
                                     <td>
-                                        <select name="kelas" required>
-                                            <option value="1D">1D</option>
+                                        <select name="kelas"  required>
+                                            {% if tingkat == "TK" %}
+                                                <option value="A DAHLIA">Kelas A Dahlia</option>
+                                                <option value="A MELATI">Kelas A Melati</option>
+                                                <option value="B LILY">Kelas B Lily</option>
+                                                <option value="B MATAHARI">Kelas B Matahari</option>
+                                            {% elif tingkat == "SD" %}
+                                                <option value="1D">Kelas 1D</option>
+                                                <option value="1J">Kelas 1J</option>
+                                                <option value="1I">Kelas 1I</option>
+                                                <option value="1P">Kelas 1P</option>
+                                                <option value="2D">Kelas 2D</option>
+                                                <option value="2J">Kelas 2J</option>
+                                                <option value="2I">Kelas 2I</option>
+                                                <option value="2P">Kelas 2P</option>
+                                                <option value="3D">Kelas 3D</option>
+                                                <option value="3J">Kelas 3J</option>
+                                                <option value="3I">Kelas 3I</option>
+                                                <option value="3P">Kelas 3P</option>
+                                                <option value="4D">Kelas 4D</option>
+                                                <option value="4J">Kelas 4J</option>
+                                                <option value="4I">Kelas 4I</option>
+                                                <option value="4P">Kelas 4P</option>
+                                                <option value="5D">Kelas 5D</option>
+                                                <option value="5J">Kelas 5J</option>
+                                                <option value="5I">Kelas 5I</option>
+                                                <option value="5P">Kelas 5P</option>
+                                                <option value="6D">Kelas 6D</option>
+                                                <option value="6J">Kelas 6J</option>
+                                                <option value="6I">Kelas 6I</option>
+                                                <option value="6P">Kelas 6P</option>
+                                            {% elif tingkat == "SMP" %}
+                                                <option value="7D">Kelas 7D</option>
+                                                <option value="7J">Kelas 7J</option>
+                                                <option value="7I">Kelas 7I</option>
+                                                <option value="7P">Kelas 7P</option>
+                                                <option value="8D">Kelas 8D</option>
+                                                <option value="8J">Kelas 8J</option>
+                                                <option value="8I">Kelas 8I</option>
+                                                <option value="8P">Kelas 8P</option>
+                                                <option value="9D">Kelas 9D</option>
+                                                <option value="9J">Kelas 9J</option>
+                                                <option value="9I">Kelas 9I</option>
+                                            {% endif %}
                                         </select>
                                     </td>
                                 </tr>
@@ -49,7 +91,7 @@
                                     <td><b>Jenis Kelamin</b></td>
                                     <td><b>:</b></td>
                                     <td>
-                                        <select name="jenis_kelamin"required>
+                                        <select name="jenis_kelamin" required>
                                             <option value="Laki-laki">Laki-laki</option>
                                             <option value="Perempuan">Perempuan</option>
                                         </select>
@@ -59,19 +101,18 @@
                                     <td><b>Status</b></td>
                                     <td><b>:</b></td>
                                     <td>
-                                        <select name="statusS" required>
+                                        <select name="status" required>
                                             <option value="Reguler">Reguler</option>
+                                            <option value="Yayasan">Yayasan</option>
+                                            <option value="Inklusi">Inklusi</option>
                                         </select>
                                     </td>
                                 </tr>
+                                <div class="cmd-btn">
+                                    <input type="submit" class="btn btn-success" value="Simpan Data Siswa/i">
+                                </div>
                             </form>
                         </table>
-                        
-                    </div>
-                    <div class="cmd-btn">
-                        <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}">
-                            <p class="btn btn-success">Simpan Data Siswa/i</p>
-                        </a>
                     </div>
                 </div>
                     
