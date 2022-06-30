@@ -17,13 +17,20 @@
                     
                 <div class="card">
                     <form action="/tambah_siswa" method="post" enctype="multipart/form-data">
-                    <div class="wrap-data">
+                    <div class="row">
                         <div class="preview ft-siswa">
                             <i class="fa fa-plus"></i>
                         </div>
                         
+                        <div class="column">
+                            <div class="row">
+                                <p>Nama</p>
+                                <p>:</p>
+                                <input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa" required>
+                            </div>
                             
-                        <table class="tb-detail-siswa">
+                        </div>    
+                        <!-- <table class="tb-detail-siswa">
                             
                                 <tr>
                                     <td><b>Nama</b></td>
@@ -92,7 +99,7 @@
                                         <input type="file" name="foto_siswa">
                                     </td>
                                 </tr>
-                        </table>
+                        </table> -->
                         </div>
                     <input type="submit" value="submit">
                     </form>
