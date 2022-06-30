@@ -4,7 +4,7 @@
     <head>
         {% block head%}
         <title>Tambah Data Siswa - Sistem Pembayaran DJ</title>
-        <script>document.title = "Tambah Data Siswa - Sistem Pembayaran DJ"</script>
+        <script>document.title = "Penambahan Data Siswa - Sistem Pembayaran DJ"</script>
         <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
@@ -56,7 +56,13 @@
                                     </td>
                                     <td><b>Kelas</b></td>
                                     <td><b>:</b></td>
-                                    <td><input type="text" id="floatingInput" placeholder="Masukkan Kelas" name="kelas"></td>
+                                    <td>
+                                        <select name="kelas" required>
+                                            <option value="Pilih Tingkat" disabled>
+                                                Pilih Tingkat Terlebih Dahulu
+                                            </option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Status</b></td>
@@ -68,6 +74,9 @@
                                             </option>
                                             <option value="Yayasan">
                                                 Yayasan
+                                            </option>
+                                            <option value="Inklusi">
+                                                Inklusi
                                             </option>
                                         </select>
                                     </td>
