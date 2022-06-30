@@ -348,12 +348,12 @@ def ubah_siswa(nis):
 
                 # nis siswa
                 nis = request.form['nis']
-
+                
                 # nisn siswa
                 nisn = request.form['nisn']
 
                 # nama siswa
-                nama = request.form['nama']
+                nama_siswa = request.form['nama_siswa']
 
                 # jenis kelamin siswa
                 jenis_kelamin = request.form['jenis_kelamin']
@@ -366,14 +366,38 @@ def ubah_siswa(nis):
                 
                 # pembaruan data siswa ke database
                 with mysql.connection.cursor() as cursor:
-                    cursor.execute('UPDATE siswa_tk SET nama = %s, jenis_kelamin = %s, kelas = %s, status = %s, nisn = %s WHERE nis = %s', (nama, jenis_kelamin, kelas, status, nisn, nis))
-                    mysql.connection.commit()
+                    
+                    # pengecekan jika tingkat siswa adalah tk
+                    cursor.execute('SELECT nis FROM siswa_tk WHERE nis = %s', ([nis]))
+                    siswa = cursor.fetchone()
+                    if siswa:
+                        cursor.execute('UPDATE IGNORE siswa_tk SET nama_siswa = %s, jenis_kelamin = %s, kelas = %s, status = %s, nisn = %s WHERE nis = %s', (nama_siswa, jenis_kelamin, kelas, status, nisn, nis))
+                        mysql.connection.commit()
+                    
+                    elif not siswa:
+                        # pengecekan jika tingkat siswa adalah sd
+                        cursor.execute('SELECT nis FROM siswa_sd WHERE nis = %s', ([nis]))
+                        siswa = cursor.fetchone()
+                        if siswa:
+                            cursor.execute('UPDATE IGNORE siswa_sd SET nama_siswa = %s, jenis_kelamin = %s, kelas = %s, status = %s, nisn = %s WHERE nis = %s', (nama_siswa, jenis_kelamin, kelas, status, nisn, nis))
+                            mysql.connection.commit()
+
+                        elif not siswa:
+                            # pengecekan jika tingkat siswa adalah smp
+                            cursor.execute('SELECT nis FROM siswa_smp WHERE nis = %s', ([nis]))
+                            siswa = cursor.fetchone()
+                            if siswa:
+                                cursor.execute('UPDATE IGNORE siswa_smp SET nama_siswa = %s, jenis_kelamin = %s, kelas = %s, status = %s, nisn = %s WHERE nis = %s', (nama_siswa, jenis_kelamin, kelas, status, nisn, nis))
+                                mysql.connection.commit()
 
                 # redirect ke halaman manajemen siswa
                 return redirect('/manajemen_siswa')
             
             # instruksi yang dijalankan ketika request method GET
             elif request.method == 'GET':
+
+                # inisialisasi tingkat siswa
+                tingkat = ""
 
                 # pengambilan data siswa dari database
                 with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
@@ -382,21 +406,24 @@ def ubah_siswa(nis):
                     # pengecekan apakah nis siswa ada di database siswa_tk
                     cursor.execute('SELECT * FROM siswa_tk WHERE nis = %s', ([nis]))
                     siswa = cursor.fetchone()
+                    tingkat = "TK"
 
                     # instruksi yang dilakukan jika siswa tidak ditemukan di database siswa_tk
                     if not siswa:
                         # pengecekan apakah nis siswa ada di database siswa_sd
                         cursor.execute('SELECT * FROM siswa_sd WHERE nis = %s', ([nis]))
                         siswa = cursor.fetchone()
+                        tingkat = "SD"
 
                         # instruksi yang dilakukan jika siswa tidak ditemukan di database siswa_sd
                         if not siswa:
                             # pengecekan apakah nis siswa ada di database siswa_smp
                             cursor.execute('SELECT * FROM siswa_smp WHERE nis = %s', ([nis]))
                             siswa = cursor.fetchone()
+                            tingkat = "SMP"
 
                 # render template ubahdatasiswa.html dengan data siswa
-                return render_template('ubahdatasiswa.html',siswa=siswa)
+                return render_template('ubahdatasiswa.html',siswa=siswa, tingkat=tingkat)
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
