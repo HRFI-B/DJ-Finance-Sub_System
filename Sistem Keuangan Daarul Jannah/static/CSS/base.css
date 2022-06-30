@@ -9,7 +9,7 @@ html, body {
 .parent {
     display: grid;
     grid-template-columns: 0.75fr repeat(4, 1fr);
-    grid-template-rows: 0.35fr repeat(3, 1fr) 0.3fr;
+    grid-template-rows: 0.35fr repeat(3, 1fr) 0.2fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     height: 100vh;
@@ -367,7 +367,15 @@ th,td{
 
 .detail h4{
     padding: 5px;
-    min-width: fit-content;
+    
+}
+
+.detail .in-1{
+    min-width: 30%;
+}
+
+.detail .in-2{
+    min-width: 14.75%;
 }
 
 .detail p{

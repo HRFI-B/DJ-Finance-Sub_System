@@ -11,9 +11,72 @@
 
     <body>
         {% block body %}
-        <div class="container mx-auto">
-            <h1 class="page-title">Data Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
-            <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
+        <h1 class="page-title">Data Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
+        <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
+
+        <div class="container">
+            <div class="card">
+                <div class="row fl-stretch" style="margin-bottom:2%">
+                    <div class="column" >
+                        <h4 class="text">Data Siswa/i</h4>
+                        <div class="card-nosh" style="margin-right:10px">
+                            <div class="row " style="align-items:center;justify-content:center;">
+                                <img src="../static/foto_siswa/1549425553128.png" class="ft-siswa" alt="foto orang"  style="margin-right:2%">
+                                <div class="column">
+                                    <div class="row detail">
+                                        <h4>Nama</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.nama_siswa}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4>Kelas</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.kelas}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4>Sex</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.jenis_kelamin}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4>Status</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.status}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4>NIS</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.nis}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4>NISN</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.nisn}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h4 class="text" style="margin-left:10px">Input Data Rincian Tagihan </h4>
+                        <div class="card-nosh" style="margin-left:10px">
+                            <p>hello</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row cmd-btn" style="justify-content:flex-end;">
+                    <a>
+                        <p class="p-btn btn">Simpan Pembayaran</p>
+                    </a>
+                </div>
+                
+            </div>
+            
+        </div>
+        <!-- <div class="container mx-auto">
+            
             
             <div class="card">
                 <div class="riwayat">
@@ -22,12 +85,7 @@
                         <div class="tabel-siswa wrap-data half-card">
                             <img src="../static/Image/foto-siswa.png" class="foto-siswa" alt="">
                             <div class="detail-siswa">
-                                <!-- <p><b>Nama     :</b> {{siswa.nama_siswa}} </p>
-                                <p><b>Kelas    :</b> {{siswa.kelas}}</p>
-                                <p><b>Kelamin  :</b> {{siswa.jenis_kelamin}}</p>
-                                <p><b>Status   :</b> {{siswa.status}}</p>
-                                <p><b>NIS      :</b> {{siswa.nis}}</p>
-                                <p><b>NISN     :</b> {{siswa.nisn}}</p> -->
+                               
                                 <table class="tb-detail-siswa">
                                     <tr>
                                         <td><b>Nama</b></td>
@@ -103,7 +161,7 @@
             </a>
             </div>
             
-        </div>
+        </div> -->
         {% endblock %}
     </body>
 </html>
