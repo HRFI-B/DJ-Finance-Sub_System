@@ -6,6 +6,7 @@
         <title>Tambah Data Siswa - Sistem Pembayaran DJ</title>
         <script>document.title = "Penambahan Data Siswa - Sistem Pembayaran DJ"</script>
         <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='Javascript/dynamic_option.js') }}" type="text/javascript"></script>
         {% endblock %}
     </head>
 
@@ -42,7 +43,10 @@
                                     <td><b>Tingkat</b></td>
                                     <td><b>:</b></td>
                                     <td>
-                                        <select name="tingkat" required>
+                                        <select name="tingkat" id="tingkat_siswa" required  onchange="dynamicOption()">
+                                            <option disabled selected>
+                                                Pilih Tingkat
+                                            </option>
                                             <option value="TK">
                                                 Taman Kanak-Kanak
                                             </option>
@@ -57,9 +61,9 @@
                                     <td><b>Kelas</b></td>
                                     <td><b>:</b></td>
                                     <td>
-                                        <select name="kelas" required>
-                                            <option value="Pilih Tingkat" disabled>
-                                                Pilih Tingkat Terlebih Dahulu
+                                        <select name="kelas" id="kelas_siswa" required disabled>
+                                            <option disabled>
+                                                Pilih Tingkat
                                             </option>
                                         </select>
                                     </td>
