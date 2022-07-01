@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2022 at 03:19 AM
+-- Generation Time: Jul 01, 2022 at 05:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -179,14 +179,6 @@ CREATE TABLE `siswa_sd` (
   `foto_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `siswa_sd`
---
-
-INSERT INTO `siswa_sd` (`nis`, `nisn`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
-('119140130', '119140130', 'Ihza', 'Reguler', '1J', 'Laki-laki', '1549425553128.png'),
-('212201001', '', 'Muhammad Helmi Muzakki', 'Reguler', '1D', 'Laki-laki', '119140130.png');
-
 -- --------------------------------------------------------
 
 --
@@ -202,6 +194,13 @@ CREATE TABLE `siswa_smp` (
   `jenis_kelamin` varchar(9) NOT NULL,
   `foto_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `siswa_smp`
+--
+
+INSERT INTO `siswa_smp` (`nis`, `nisn`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
+('119140130', '12312', 'Ihza Fajrur Rachman Hasani', 'Yayasan', '9D', 'Laki-laki', '1549425553128.png');
 
 -- --------------------------------------------------------
 
@@ -224,7 +223,7 @@ CREATE TABLE `siswa_tk` (
 --
 
 INSERT INTO `siswa_tk` (`nis`, `nisn`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
-('119140130', '', 'Muhammad Shibgatullah Dzarinal Ghiffar', 'Yayasan', 'A Dahlia', 'Laki-laki', '');
+('1231', '3211', 'Helmi Muzakkar', 'Reguler', 'A DAHLIA', 'Laki-laki', 'IMG_20201013_170918.jpg');
 
 -- --------------------------------------------------------
 
