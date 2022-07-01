@@ -17,7 +17,8 @@
             <div class="container">
                 <div class="card">
                     <div class="row fl-stretch">
-                        <img src="../static/foto_siswa/1549425553128.png" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
+                        {% set foto_siswa = "foto_siswa/" + siswa['foto_path'] %}
+                        <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
                         <div >
                             <div class="row detail">
                                 <h4 class="in-2">Nama</h4>
