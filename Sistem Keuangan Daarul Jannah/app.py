@@ -502,14 +502,15 @@ def riwayat_pembayaran(nis):
                     # jika data siswa ditemukan di database siswa_smp
                     if data_siswa:
 
-                        # pengambilan data pembayaran siswa smp dari database pembayaran_smp
-                        cursor.execute('SELECT * FROM pembayaran_smp where nis = %s', ([nis]))
-                        data_pembayaran = cursor.fetchall()
+                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                            # pengambilan data pembayaran siswa smp dari database pembayaran_smp
+                            cursor.execute('SELECT * FROM pembayaran_smp where nis = %s', ([nis]))
+                            data_pembayaran = cursor.fetchall()
 
-                        # pengambilan data tagihan siswa smp dari database tagihan_smp
-                        cursor.execute('SELECT * FROM tagihan_smp where nis = %s', ([nis]))
-                        tagihan_siswa = cursor.fetchall()    
-                                
+                            # pengambilan data tagihan siswa smp dari database tagihan_smp
+                            cursor.execute('SELECT * FROM tagihan_smp where nis = %s', ([nis]))
+                            tagihan_siswa = cursor.fetchall()    
+                                    
                     # jika data siswa tidak ditemukan di database siswa_smp
                     elif not data_siswa:
 
