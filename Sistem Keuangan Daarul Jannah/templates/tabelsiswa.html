@@ -74,9 +74,6 @@
                             <a href="{{ url_for('pembayaran_spp', nis = siswa_tk['nis']) }}">
                                 <p class="p-btn btn">Pembayaran SPP</p>
                             </a>
-                            <a href="" class="del-btn btn">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </a>
                         </td>
                     </tr>
                     {% endfor%}
@@ -92,9 +89,13 @@
                         <td>{{ siswa_sd.status }}</td>
                         <td> SD </td>
                         <td>{{ siswa_sd.kelas }}</td>
-                        <td>
-                            <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_sd['nis']) }}">Riwayat Pembayaran</a>
-                            <a class="btn-input" href="{{ url_for('pembayaran_spp', nis = siswa_sd['nis']) }}">Pembayaran SPP</a>
+                        <td class="row" style="justify-content:center ;">
+                            <a href="{{ url_for('riwayat_pembayaran', nis = siswa_sd['nis']) }}">
+                                <p class="p-btn btn">Riwayat Pembayaran</p>
+                            </a>
+                            <a href="{{ url_for('pembayaran_spp', nis = siswa_sd['nis']) }}">
+                                <p class="p-btn btn">Pembayaran SPP</p>
+                            </a>
                         </td>
                     </tr>
                     {% endfor%}
@@ -110,9 +111,13 @@
                         <td>{{ siswa_smp.status }}</td>
                         <td> SMP </td>
                         <td>{{ siswa_smp.kelas }}</td>
-                        <td>
-                            <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_smp['nis']) }}">Riwayat Pembayaran</a>
-                            <a class="btn-input" href="{{ url_for('pembayaran_spp', nis = siswa_smp['nis']) }}">Pembayaran SPP</a>
+                        <td class="row" style="justify-content:center ;">
+                            <a href="{{ url_for('riwayat_pembayaran', nis = siswa_smp['nis']) }}">
+                                <p class="p-btn btn">Riwayat Pembayaran</p>
+                            </a>
+                            <a href="{{ url_for('pembayaran_spp', nis = siswa_smp['nis']) }}">
+                                <p class="p-btn btn">Pembayaran SPP</p>
+                            </a>
                         </td>
                     </tr>
                     {% endfor%}
