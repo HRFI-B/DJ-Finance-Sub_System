@@ -12,7 +12,7 @@
 
     <body>
         {%block body%}
-        <div class="container">
+        <div >
             <h1 class="page-title">Data Siswa/i Sekolah Daarul Jannah</h1>
             <h4 class="sub-title">Sistem Keuangan Sekolah Daarul Jannah</h4>
 
@@ -31,7 +31,7 @@
                 </div>
                 <div class="filter-kanan">
                     <a href="/tambah_siswa">
-                        <p class="p-btn">Tambah Data Siswa/i</p>
+                        <p class="p-btn btn shadow">Tambah Data Siswa/i</p>
                     </a>
                     <div class="search-bar">
                         <select id="search-bar-filter" onchange="searchBarClear()">
@@ -45,7 +45,7 @@
             </div>
             
             <div class="table" id="data_siswa">
-                <table>
+                <table class="shadow">
                     <tr>
                         <th>NIS</th>
                         <th>Nama Siswa/i</th>
@@ -67,9 +67,16 @@
                         <td>{{ siswa_tk.status }}</td>
                         <td> TK </td>
                         <td>{{ siswa_tk.kelas }}</td>
-                        <td>
-                            <a class="btn-detail" href="{{ url_for('riwayat_pembayaran', nis = siswa_tk['nis']) }}">Riwayat Pembayaran</a>
-                            <a class="btn-input" href="{{ url_for('pembayaran_spp', nis = siswa_tk['nis']) }}">Pembayaran SPP</a>
+                        <td class="row" style="justify-content:center ;">
+                            <a href="{{ url_for('riwayat_pembayaran', nis = siswa_tk['nis']) }}">
+                                <p class="p-btn btn">Riwayat Pembayaran</p>
+                            </a>
+                            <a href="{{ url_for('pembayaran_spp', nis = siswa_tk['nis']) }}">
+                                <p class="p-btn btn">Pembayaran SPP</p>
+                            </a>
+                            <a href="" class="del-btn btn">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
                         </td>
                     </tr>
                     {% endfor%}

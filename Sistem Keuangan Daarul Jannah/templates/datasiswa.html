@@ -11,62 +11,87 @@
 <body>
     <!-- Sidebar -->
             {% block body %}
+            <h1 class="page-title">Detail Data Siswa/i Daarul Jannah</h1>
+            <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
+            
             <div class="container">
-                <h1 class="page-title">Detail Data Siswa/i Daarul Jannah</h1>
-                <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
-                    
                 <div class="card">
-                    <div class="wrap-data">
-                        {% set foto_siswa = "foto_siswa/" + siswa.foto_path %}
-                        <img src="{{ url_for('static', filename = foto_siswa) }}" class="ft-siswa" alt="">
-                        <table class="tb-detail-siswa">
-                            <tr>
-                                <td><b>Nama</b></td>
-                                <td><b>:</b></td>
-                                <td>{{siswa.nama_siswa}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>Kelas</b></td>
-                                <td><b>:</b></td>
-                                <td>{{siswa.kelas}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>Jenis Kelamin</b></td>
-                                <td><b>:</b></td>
-                                <td>{{siswa.jenis_kelamin}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>Status</b></td>
-                                <td><b>:</b></td>
-                                <td>{{siswa.status}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>NIS</b></td>
-                                <td><b>:</b></td>
-                                <td>{{siswa.nis}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>NISN</b></td>
-                                <td><b>:</b></td>
-                                <td>{{siswa.nisn}}</td>
-                            </tr>
-                        </table>
-                        
+                    <div class="row fl-stretch">
+                        <img src="../static/foto_siswa/1549425553128.png" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
+                        <div >
+                            <div class="row detail">
+                                <h4 class="in-2">Nama</h4>
+                                <h4>:</h4>
+                                <div class="dtl-style">
+                                    <h4>{{siswa.nama_siswa}}</h4>
+                                </div>
+                            </div>
+                               
+                            <div class="row">
+                                <div class="row detail">
+                                    <h4 class="in-1">NIS</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{siswa.nis}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row detail">
+                                    <h4 class="in-1">NISN</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{siswa.nisn}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="row detail">
+                                    <h4 class="in-1">Tingkat</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{siswa.nama_siswa}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row detail">
+                                    <h4 class="in-1">Kelas</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{siswa.kelas}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="row">
+                                <div class="row detail">
+                                    <h4 class="in-1">Jenis Kelamin</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{siswa.jenis_kelamin}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row detail">
+                                    <h4 class="in-1">Status</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{siswa.status}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                            
                     </div>
-                    <div class="cmd-btn">
+                    <div class="row cmd-btn" style="justify-content:flex-end;">
                         <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}">
-                            <p class="btn btn-success">Ubah Data Siswa/i</p>
+                            <p class="ch-btn btn">Ubah Data Siswa/i</p>
                         </a>
                         <a href="{{ url_for('hapus_siswa', nis = siswa['nis']) }}">
-                            <p class="btn btn-danger">Hapus Data Siswa/i</p>
+                            <p class="del-btn btn">Hapus Data Siswa/i</p>
                         </a>
-                    </div>
+                </div> 
                 </div>
-                    
-                    <br>
-                    
-                </div>
-            </div>
+            </div>    
             {% endblock %}
 
 </body>
