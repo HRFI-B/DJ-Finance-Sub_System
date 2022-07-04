@@ -141,6 +141,11 @@ nav a{
     background-color: white;
 }
 
+.active{
+    color: black;
+    background-color: white;
+}
+
 nav a h5{
     padding-top: 4%;
     font-weight: normal;

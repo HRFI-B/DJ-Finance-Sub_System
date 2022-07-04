@@ -22,7 +22,8 @@
                         <h4 class="text">Data Siswa/i</h4>
                         <div class="card-nosh" style="margin-right:10px">
                             <div class="row " style="align-items:center;justify-content:center;">
-                                <img src="../static/foto_siswa/1549425553128.png" class="ft-siswa" alt="foto orang"  style="margin-right:2%">
+                                {% set foto_siswa = "foto_siswa/" + siswa['foto_path'] %}
+                                <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" style="margin-right:2%;">
                                 <div class="column">
                                     <div class="row detail">
                                         <h4>Nama</h4>
@@ -35,7 +36,7 @@
                                         <p>{{siswa.kelas}}</p>
                                     </div>
                                     <div class="row detail">
-                                        <h4>Sex</h4>
+                                        <h4>Jenis Kelamin</h4>
                                         <h4>:</h4>
                                         <p>{{siswa.jenis_kelamin}}</p>
                                     </div>
