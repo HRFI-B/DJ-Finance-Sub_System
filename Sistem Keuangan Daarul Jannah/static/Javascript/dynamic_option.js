@@ -56,3 +56,22 @@ function dynamicOption(){
         kelas_siswa.options.add(new Option("Kelas 9P", "9P"));
     }
 }
+
+function dynamicOptionDataPegawai(){
+    var otoritas = document.getElementById("otoritas").value;
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+
+    if (otoritas == "Admin" || otoritas == "Staff") {
+        username.disabled = false;
+        password.disabled = false;
+    }
+    else {
+        username.disabled = true;
+        password.disabled = true;
+
+        document.getElementsByName("username")[0].placeholder = "Disabled";
+        document.getElementsByName("password")[0].placeholder = "Disabled";
+    }
+    
+}
