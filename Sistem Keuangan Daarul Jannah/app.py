@@ -104,6 +104,9 @@ def function():
 @app.route('/login', methods=['POST', 'GET'])
 def login():    
     msg = ''
+    
+    session['year'] = date.today().year
+    
     #Pengambilan data dari Form Login.html (username, Password)
     if not 'loggedin' in session:
         if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
