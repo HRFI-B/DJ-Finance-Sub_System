@@ -599,6 +599,117 @@ def pembayaran_spp(nis):
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
 
+@app.route('/manajemen_pegawai', methods=['GET','POST'])
+def manajemen_pegawai():
+    # halaman manajemen staff
+    # jika user sudah login, maka user tidak akan diredirect ke halaman login
+    if 'loggedin' in session:
+        # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                
+                # instruksi yang dijalankan ketika request method GET
+                if request.method == 'GET':
+    
+                    # Pengecekan dan pengambilan data staff dari database jika nis siswa ada di database siswa_sd
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.jabatan, user.otoritas FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip')
+                        data_pegawai = cursor.fetchall()
+                        
+                #Render tabel-pegawai.html jika ada request dari client
+                return render_template('tabelpegawai.html', pegawai=data_pegawai)
+
+    # jika user belum login, maka user akan diredirect ke halaman login
+    return redirect('/login')
+
+@app.route('/tambah_pegawai', methods=['GET','POST'])
+def tambah_pegawai():
+    # halaman tambah staff
+    # jika user sudah login, maka user tidak akan diredirect ke halaman login
+    if 'loggedin' in session:
+        # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                
+                # instruksi yang dijalankan ketika request method GET
+                if request.method == 'GET':
+                        
+                    #Render tabel-pegawai.html jika ada request dari client
+                    return render_template('tambahdatapegawai.html')
+
+                # instruksi yang dijalankan ketika request method POST
+                elif request.method == 'POST':
+                # pengambilan data pegawai baru dari form
+
+                    # pengambilan data nip dari form
+                    nip = request.form['nip']
+
+                    # pengambilan data nama dari form
+                    nama = request.form['nama_pegawai']
+
+                    # pengambilan data jenis kelamin dari form
+                    jenis_kelamin = request.form['jenis_kelamin']
+
+                    # pengambilan data status dari form
+                    status = request.form['status']
+
+                    # pengambilan data jabatan dari form
+                    jabatan = request.form['jabatan']
+
+                    # pengambilan data otoritas dari form
+                    otoritas = request.form['otoritas']
+
+                    # foto pegawai
+                    foto_profil = request.files['foto_pegawai']
+                    nama_foto = str(foto_profil.filename)
+                    if foto_profil:
+                        foto_profil.save(os.path.join(app.config['UPLOAD_FOLDER'], nama_foto))
+                    else:
+                        nama_foto = 'default.jpg'
+
+                    with mysql.connection.cursor() as cursor:
+                        # pemasukan data pegawai baru ke database
+                        cursor.execute('INSERT IGNORE INTO pegawai (nip, nama_pegawai, jenis_kelamin, status, jabatan, foto_path) VALUES (%s, %s, %s, %s, %s, %s)', (nip, nama, jenis_kelamin, status, jabatan, nama_foto))
+                        mysql.connection.commit()
+
+                    if not otoritas == 'None':
+                        # pengambilan data username dari form
+                        username = request.form['username']
+
+                        # pengambilan data password dari form
+                        password = request.form['password']
+
+                        with mysql.connection.cursor() as cursor:
+                            # pemasukan data user baru ke database
+                            cursor.execute('INSERT IGNORE INTO user (nip, username, password, otoritas) VALUES (%s, %s, %s, %s)', (nip, username, password, otoritas))
+                            mysql.connection.commit()
+
+                    # mengalihkan ke halaman manajemen staff
+                    return redirect('/manajemen_pegawai')
+
+    # jika user belum login, maka user akan diredirect ke halaman login
+    return redirect('/login')
+
+@app.route('/detail_pegawai/<nip>', methods=['GET','POST'])
+def detail_pegawai(nip):
+    # halaman detail pegawai
+    # jika user sudah login, maka user tidak akan diredirect ke halaman login
+    if 'loggedin' in session:
+        # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                
+                # instruksi yang dijalankan ketika request method GET
+                if request.method == 'GET':
+    
+                    # Pengecekan dan pengambilan data staff dari database jika nis siswa ada di database siswa_sd
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.jabatan, pegawai.foto_path,user.otoritas, user.username, user.password FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip WHERE pegawai.nip = %s', ([nip]))
+                        data_pegawai = cursor.fetchone()
+                        
+                #Render tabel-pegawai.html jika ada request dari client
+                return render_template('datapegawai.html', pegawai=data_pegawai)
+
+    # jika user belum login, maka user akan diredirect ke halaman login
+    return redirect('/login')
+
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(host='0.0.0.0',port=2431 ,debug=True)

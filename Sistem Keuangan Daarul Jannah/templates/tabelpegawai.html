@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+    <head>
+        {% block head%}
+            <title>Manajemen Pegawai - Sistem Pembayaran DJ</title>
+            <!-- JS Script -->
+            <script>document.title = "Manajemen Pegawai - Sistem Pembayaran DJ"</script>
+            <script src="{{ url_for('static', filename='Javascript/filter_pegawai.js') }}" type="text/javascript"></script>
+        {% endblock %}
+    </head>
+
+    <body>
+        {%block body%}
+        <div >
+            <h1 class="page-title">Data Pegawai Sekolah Daarul Jannah</h1>
+            <h4 class="sub-title">Sistem Keuangan Sekolah Daarul Jannah</h4>
+
+            <div class="filter">
+                <div class="filter-kiri">
+                    <select class="filter-tingkat" id="filter-otoritas" onchange="filterOtoritas()" title="Filter Otoritas Sistem">
+                        <option value="Otoritas" disabled selected>Otoritas</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Staff" >Staff</option>
+                    </select>
+                    
+                    
+                </div>
+                <div class="filter-kanan">
+                    <a href="/tambah_pegawai">
+                        <p class="p-btn btn shadow">Tambah Data Pegawai</p>
+                    </a>
+                    <div class="search-bar">
+                        <select id="search-bar-filter" onchange="searchBarClear()">
+                            <option value="NIP" selected>NIP</option>
+                            <option value="Nama">Nama</option>
+                            <option value="Status">Status</option>
+                            <option value="Jabatan">Jabatan</option>
+                        </select>
+                        <input type="text" placeholder="Cari Berdasarkan NIP" id="search-txt" onkeyup="searchBar()">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table" id="data_pegawai">
+                <table >
+                    <tr>
+                        <th>NIP</th>
+                        <th>Nama Pegawai</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Status</th>
+                        <th>Jabatan</th>
+                        <th>Otoritas Sistem</th>
+                        <th>Menu Fungsi</th>
+                    </tr>
+                    {% for pegawai in pegawai %}
+                    <tr>
+                        <td>{{ pegawai.nip }}</td>
+                        <td class="tb-name">
+                            {{pegawai.nama_pegawai}}
+                        </td>
+                        <td>{{ pegawai.jenis_kelamin }}</td>
+                        <td>{{ pegawai.status }}</td>
+                        <td> {{ pegawai.jabatan }} </td>
+                        <td>{{ pegawai.otoritas }}</td>
+                        <td class="row" style="justify-content:center ;">
+                            <a href="{{ url_for('detail_pegawai', nip = pegawai['nip']) }}" class="btn-2 fungsi" title="Detail Pegawai">
+                                <i class="fa-solid fa-id-card"></i>
+                            </a>
+                            <!-- <a href="{{ url_for('riwayat_pembayaran', nis = pegawai['nis']) }}" class="btn-1 fungsi" title="Riwayat Pembayaran">
+                                <i class="fi fi-sr-ballot"></i>
+                            </a>
+                            <a href="{{ url_for('pembayaran_spp', nis = pegawai['nis']) }}" class="btn-2 fungsi" title="Pembayaran SPP">
+                                <i class="fi fi-sr-money-check-edit"></i>
+                            </a> -->
+                        </td>
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
+        </div>
+        <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}">   </script>
+        {% endblock %}
+    </body>
+</html>
+
