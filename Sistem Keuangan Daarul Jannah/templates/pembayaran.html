@@ -11,158 +11,101 @@
 
     <body>
         {% block body %}
+        
         <h1 class="page-title">Data Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
         <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
-
-        <div class="container">
-            <div class="card">
-                <div class="row fl-stretch" style="margin-bottom:2%">
-                    <div class="column" >
-                        <h4 class="text">Data Siswa/i</h4>
-                        <div class="card-nosh" style="margin-right:10px">
-                            <div class="row " style="align-items:center;justify-content:center;">
-                                {% set foto_siswa = "foto_siswa/" + siswa['foto_path'] %}
-                                <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" style="margin-right:2%;">
-                                <div class="column">
-                                    <div class="row detail">
-                                        <h4>Nama</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.nama_siswa}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4>Kelas</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.kelas}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4>Jenis Kelamin</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.jenis_kelamin}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4>Status</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.status}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4>NIS</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.nis}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4>NISN</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.nisn}}</p>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="container">
+                <div class="card">
+                    <div class="row fl-stretch" style="margin-bottom:2%">
+                        <div class="column" >
+                            <h4 class="text">Data Siswa/i</h4>
+                            <div class="card-nosh" style="margin-right:10px">
+                                <div class="row " style="align-items:center;justify-content:center;">
+                                    {% set foto_siswa = "foto_siswa/" + siswa['foto_path'] %}
+                                    <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" style="margin-right:2%;">
+                                    <div class="column">
+                                        <div class="row detail">
+                                            <h4>Nama</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.nama_siswa}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4>Kelas</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.kelas}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4>Jenis Kelamin</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.jenis_kelamin}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4>Status</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.status}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4>NIS</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.nis}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4>NISN</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.nisn}}</p>
+                                        </div>
                                     </div>
                                 </div>
+                                
                             </div>
+                        </div>
+                        <div class="column">
+                            
+                                <h4 class="text" style="margin-left:10px">Input Data Rincian Tagihan </h4>
+                                <div class="card-nosh" style="margin-left:10px">
+                                    <div class="detail-tagihan">
+                                        <div style="margin-bottom:10px">
+                                            <p>Periode Pembayaran :</p>
+                                            <select id="periode">
+                                                <option>agustus</option>
+                                            </select>
+                                            <select id="tahun_ajaran">
+                                                <option>2023/2024 Ganjil</option>
+                                                <option>2023/2024 Genap</option>
+                                            </select>
+                                        </div>
+                                        <div >
+                                            <p>Pilih Tagihan :</p>
+                                            <ul>
+                                                <li >
+                                                    <select id="tagihan" style="width:40%">
+                                                        <option>Katering</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="harga1" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                            </ul>
+                                            <button class="tgh-btn btn">Tambah Tagihan</button>
+                                        </div>
+                                    </div>
+                                </div>
                             
                         </div>
+                        
                     </div>
-                    <div class="column">
-                        <h4 class="text" style="margin-left:10px">Input Data Rincian Tagihan </h4>
-                        <div class="card-nosh" style="margin-left:10px">
-                            <p>hello</p>
-                        </div>
+                    <div class="row cmd-btn" style="justify-content:flex-end;">
+                        <a>
+                            <input type="submit" class="p-btn btn" value="Simpan Pembayaran">
+                            <!-- <p >Simpan Pembayaran</p> -->
+                        </a>
                     </div>
                     
                 </div>
-                <div class="row cmd-btn" style="justify-content:flex-end;">
-                    <a>
-                        <p class="p-btn btn">Simpan Pembayaran</p>
-                    </a>
-                </div>
                 
             </div>
-            
-        </div>
-        <!-- <div class="container mx-auto">
-            
-            
-            <div class="card">
-                <div class="riwayat">
-                    <div class="siswa-group">
-                        <h4 class="text">Data Siswa/i</h4>
-                        <div class="tabel-siswa wrap-data half-card">
-                            <img src="../static/Image/foto-siswa.png" class="foto-siswa" alt="">
-                            <div class="detail-siswa">
-                               
-                                <table class="tb-detail-siswa">
-                                    <tr>
-                                        <td><b>Nama</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.nama_siswa}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>NIS</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.nis}}</td>
-                                        <td><b>NISN</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.nisn}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Tingkat</b></td>
-                                        <td><b>:</b></td>
-                                        <td>smp</td>
-                                        <td><b>Kelas</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.kelas}}</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td><b>Jenis Kelamin</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.jenis_kelamin}}</td>
-                                        <td><b>Status</b></td>
-                                        <td><b>:</b></td>
-                                        <td>{{siswa.status}}</td>
-                                    </tr>
-                                    
-                                    
-                                    
-                                </table>
-                            </div>
-                        </div>  
-                    </div>
+        </form>
         
-                    <div class="rincian-group">
-                        <h4 class="text">Input Data Rincian Tagihan</h4>
-                        <div class="tabel-rincian half-card">
-                                <div class="scrollable2">
-                                <div class="detail-tagihan">
-                                    <p><b>Periode Pembayaran :</b></p>
-                                    <select>
-                                        <option>agustus</option>
-                                    </select>
-                                    <select>
-                                        <option>2023/2024 Ganjil</option>
-                                        <option>2023/2024 Genap</option>
-                                    </select>
-                                    <p><b>SPP : </b></p>
-                                    <input type="number" id="floatingInput" placeholder="Masukkan Nominal" >
-                                    <p><b>Tabungan Wajib :</b> </p>
-                                    <input type="number" id="floatingInput" placeholder="Masukkan Nominal" >
-                                    <p>Biaya Tambahan</p>
-                                    <select>
-                                        <option>Katering</option>
-                                    </select>
-                                    <input type="number" id="floatingInput" placeholder="Masukkan Nominal" >
-                                    <br>
-                                    <button>
-                                        add biaya tambahan
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a>
-                <p class="btn btn-success">Simpan Pembayaran</p>
-            </a>
-            </div>
-            
-        </div> -->
         {% endblock %}
     </body>
 </html>

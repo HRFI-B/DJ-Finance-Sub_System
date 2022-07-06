@@ -282,6 +282,19 @@ nav a h5{
     font-size: 1vw;
     border-radius: 10px;
     margin-right: 10px;
+    cursor: pointer;
+}
+.tgh-btn{
+    background-color: #049DBE;
+    color: white;
+    padding: 10px;
+    font-size: 0.75vw;
+    border-radius: 10px;
+    margin-top: 10px;
+    position:relative;
+    /* top:50%;  */
+    left:40%;
+    cursor: pointer;
 }
 
 .btn i{
@@ -292,6 +305,9 @@ nav a h5{
     opacity: 0.8;
 }
 
+.btn{
+    border: none;
+}
 .search-bar{
     background-color: white;
     border: 1px solid #CCCCCC;
@@ -490,3 +506,15 @@ th {
     padding: 0;
 }
 
+.detail-tagihan li{
+    color: black;
+    list-style-type:disc;
+    margin-left:4%;
+    font-size: 1vw;
+}
+
+.detail-tagihan input, .detail-tagihan select{
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+    padding:5px;
+}
