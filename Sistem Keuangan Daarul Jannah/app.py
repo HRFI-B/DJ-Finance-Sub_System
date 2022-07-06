@@ -244,6 +244,7 @@ def detail_siswa(nis):
 
         # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
         if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+            
             # pengambilan data siswa dari database
             with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
 
@@ -251,20 +252,26 @@ def detail_siswa(nis):
                 cursor.execute('SELECT * FROM siswa_sd WHERE nis = %s', ([nis]))
                 siswa = cursor.fetchone()
 
+                tingkat = 'SD'
+
                 # instruksi jika siswa sd tidak ditemukan
                 if not siswa:
                     # pengambilan data siswa smp
                     cursor.execute('SELECT * FROM siswa_smp WHERE nis = %s', ([nis]))
                     siswa = cursor.fetchone()
 
+                    tingkat = 'SMP'
+
                     # instruksi jika siswa smp tidak ditemukan
                     if not siswa:
                         # pengambilan data siswa tk
                         cursor.execute('SELECT * FROM siswa_tk WHERE nis = %s', ([nis]))
                         siswa = cursor.fetchone()
+
+                        tingkat = 'TK'
             
             # render template detail_siswa.html dengan data siswa
-            return render_template('datasiswa.html',siswa=siswa)
+            return render_template('datasiswa.html',siswa=siswa, tingkat=tingkat)
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
