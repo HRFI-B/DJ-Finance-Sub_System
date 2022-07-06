@@ -33,14 +33,14 @@
                                     <h4 class="in-1">NIS</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <input type="number" id="floatingInput" placeholder="Masukkan NIS" name="nis" value="{{siswa.nis}}" readonly>
+                                        <input type="text" id="floatingInput" placeholder="Masukkan NIS" name="nis" value="{{siswa.nis}}" readonly>
                                     </div>
                                 </div>
                                 <div class="row detail">
                                     <h4 class="in-1">NISN</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <input type="number" id="floatingInput" placeholder="Masukkan NISN" name="nisn" required value="{{siswa.nisn}}">
+                                        <input type="text" id="NISN" placeholder="Masukkan NISN" name="nisn" required value="{{siswa.nisn}}" maxlength="10" minlength="10">
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +157,13 @@
                 </div>
             </div> 
             </form>
-            <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}">   </script>
+            <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}"></script>
+            <script src="{{url_for('static', filename='Javascript/number_only_filter.js')}}"></script>
+            <script>
+                setInputFilter(document.getElementById("NISN"), function(value) {
+                    return /^\d*\.?\d*$/.test(value);
+                  }, "Only digits and '.' are allowed");
+            </script>
             {% endblock %}
 
 </body>
