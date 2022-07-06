@@ -35,14 +35,14 @@
                                         <h4 class="in-1">NIS</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
-                                            <input type="number" id="floatingInput" placeholder="Masukkan NIS" name="nis" required>
+                                            <input type="text" id="NIS" placeholder="Masukkan NIS" name="nis" maxlength="9" minlength="9" required>
                                         </div>
                                     </div>
                                     <div class="row detail">
                                         <h4 class="in-1">NISN</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
-                                            <input type="number" id="floatingInput" placeholder="Masukkan NISN" name="nisn">
+                                            <input type="text" id="NISN" placeholder="Masukkan NISN" maxlength="10" minlength="10" name="nisn">
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +124,16 @@
                     </div>
                 </div> 
                 </form>
-                <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}">   </script>
+                <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}"></script>
+                <script src="{{url_for('static', filename='Javascript/number_only_filter.js')}}"></script>
+                <script>
+                    setInputFilter(document.getElementById("NIS"), function(value) {
+                        return /^\d*\.?\d*$/.test(value);
+                      }, "Only digits and '.' are allowed");
+                    setInputFilter(document.getElementById("NISN"), function(value) {
+                    return /^\d*\.?\d*$/.test(value);
+                    }, "Only digits and '.' are allowed");
+                </script>
         {% endblock %}
     </body>
 </html> 
