@@ -37,7 +37,7 @@
                             <option value="Status">Status</option>
                             <option value="Jabatan">Jabatan</option>
                         </select>
-                        <input type="text" placeholder="Cari Berdasarkan NIP" id="search-txt" onkeyup="searchBar()">
+                        <input type="text" placeholder="Cari Berdasarkan NIP" id="search-txt" onkeyup="searchBar()" onkeydown="searchNumberFilter()">
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 </table>
             </div>
         </div>
-        <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}">   </script>
+        <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}"></script>
         {% endblock %}
     </body>
 </html>
