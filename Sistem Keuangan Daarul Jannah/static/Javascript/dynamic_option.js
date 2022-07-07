@@ -72,6 +72,9 @@ function dynamicOptionDataPegawai(){
 
         document.getElementsByName("username")[0].placeholder = "Disabled";
         document.getElementsByName("password")[0].placeholder = "Disabled";
+        
+        document.getElementById("username").removeAttribute("required");
+        document.getElementById("password").removeAttribute("required");
     }
     
 }

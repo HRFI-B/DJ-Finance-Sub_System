@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+    <head>
+        {% block head%}
+        <title>Pengubahan Data Siswa - Sistem Pembayaran DJ</title>
+        <script>document.title = "Pengubahan Data Siswa - Sistem Pembayaran DJ"</script>
+        {% endblock %}
+    </head>
+
+<body>
+    <!-- Sidebar -->
+            {% block body %}
+            <h1 class="page-title">Ubah Data Siswa/i Daarul Jannah</h1>
+            <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
+            <form action="{{ url_for('ubah_siswa', nis = siswa['nis']) }}" method="post">
+            <div class="container">
+                <div class="card">
+                    <div class="row fl-stretch">
+                        {% set foto_siswa = "foto_siswa/" + siswa['foto_path'] %}
+                        <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
+                        <div >
+                            <div class="row detail">
+                                <h4 class="in-2">Nama</h4>
+                                <h4>:</h4>
+                                <div class="dtl-style">
+                                    <input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa" required value="{{siswa.nama_siswa}}">
+                                </div>
+                            </div>
+                               
+                            <div class="row">
+                                <div class="row detail">
+                                    <h4 class="in-1">NIS</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <input type="text" id="floatingInput" placeholder="Masukkan NIS" name="nis" value="{{siswa.nis}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row detail">
+                                    <h4 class="in-1">NISN</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <input type="text" id="NISN" placeholder="Masukkan NISN" name="nisn" required value="{{siswa.nisn}}" maxlength="10" minlength="10">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="row detail">
+                                    <h4 class="in-1">Tingkat</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{tingkat}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row detail">
+                                    <h4 class="in-1">Kelas</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <select name="kelas"  required>
+                                            {% if tingkat == "TK" %}
+                                                <option value="A DAHLIA">Kelas A Dahlia</option>
+                                                <option value="A MELATI">Kelas A Melati</option>
+                                                <option value="B LILY">Kelas B Lily</option>
+                                                <option value="B MATAHARI">Kelas B Matahari</option>
+                                            {% elif tingkat == "SD" %}
+                                                <option value="1D">Kelas 1D</option>
+                                                <option value="1J">Kelas 1J</option>
+                                                <option value="1I">Kelas 1I</option>
+                                                <option value="1P">Kelas 1P</option>
+                                                <option value="2D">Kelas 2D</option>
+                                                <option value="2J">Kelas 2J</option>
+                                                <option value="2I">Kelas 2I</option>
+                                                <option value="2P">Kelas 2P</option>
+                                                <option value="3D">Kelas 3D</option>
+                                                <option value="3J">Kelas 3J</option>
+                                                <option value="3I">Kelas 3I</option>
+                                                <option value="3P">Kelas 3P</option>
+                                                <option value="4D">Kelas 4D</option>
+                                                <option value="4J">Kelas 4J</option>
+                                                <option value="4I">Kelas 4I</option>
+                                                <option value="4P">Kelas 4P</option>
+                                                <option value="5D">Kelas 5D</option>
+                                                <option value="5J">Kelas 5J</option>
+                                                <option value="5I">Kelas 5I</option>
+                                                <option value="5P">Kelas 5P</option>
+                                                <option value="6D">Kelas 6D</option>
+                                                <option value="6J">Kelas 6J</option>
+                                                <option value="6I">Kelas 6I</option>
+                                                <option value="6P">Kelas 6P</option>
+                                            {% elif tingkat == "SMP" %}
+                                                <option value="7D">Kelas 7D</option>
+                                                <option value="7J">Kelas 7J</option>
+                                                <option value="7I">Kelas 7I</option>
+                                                <option value="7P">Kelas 7P</option>
+                                                <option value="8D">Kelas 8D</option>
+                                                <option value="8J">Kelas 8J</option>
+                                                <option value="8I">Kelas 8I</option>
+                                                <option value="8P">Kelas 8P</option>
+                                                <option value="9D">Kelas 9D</option>
+                                                <option value="9J">Kelas 9J</option>
+                                                <option value="9I">Kelas 9I</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="row">
+                                <div class="row detail">
+                                    <h4 class="in-1">Jenis Kelamin</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <select name="jenis_kelamin" required>
+                                            {% if siswa.jenis_kelamin == "Laki-laki" %}
+                                                <option value="Laki-laki" selected>Laki-laki</option>
+                                                <option value="Perempuan">Perempuan</option>
+                                            {% elif siswa.jenis_kelamin == "Perempuan" %}
+                                                <option value="Laki-laki">Laki-laki</option>
+                                                <option value="Perempuan" selected>Perempuan</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row detail">
+                                    <h4 class="in-1">Status</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <select name="status" required>
+                                            {% if siswa.status == "Reguler" %}
+                                                <option value="Reguler" selected>Reguler</option>
+                                                <option value="Yayasan">Yayasan</option>
+                                                <option value="Inklusi">Inklusi</option>
+                                            {% elif siswa.status == "Yayasan" %}
+                                                <option value="Reguler">Reguler</option>
+                                                <option value="Yayasan" selected>Yayasan</option>
+                                                <option value="Inklusi">Inklusi</option>
+                                            {% elif siswa.status == "Inklusi" %}
+                                                <option value="Reguler">Reguler</option>
+                                                <option value="Yayasan">Yayasan</option>
+                                                <option value="Inklusi" selected>Inklusi</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                            
+                    </div>
+                    <div class="row cmd-btn" style="justify-content:flex-end;">
+                        
+                        <input type="submit" value="Simpan Data Siswa/i" class="p-btn btn konten-profil" style="border:none">
+                        
+                    </div> 
+                </div>
+            </div> 
+            </form>
+            <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}"></script>
+            <script src="{{url_for('static', filename='Javascript/number_only_filter.js')}}"></script>
+            <script>
+                setInputFilter(document.getElementById("NISN"), function(value) {
+                    return /^\d*\.?\d*$/.test(value);
+                  }, "Only digits and '.' are allowed");
+            </script>
+            {% endblock %}
+
+</body>

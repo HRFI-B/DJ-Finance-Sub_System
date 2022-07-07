@@ -661,6 +661,9 @@ def tambah_pegawai():
                     # pengambilan data status dari form
                     status = request.form['status']
 
+                    # pengambilan data unit dari form
+                    unit = request.form['unit']
+
                     # pengambilan data jabatan dari form
                     jabatan = request.form['jabatan']
 
@@ -677,7 +680,7 @@ def tambah_pegawai():
 
                     with mysql.connection.cursor() as cursor:
                         # pemasukan data pegawai baru ke database
-                        cursor.execute('INSERT IGNORE INTO pegawai (nip, nama_pegawai, jenis_kelamin, status, jabatan, foto_path) VALUES (%s, %s, %s, %s, %s, %s)', (nip, nama, jenis_kelamin, status, jabatan, nama_foto))
+                        cursor.execute('INSERT IGNORE INTO pegawai (nip, nama_pegawai, jenis_kelamin, status, unit, jabatan, foto_path) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nip, nama, jenis_kelamin, status, unit, jabatan, nama_foto))
                         mysql.connection.commit()
 
                     if not otoritas == 'None':
@@ -711,7 +714,7 @@ def detail_pegawai(nip):
     
                     # Pengecekan dan pengambilan data staff dari database jika nis siswa ada di database siswa_sd
                     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.jabatan, pegawai.foto_path,user.otoritas, user.username, user.password FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip WHERE pegawai.nip = %s', ([nip]))
+                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.unit, pegawai.jabatan, pegawai.foto_path,user.otoritas, user.username, user.password FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip WHERE pegawai.nip = %s', ([nip]))
                         data_pegawai = cursor.fetchone()
                         
                 #Render tabel-pegawai.html jika ada request dari client

@@ -35,42 +35,84 @@
                                         <h4 class="in-1">NIP</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
-                                            <input type="number" id="floatingInput" placeholder="Masukkan NIP" name="nip" required>
+                                            <input type="text" id="NIP" placeholder="Masukkan NIP" name="nip" required>
                                         </div>
                                     </div>
                                     <div class="row detail">
-                                        <h4 class="in-1">Status</h4>
+                                        <h4 class="in-2">Status</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
-                                            <input type="text" id="floatingInput" placeholder="Masukkan Status" name="status">
+                                            <select name="status" id="status" required>
+                                                <option disabled selected>
+                                                    Pilih Status
+                                                </option>
+                                                <option value="Tetap">
+                                                    Tetap
+                                                </option>
+                                                <option value="Tidak Tetap">
+                                                    Tidak Tetap
+                                                </option>
+                                                <option value="Magang">
+                                                    Magang
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="row">
                                     <div class="row detail">
-                                        <h4 class="in-1">Jabatan</h4>
+                                        <h4 class="in-1">Unit</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
-                                            <select name="jabatan" id="jabatan_pegawai" required>
+                                            <select name="unit" id="unit_pegawai" required>
                                                 <option disabled selected>
-                                                    Pilih Jabatan
+                                                    Pilih Unit
                                                 </option>
-                                                <option value="Software Developer">
-                                                    Software Developer
+                                                <option value="TK">
+                                                    TK
                                                 </option>
-                                                <option value="Other">
-                                                    Other
+                                                <option value="SD">
+                                                    SD
+                                                </option>
+                                                <option value="SMP">
+                                                    SMP
+                                                </option>
+                                                <option value="TPQ">
+                                                    TPQ
+                                                </option>
+                                                <option value="Sekertariat">
+                                                    Sekertariat
+                                                </option>
+                                                <option value="Driver">
+                                                    Driver
+                                                </option>
+                                                <option value="Satpam">
+                                                    Satpam
+                                                </option>
+                                                <option value="Office Boy">
+                                                    Office Boy
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row detail">
+                                        <h4 class="in-2">Jabatan</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <input type="text" name="jabatan" id="jabatan_pegawai" placeholder="Masukkan Jabatan" required>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                    
+                                <div class="row">
+                                    <div class="row detail">
                                         <h4 class="in-1">Jenis Kelamin</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="jenis_kelamin" id="jenis_kelamin" required>
-                                                <option selected disabled>
+                                                <option disabled selected>
                                                     Pilih Jenis Kelamin
                                                 </option>
                                                 <option value="Laki-Laki">
@@ -82,11 +124,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                    
-                                <div class="row">
                                     <div class="row detail">
-                                        <h4 class="in-1">Otoritas Sistem</h4>
+                                        <h4 class="in-2">Otoritas Sistem</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="otoritas" id="otoritas" onchange="dynamicOptionDataPegawai()" required>
@@ -97,12 +136,12 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row detail">
-                                        <h4 class="in-1">Username</h4>
-                                        <h4>:</h4>
-                                        <div class="dtl-style">
-                                            <input type="text" id="username" placeholder="Masukkan Username" name="username" disabled>
-                                        </div>
+                                </div>
+                                <div class="row detail">
+                                    <h4 class="in-2">Username</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <input type="text" id="username" placeholder="Masukkan Username" name="username" disabled>
                                     </div>
                                 </div>
                                 <div class="row detail">
@@ -131,7 +170,14 @@
                     </div>
                 </div> 
                 </form>
-                <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}">   </script>
+                <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}"></script>
+                
+                <script src="{{url_for('static', filename='Javascript/number_only_filter.js')}}"></script>
+                <script>
+                    setInputFilter(document.getElementById("NIP"), function(value) {
+                        return /^\d*\.?\d*$/.test(value);
+                      }, "Only digits and '.' are allowed");
+                </script>
         {% endblock %}
     </body>
 </html> 
