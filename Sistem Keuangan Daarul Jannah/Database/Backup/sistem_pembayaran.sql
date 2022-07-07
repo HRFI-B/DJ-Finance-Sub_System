@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2022 at 05:21 PM
+-- Generation Time: Jul 07, 2022 at 03:40 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -103,6 +103,7 @@ CREATE TABLE `pegawai` (
   `nip` varchar(9) NOT NULL,
   `nama_pegawai` varchar(200) NOT NULL,
   `status` varchar(50) NOT NULL,
+  `unit` varchar(100) NOT NULL,
   `jabatan` varchar(100) NOT NULL,
   `jenis_kelamin` varchar(9) NOT NULL,
   `foto_path` text NOT NULL
@@ -112,8 +113,10 @@ CREATE TABLE `pegawai` (
 -- Dumping data for table `pegawai`
 --
 
-INSERT INTO `pegawai` (`nip`, `nama_pegawai`, `status`, `jabatan`, `jenis_kelamin`, `foto_path`) VALUES
-('000000001', 'Ihza Fajrur Rachman Hasani', 'Aktif', 'Software Developer', 'laki-Laki', '');
+INSERT INTO `pegawai` (`nip`, `nama_pegawai`, `status`, `unit`, `jabatan`, `jenis_kelamin`, `foto_path`) VALUES
+('119140130', 'Ihza Fajrur Rachman Hasani', 'Magang', 'Sekertariat', 'Asisten IT Support', 'Laki-Laki', 'WhatsApp Image 2022-07-06 at 8.46.36 AM.jpeg'),
+('31212', 'Bambang', 'Aktif', '', 'Other', 'Perempuan', 'MicrosoftTeams-image.png'),
+('321976', 'Abdullah Mujib', 'Tidak Tetap', 'Sekertariat', '-', 'Laki-Laki', 'MicrosoftTeams-image (5).png');
 
 -- --------------------------------------------------------
 
@@ -200,7 +203,7 @@ CREATE TABLE `siswa_smp` (
 --
 
 INSERT INTO `siswa_smp` (`nis`, `nisn`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
-('119140130', '12312', 'Ihza Fajrur Rachman Hasani', 'Yayasan', '9D', 'Laki-laki', '1549425553128.png');
+('119140130', '0119140130', 'Ihza Fajrur Rachman Hasani', 'Yayasan', '7D', 'Laki-laki', '1549425553128.png');
 
 -- --------------------------------------------------------
 
@@ -217,13 +220,6 @@ CREATE TABLE `siswa_tk` (
   `jenis_kelamin` varchar(9) NOT NULL,
   `foto_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `siswa_tk`
---
-
-INSERT INTO `siswa_tk` (`nis`, `nisn`, `nama_siswa`, `status`, `kelas`, `jenis_kelamin`, `foto_path`) VALUES
-('1231', '3211', 'Helmi Muzakkar', 'Reguler', 'A DAHLIA', 'Laki-laki', 'IMG_20201013_170918.jpg');
 
 -- --------------------------------------------------------
 
@@ -277,7 +273,7 @@ CREATE TABLE `tagihan_tk` (
 --
 
 CREATE TABLE `user` (
-  `username` varchar(50) NOT NULL,
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `otoritas` varchar(10) NOT NULL,
   `nip` varchar(9) NOT NULL
@@ -288,7 +284,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `otoritas`, `nip`) VALUES
-('Ihza_Fajrur', '81132329', 'Admin', '000000001');
+('ihza', '0', 'Admin', '119140130');
 
 --
 -- Indexes for dumped tables
