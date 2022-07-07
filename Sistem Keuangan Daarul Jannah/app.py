@@ -620,13 +620,35 @@ def manajemen_pegawai():
                 # instruksi yang dijalankan ketika request method GET
                 if request.method == 'GET':
     
-                    # Pengecekan dan pengambilan data staff dari database jika nis siswa ada di database siswa_sd
+                    # Pengecekan dan pengambilan data staff dari database jika nip pegawai ada di database pegawai
                     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.jabatan, user.otoritas FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip')
+                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.unit, pegawai.jabatan, user.otoritas FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip')
                         data_pegawai = cursor.fetchall()
                         
                 #Render tabel-pegawai.html jika ada request dari client
                 return render_template('tabelpegawai.html', pegawai=data_pegawai)
+
+    # jika user belum login, maka user akan diredirect ke halaman login
+    return redirect('/login')
+
+@app.route('/detail_pegawai/<nip>', methods=['GET','POST'])
+def detail_pegawai(nip):
+    # halaman detail pegawai
+    # jika user sudah login, maka user tidak akan diredirect ke halaman login
+    if 'loggedin' in session:
+        # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                
+                # instruksi yang dijalankan ketika request method GET
+                if request.method == 'GET':
+    
+                    # Pengecekan dan pengambilan data staff dari database jika nis siswa ada di database siswa_sd
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.unit, pegawai.jabatan, pegawai.foto_path,user.otoritas, user.username, user.password FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip WHERE pegawai.nip = %s', ([nip]))
+                        data_pegawai = cursor.fetchone()
+                        
+                #Render tabel-pegawai.html jika ada request dari client
+                return render_template('datapegawai.html', pegawai=data_pegawai)
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
@@ -701,24 +723,24 @@ def tambah_pegawai():
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
 
-@app.route('/detail_pegawai/<nip>', methods=['GET','POST'])
-def detail_pegawai(nip):
-    # halaman detail pegawai
+@app.route('/hapus_pegawai/<nip>', methods=['GET','POST'])
+def hapus_pegawai(nip):
+    # halaman hapus staff
     # jika user sudah login, maka user tidak akan diredirect ke halaman login
     if 'loggedin' in session:
         # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
         if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
                 
-                # instruksi yang dijalankan ketika request method GET
-                if request.method == 'GET':
+                # instruksi yang dijalankan ketika request method GET atau POST
+                if request.method == 'GET' or request.method == 'POST':
     
                     # Pengecekan dan pengambilan data staff dari database jika nis siswa ada di database siswa_sd
                     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.unit, pegawai.jabatan, pegawai.foto_path,user.otoritas, user.username, user.password FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip WHERE pegawai.nip = %s', ([nip]))
-                        data_pegawai = cursor.fetchone()
+                        cursor.execute('DELETE IGNORE FROM pegawai WHERE nip = %s', ([nip]))
+                        mysql.connection.commit()
                         
-                #Render tabel-pegawai.html jika ada request dari client
-                return render_template('datapegawai.html', pegawai=data_pegawai)
+                #Redirect ke halaman manajemen staff
+                return redirect('/manajemen_pegawai')
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')

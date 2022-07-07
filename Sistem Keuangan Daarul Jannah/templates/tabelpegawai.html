@@ -27,17 +27,17 @@
                     
                 </div>
                 <div class="filter-kanan">
-                    <a href="/tambah_pegawai">
+                    <a href="/tambah_pegawai" title="Tambah Pegawai Baru">
                         <p class="p-btn btn shadow">Tambah Data Pegawai</p>
                     </a>
                     <div class="search-bar">
-                        <select id="search-bar-filter" onchange="searchBarClear()">
+                        <select id="search-bar-filter" onchange="searchBarClear()" title="Filter Search Bar">
                             <option value="NIP" selected>NIP</option>
                             <option value="Nama">Nama</option>
                             <option value="Status">Status</option>
                             <option value="Jabatan">Jabatan</option>
                         </select>
-                        <input type="text" placeholder="Cari Berdasarkan NIP" id="search-txt" onkeyup="searchBar()" onkeydown="searchNumberFilter()">
+                        <input type="text" placeholder="Cari Berdasarkan NIP" id="search-txt" onkeyup="searchBar()" onkeydown="searchNumberFilter()"  title="Filter tabel berdasarkan text masukkan">
                     </div>
                 </div>
             </div>
@@ -49,6 +49,7 @@
                         <th>Nama Pegawai</th>
                         <th>Jenis Kelamin</th>
                         <th>Status</th>
+                        <th>Unit</th>
                         <th>Jabatan</th>
                         <th>Otoritas Sistem</th>
                         <th>Menu Fungsi</th>
@@ -61,6 +62,7 @@
                         </td>
                         <td>{{ pegawai.jenis_kelamin }}</td>
                         <td>{{ pegawai.status }}</td>
+                        <td>{{ pegawai.unit }}</td>
                         <td> {{ pegawai.jabatan }} </td>
                         <td>{{ pegawai.otoritas }}</td>
                         <td class="row" style="justify-content:center ;">
