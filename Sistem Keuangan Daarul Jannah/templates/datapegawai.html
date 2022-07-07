@@ -18,76 +18,76 @@
                 <div class="card">
                     <div class="row fl-stretch">
                         {% set foto_pegawai = "foto_pegawai/" + pegawai['foto_path'] %}
-                        <img src="{{url_for('static', filename=foto_pegawai)}}" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
+                        <img src="{{url_for('static', filename=foto_pegawai)}}" class="ft-pgw" alt="foto orang" style="margin-right:5%; margin-left:5%">
                         <div >
-                            <div class="row detail">
-                                <h4 class="in-2">Nama</h4>
+                            <div class="row detail" style="margin-bottom:10px">
+                                <h4 class="in-1">Nama</h4>
                                 <h4>:</h4>
                                 <div class="dtl-style">
                                     <h4>{{pegawai.nama_pegawai}}</h4>
                                 </div>
                             </div>
                                
-                            <div class="row">
-                                <div class="row detail">
+                            <!-- <div class="row"> -->
+                                <div class="row detail" style="margin-bottom:10px">
                                     <h4 class="in-1">NIP</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <h4>{{pegawai.nip}}</h4>
                                     </div>
                                 </div>
-                                <div class="row detail">
+                                <div class="row detail" style="margin-bottom:10px">
                                     <h4 class="in-1">Status</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <h4>{{pegawai.status}}</h4>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                             
-                            <div class="row">
-                                <div class="row detail">
+                            <!-- <div class="row"> -->
+                                <div class="row detail" style="margin-bottom:10px">
                                     <h4 class="in-1">Unit</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <h4>{{pegawai.unit}}</h4>
                                     </div>
                                 </div>
-                                <div class="row detail">
+                                <div class="row detail" style="margin-bottom:10px">
                                     <h4 class="in-1">Jabatan</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <h4>{{pegawai.jabatan}}</h4>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                                 
-                            <div class="row">
+                            <!-- <div class="row"> -->
                                 
-                                <div class="row detail">
+                                <div class="row detail" style="margin-bottom:10px">
                                     <h4 class="in-1">Jenis Kelamin</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <h4>{{pegawai.jenis_kelamin}}</h4>
                                     </div>
                                 </div>
-                                <div class="row detail">
-                                    <h4 class="in-2">Otoritas Sistem</h4>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Otoritas Sistem</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <h4>{{pegawai.otoritas}}</h4>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row detail">
-                                <h4 class="in-2">Username</h4>
+                            <!-- </div> -->
+                            <div class="row detail" style="margin-bottom:10px">
+                                <h4 class="in-1">Username</h4>
                                 <h4>:</h4>
                                 <div class="dtl-style">
                                     <h4>{{pegawai.username}}</h4>
                                 </div>
                             </div>
-                            <div class="row detail">
-                                <h4 class="in-2">Password</h4>
+                            <div class="row detail" style="margin-bottom:10px">
+                                <h4 class="in-1">Password</h4>
                                 <h4>:</h4>
                                 <div class="dtl-style">
                                     <h4>{{pegawai.password}}</h4>

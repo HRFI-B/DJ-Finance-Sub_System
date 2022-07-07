@@ -26,7 +26,7 @@
                                     <h4 class="in-2">Nama</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa" required>
+                                        <input type="text" id="nama_siswa" placeholder="Masukkan Nama" name="nama_siswa" required>
                                     </div>
                                 </div>
                                    
@@ -53,7 +53,7 @@
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="tingkat" id="tingkat_siswa" required  onchange="dynamicOption()">
-                                                <option disabled selected>
+                                                <option disabled selected hidden>
                                                     Pilih Tingkat
                                                 </option>
                                                 <option value="TK">
@@ -73,7 +73,7 @@
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="kelas" id="kelas_siswa" required disabled>
-                                                <option disabled>
+                                                <option disabled hidden>
                                                     Pilih Tingkat
                                                 </option>
                                             </select>

@@ -285,16 +285,24 @@ nav a h5{
     cursor: pointer;
 }
 .tgh-btn{
-    background-color: #049DBE;
-    color: white;
-    padding: 10px;
-    font-size: 0.75vw;
-    border-radius: 10px;
-    margin-top: 10px;
-    position:relative;
-    /* top:50%;  */
-    left:40%;
+    color: black;
+    border:none;
     cursor: pointer;
+    margin-left: 5px;
+    background-color: transparent;
+    font-size: 1.5vw;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-right: 0;
+    padding-top:8px;
+    border-radius: 100%;
+}
+
+.tgh-btn:hover{
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
 }
 
 .btn i{
@@ -422,6 +430,12 @@ th {
 .ft-siswa{
     width: 150px;
     height: 200px;
+    border-radius: 15px;
+}
+
+.ft-pgw{
+    width: 210px;
+    height: 280px;
     border-radius: 15px;
 }
 

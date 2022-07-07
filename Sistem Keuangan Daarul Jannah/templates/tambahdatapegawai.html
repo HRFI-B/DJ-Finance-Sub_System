@@ -19,31 +19,31 @@
                 <div class="container">
                     <div class="card">
                         <div class="row fl-stretch">
-                            <img id="pic" class="ft-siswa" style="margin-right:5%; margin-left:5%"/>
+                            <img id="pic" class="ft-pgw" style="margin-right:5%; margin-left:5%"/>
                             <!-- <img src="../static/foto_siswa/1549425553128.png" > -->
                             <div >
-                                <div class="row detail">
-                                    <h4 class="in-2">Nama</h4>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Nama</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <input type="text" id="nama" placeholder="Masukkan Nama" name="nama_pegawai" required>
                                     </div>
                                 </div>
                                    
-                                <div class="row">
-                                    <div class="row detail">
+                                <!-- <div > -->
+                                    <div class="row detail" style="margin-bottom:10px">
                                         <h4 class="in-1">NIP</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <input type="text" id="NIP" placeholder="Masukkan NIP" name="nip" required>
                                         </div>
                                     </div>
-                                    <div class="row detail">
-                                        <h4 class="in-2">Status</h4>
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Status</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="status" id="status" required>
-                                                <option disabled selected>
+                                                <option disabled selected hidden>
                                                     Pilih Status
                                                 </option>
                                                 <option value="Tetap">
@@ -58,15 +58,15 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                <!-- </div> -->
                                 
-                                <div class="row">
-                                    <div class="row detail">
+                                <!-- <div > -->
+                                    <div class="row detail" style="margin-bottom:10px">
                                         <h4 class="in-1">Unit</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="unit" id="unit_pegawai" required>
-                                                <option disabled selected>
+                                                <option disabled selected hidden>
                                                     Pilih Unit
                                                 </option>
                                                 <option value="TK">
@@ -96,23 +96,23 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row detail">
-                                        <h4 class="in-2">Jabatan</h4>
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Jabatan</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <input type="text" name="jabatan" id="jabatan_pegawai" placeholder="Masukkan Jabatan" required>
                                         </div>
                                     </div>
                                     
-                                </div>
+                                <!-- </div> -->
                                     
-                                <div class="row">
-                                    <div class="row detail">
+                                <!-- <div > -->
+                                    <div class="row detail" style="margin-bottom:10px">
                                         <h4 class="in-1">Jenis Kelamin</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="jenis_kelamin" id="jenis_kelamin" required>
-                                                <option disabled selected>
+                                                <option disabled selected hidden>
                                                     Pilih Jenis Kelamin
                                                 </option>
                                                 <option value="Laki-Laki">
@@ -124,8 +124,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row detail">
-                                        <h4 class="in-2">Otoritas Sistem</h4>
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Otoritas Sistem</h4>
                                         <h4>:</h4>
                                         <div class="dtl-style">
                                             <select name="otoritas" id="otoritas" onchange="dynamicOptionDataPegawai()" required>
@@ -136,23 +136,23 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row detail">
-                                    <h4 class="in-2">Username</h4>
+                                <!-- </div> -->
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Username</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <input type="text" id="username" placeholder="Masukkan Username" name="username" disabled>
                                     </div>
                                 </div>
-                                <div class="row detail">
-                                    <h4 class="in-2">Password</h4>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Password</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <input type="text" id="password" placeholder="Masukkan Password" name="password" disabled>
                                     </div>
                                 </div>
-                                <div class="row detail">
-                                    <h4 class="in-2">Foto</h4>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Foto</h4>
                                     <h4>:</h4>
                                     <div >
                                         <input type="file" name="foto_pegawai" oninput="pic.src=window.URL.createObjectURL(this.files[0])" required>
