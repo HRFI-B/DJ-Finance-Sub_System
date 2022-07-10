@@ -71,7 +71,7 @@
 
                 <div>
                     <h4 class="text">Riwayat Pembayaran Siswa/i</h4>
-                    <table >
+                    <table>
                         <thead>
                             <th>Tanggal Pembayaran</th>
                             <th>SPP</th>
@@ -80,17 +80,52 @@
                             <th>Jemputan</th>
                             <th>Ekskul</th>
                             <th>Majelis Sekolah</th>
+                            <th>Kelas Berbakat</th>
+                            <th>Total</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>09/02/2021</td>
-                                <td>Rp.690.000,-</td>
-                                <td>Rp.690.000,-</td>
-                                <td>Rp.690.000,-</td>
-                                <td>Rp.690.000,-</td>
-                                <td>Rp.690.000,-</td>
-                                <td>Rp.690.000,-</td>
-                            </tr>
+                            {% for pembayaran in pembayaran %}
+                                <tr>
+                                    {% set total = pembayaran.spp + pembayaran.tabungan_wajib + pembayaran.katering + pembayaran.ekskul + pembayaran.majelis_sekolah + pembayaran.kelas_berbakat %}
+                                    <td>{{pembayaran.waktu_pembayaran}}</td>
+                                    {% if pembayaran.spp == 0 %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.spp == 0 %}
+                                        <td>Rp. {{pembayaran.spp}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.tabungan_wajib == 0 %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.tabungan_wajib == 0 %}
+                                        <td>Rp. {{pembayaran.tabungan_wajib}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.katering == 0 %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.katering == 0 %}
+                                        <td>Rp. {{pembayaran.katering}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.jemputan == 0 %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.jemputan == 0 %}
+                                        <td>Rp. {{pembayaran.jemputan}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.ekskul == 0 %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.ekskul == 0 %}
+                                        <td>Rp. {{pembayaran.ekskul}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.majelis_sekolah == 0 %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.majelis_sekolah == 0 %}
+                                        <td>Rp. {{pembayaran.majelis_sekolah}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.kelas_berbakat == 0 %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.kelas_berbakat == 0 %}
+                                        <td>Rp. {{pembayaran.kelas_berbakat}}</td>
+                                    {% endif %}
+                                    <td>Rp. {{total}}</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
