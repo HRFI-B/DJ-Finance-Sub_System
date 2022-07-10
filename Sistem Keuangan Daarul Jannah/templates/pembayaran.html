@@ -66,7 +66,7 @@
                                     <div class="detail-tagihan">
                                         <div style="margin-bottom:10px">
                                             <p>Periode Pembayaran :</p>
-                                            <select id="periode">
+                                            <select id="periode" name="periode_bulan">
                                                 <option disabled selected>Pilih Bulan</option>
                                                 <option value="Januari">Januari</option>
                                                 <option value="Februari">Februari</option>
@@ -81,7 +81,7 @@
                                                 <option value="November">November</option>
                                                 <option value="Desember">Desember</option>
                                             </select>
-                                            <select id="tahun_ajaran" name="tahun_ajaran" required>
+                                            <select id="tahun_ajaran" name="periode_ta" required>
                                                 <option disabled selected>Pilih Tahun Ajaran</option>
                                                 <option>{{session['year']}}/{{session['year']+1}} Ganjil</option>
                                                 <option>{{session['year']}}/{{session['year']+1}} Genap</option>
@@ -91,78 +91,55 @@
                                             <p>Pilih Tagihan :</p>
                                             <ul>
                                                 <li>
-                                                    <select id="tagihan" style="width:40%">
+                                                    <select id="tagihan_spp" style="width:40%">
                                                         <option value="SPP">SPP</option>
-                                                        <option value="Tabungan Wajib">Tabungan Wajib</option>
-                                                        <option value="Katering">Katering</option>
-                                                        <option value="Jemputan">Jemputan</option>
-                                                        <option value="Ekskul">Ekskul</option>
-                                                        <option value="Majelis Sekolah">Majelis Sekolah</option>
                                                     </select> &emsp;
                                                     Rp.&ensp;
-                                                    <input type="number" id="harga1" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <input type="number" id="nominal_spp" name="nominal_spp" placeholder="Masukkan Nominal" style="width:40%">
                                                 </li>
                                                 <li>
-                                                    <select id="tagihan" style="width:40%">
-                                                        <option value="SPP">SPP</option>
+                                                    <select id="tagihan_tabungan_wajib" style="width:40%">
                                                         <option value="Tabungan Wajib">Tabungan Wajib</option>
-                                                        <option value="Katering">Katering</option>
-                                                        <option value="Jemputan">Jemputan</option>
-                                                        <option value="Ekskul">Ekskul</option>
-                                                        <option value="Majelis Sekolah">Majelis Sekolah</option>
                                                     </select> &emsp;
                                                     Rp.&ensp;
-                                                    <input type="number" id="harga1" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <input type="number" id="nominal_tabungan_wajib" name="nominal_tabungan_wajib" placeholder="Masukkan Nominal" style="width:40%">
                                                 </li>
                                                 <li>
-                                                    <select id="tagihan" style="width:40%">
-                                                        <option value="SPP">SPP</option>
-                                                        <option value="Tabungan Wajib">Tabungan Wajib</option>
+                                                    <select id="tagihan_katering" style="width:40%">
                                                         <option value="Katering">Katering</option>
-                                                        <option value="Jemputan">Jemputan</option>
-                                                        <option value="Ekskul">Ekskul</option>
-                                                        <option value="Majelis Sekolah">Majelis Sekolah</option>
                                                     </select> &emsp;
                                                     Rp.&ensp;
-                                                    <input type="number" id="harga1" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <input type="number" id="nominal_katering" name="nominal_katering" placeholder="Masukkan Nominal" style="width:40%">
                                                 </li>
                                                 <li>
-                                                    <select id="tagihan" style="width:40%">
-                                                        <option value="SPP">SPP</option>
-                                                        <option value="Tabungan Wajib">Tabungan Wajib</option>
-                                                        <option value="Katering">Katering</option>
+                                                    <select id="tagihan_jemputan" style="width:40%">
                                                         <option value="Jemputan">Jemputan</option>
-                                                        <option value="Ekskul">Ekskul</option>
-                                                        <option value="Majelis Sekolah">Majelis Sekolah</option>
                                                     </select> &emsp;
                                                     Rp.&ensp;
-                                                    <input type="number" id="harga1" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <input type="number" id="nominal_jemputan" name="nominal_jemputan" placeholder="Masukkan Nominal" style="width:40%">
                                                 </li>
                                                 <li>
-                                                    <select id="tagihan" style="width:40%">
-                                                        <option value="SPP">SPP</option>
-                                                        <option value="Tabungan Wajib">Tabungan Wajib</option>
-                                                        <option value="Katering">Katering</option>
-                                                        <option value="Jemputan">Jemputan</option>
+                                                    <select id="tagihan_ekskul" style="width:40%">
                                                         <option value="Ekskul">Ekskul</option>
-                                                        <option value="Majelis Sekolah">Majelis Sekolah</option>
                                                     </select> &emsp;
                                                     Rp.&ensp;
-                                                    <input type="number" id="harga1" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <input type="number" id="nominal_ekskul" name="nominal_ekskul" placeholder="Masukkan Nominal" style="width:40%">
                                                 </li>
                                                 <li>
-                                                    <select id="tagihan" style="width:40%">
-                                                        <option value="SPP">SPP</option>
-                                                        <option value="Tabungan Wajib">Tabungan Wajib</option>
-                                                        <option value="Katering">Katering</option>
-                                                        <option value="Jemputan">Jemputan</option>
-                                                        <option value="Ekskul">Ekskul</option>
+                                                    <select id="tagihan_majelis_sekolah" style="width:40%">
                                                         <option value="Majelis Sekolah">Majelis Sekolah</option>
                                                     </select> &emsp;
                                                     Rp.&ensp;
-                                                    <input type="number" id="harga1" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <input type="number" id="nominal_majelis_sekolah" name="nominal_majelis_sekolah" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_kelas_berbakat" style="width:40%">
+                                                        <option value="Kelas Berbakat">Kelas Berbakat</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_kelas_berbakat" name="nominal_kelas_berbakat" placeholder="Masukkan Nominal" style="width:40%">
                                                     <!-- &ensp; -->
-                                                    <button class="tgh-btn" title="Tambah Tagihan"><i class="fa-solid fa-circle-plus"></i></button>
+                                                    <!-- <button class="tgh-btn" title="Tambah Tagihan"><i class="fa-solid fa-circle-plus"></i></button> -->
                                                 </li>
                                             </ul>
                                             <!-- <button class="tgh-btn btn">Tambah Tagihan</button> -->
