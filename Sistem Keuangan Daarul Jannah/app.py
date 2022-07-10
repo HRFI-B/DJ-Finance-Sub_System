@@ -106,7 +106,7 @@ def login():
     msg = ''
     
     session['year'] = date.today().year
-    session['datetime'] = datetime.date(datetime.now())
+    session['datetime'] = datetime.now()
     
     #Pengambilan data dari Form Login.html (username, Password)
     if not 'loggedin' in session:
@@ -543,7 +543,7 @@ def riwayat_pembayaran(nis):
                                 tagihan_siswa = cursor.fetchall()  
                 
                 #Render tabel-pembayaran.html jika ada request dari client
-                return render_template('riwayat_pembayaran.html', siswa=data_siswa, spp=data_pembayaran, tagihan=tagihan_siswa)
+                return render_template('riwayat_pembayaran.html', siswa=data_siswa, pembayaran=data_pembayaran, tagihan=tagihan_siswa)
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
@@ -623,25 +623,49 @@ def pembayaran_siswa(nis):
                     waktu_pembayaran = session['datetime']
 
                     pembayaran_spp = request.form['nominal_spp']
+                    if not pembayaran_spp:
+                        pembayaran_spp = 0
+
                     pembayaran_tabungan_wajib = request.form['nominal_tabungan_wajib']
+                    if not pembayaran_tabungan_wajib:
+                        pembayaran_tabungan_wajib = 0
+
                     pembayaran_katering = request.form['nominal_katering']
+                    if not pembayaran_katering:
+                        pembayaran_katering = 0
+
                     pembayaran_jemputan = request.form['nominal_jemputan']
+                    if not pembayaran_jemputan:
+                        pembayaran_jemputan = 0
+
                     pembayaran_ekskul = request.form['nominal_ekskul']
+                    if not pembayaran_ekskul:
+                        pembayaran_ekskul = 0
+
+
                     pembayaran_majelis_sekolah = request.form['nominal_majelis_sekolah']
+                    if not pembayaran_majelis_sekolah:
+                        pembayaran_majelis_sekolah = 0
+
                     pembayaran_kelas_berbakat = request.form['nominal_kelas_berbakat']
+                    if not pembayaran_kelas_berbakat:
+                        pembayaran_kelas_berbakat = 0
 
                     if jenjang == "SD":
-                        if pembayaran_spp:
-                            with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                                cursor.execute('INSERT INTO pembayaran_sd(nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, jumlah_pembayaran, jenis_pembayaran) VALUES(%s, %s, %s, %s, %s ,%s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, "SPP"))
-                                mysql.connection.commit()
+                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                            cursor.execute('INSERT IGNORE INTO pembayaran_sd (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat))
+                            mysql.connection.commit()
 
                     elif jenjang == "SMP":
-                        if pembayaran_spp:
-                            with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                                cursor.execute('INSERT INTO pembayaran_smp(nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, jumlah_pembayaran, jenis_pembayaran) VALUES(%s, %s, %s, %s, %s ,%s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, "SPP"))
-                                mysql.connection.commit()
-                    
+                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                            cursor.execute('INSERT IGNORE INTO pembayaran_smp (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat))
+                            mysql.connection.commit()
+
+                    elif jenjang == "TK":
+                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                            cursor.execute('INSERT IGNORE INTO pembayaran_tk (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat))
+                            mysql.connection.commit()
+
                     redirect('/manajemen_siswa')
 
     # jika user belum login, maka user akan diredirect ke halaman login
