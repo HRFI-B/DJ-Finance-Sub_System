@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 01:31 PM
+-- Generation Time: Jul 10, 2022 at 06:47 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -126,19 +126,18 @@ INSERT INTO `pegawai` (`nip`, `nama_pegawai`, `status`, `unit`, `jabatan`, `jeni
 CREATE TABLE `pembayaran_sd` (
   `id` int(11) NOT NULL,
   `nis` varchar(9) NOT NULL,
-  `jumlah_pembayaran` int(20) NOT NULL,
   `pembayaran_periode_bulan` varchar(10) NOT NULL,
   `pembayaran_periode_ta` varchar(20) NOT NULL,
   `status` varchar(20) NOT NULL,
-  `waktu_pembayaran` date NOT NULL,
-  `jenis_pembayaran` varchar(50) NOT NULL,
-  `spp` int(20) NOT NULL,
-  `tabungan_wajib` int(20) NOT NULL,
-  `katering` int(20) NOT NULL,
-  `jemputan` int(20) NOT NULL,
-  `ekskul` int(20) NOT NULL,
-  `majelis_sekolah` int(20) NOT NULL,
-  `kelas_berbakat` int(20) NOT NULL
+  `waktu_pembayaran` datetime NOT NULL,
+  `spp` varchar(20) NOT NULL,
+  `tabungan_wajib` varchar(20) NOT NULL,
+  `katering` varchar(20) NOT NULL,
+  `jemputan` varchar(20) NOT NULL,
+  `ekskul` varchar(20) NOT NULL,
+  `majelis_sekolah` varchar(20) NOT NULL,
+  `kelas_berbakat` varchar(20) NOT NULL,
+  `total` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -150,27 +149,26 @@ CREATE TABLE `pembayaran_sd` (
 CREATE TABLE `pembayaran_smp` (
   `id` int(11) NOT NULL,
   `nis` varchar(9) NOT NULL,
-  `jumlah_pembayaran` int(20) NOT NULL,
   `pembayaran_periode_bulan` varchar(10) NOT NULL,
   `pembayaran_periode_ta` varchar(20) NOT NULL,
   `status` varchar(20) NOT NULL,
-  `waktu_pembayaran` date NOT NULL,
-  `jenis_pembayaran` varchar(50) NOT NULL,
-  `spp` int(20) NOT NULL,
-  `tabungan_wajib` int(20) NOT NULL,
-  `katering` int(20) NOT NULL,
-  `jemputan` int(20) NOT NULL,
-  `ekskul` int(20) NOT NULL,
-  `majelis_sekolah` int(20) NOT NULL,
-  `kelas_berbakat` int(20) NOT NULL
+  `waktu_pembayaran` datetime NOT NULL,
+  `spp` varchar(20) NOT NULL,
+  `tabungan_wajib` varchar(20) NOT NULL,
+  `katering` varchar(20) NOT NULL,
+  `jemputan` varchar(20) NOT NULL,
+  `ekskul` varchar(20) NOT NULL,
+  `majelis_sekolah` varchar(20) NOT NULL,
+  `kelas_berbakat` varchar(20) NOT NULL,
+  `total` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pembayaran_smp`
 --
 
-INSERT INTO `pembayaran_smp` (`id`, `nis`, `jumlah_pembayaran`, `pembayaran_periode_bulan`, `pembayaran_periode_ta`, `status`, `waktu_pembayaran`, `jenis_pembayaran`, `spp`, `tabungan_wajib`, `katering`, `jemputan`, `ekskul`, `majelis_sekolah`, `kelas_berbakat`) VALUES
-(6, '119140130', 0, 'Januari', '2022/2023 Genap', '', '2022-07-10', '', 800000, 100000, 300000, 0, 0, 0, 0);
+INSERT INTO `pembayaran_smp` (`id`, `nis`, `pembayaran_periode_bulan`, `pembayaran_periode_ta`, `status`, `waktu_pembayaran`, `spp`, `tabungan_wajib`, `katering`, `jemputan`, `ekskul`, `majelis_sekolah`, `kelas_berbakat`, `total`) VALUES
+(10, '119140130', 'Januari', '2022/2023 Genap', '', '2022-07-10 23:37:52', '800,000', '20,000', '0', '0', '0', '0', '0', '820,000');
 
 -- --------------------------------------------------------
 
@@ -181,19 +179,18 @@ INSERT INTO `pembayaran_smp` (`id`, `nis`, `jumlah_pembayaran`, `pembayaran_peri
 CREATE TABLE `pembayaran_tk` (
   `id` int(11) NOT NULL,
   `nis` varchar(9) NOT NULL,
-  `jumlah_pembayaran` int(20) NOT NULL,
   `pembayaran_periode_bulan` varchar(10) NOT NULL,
   `pembayaran_periode_ta` text NOT NULL,
   `status` int(20) NOT NULL,
-  `waktu_pembayaran` date NOT NULL,
-  `jenis_pembayaran` varchar(50) NOT NULL,
-  `spp` int(20) NOT NULL,
-  `tabungan_wajib` int(20) NOT NULL,
-  `katering` int(20) NOT NULL,
-  `jemputan` int(20) NOT NULL,
-  `ekskul` int(20) NOT NULL,
-  `majelis_sekolah` int(20) NOT NULL,
-  `kelas_berbakat` int(20) NOT NULL
+  `waktu_pembayaran` datetime NOT NULL,
+  `spp` varchar(20) NOT NULL,
+  `tabungan_wajib` varchar(20) NOT NULL,
+  `katering` varchar(20) NOT NULL,
+  `jemputan` varchar(20) NOT NULL,
+  `ekskul` varchar(20) NOT NULL,
+  `majelis_sekolah` varchar(20) NOT NULL,
+  `kelas_berbakat` varchar(20) NOT NULL,
+  `total` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -467,7 +464,7 @@ ALTER TABLE `pembayaran_sd`
 -- AUTO_INCREMENT for table `pembayaran_smp`
 --
 ALTER TABLE `pembayaran_smp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pembayaran_tk`
