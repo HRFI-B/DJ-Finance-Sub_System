@@ -86,44 +86,43 @@
                         <tbody >
                             {% for pembayaran in pembayaran %}
                                 <tr>
-                                    {% set total = pembayaran.spp + pembayaran.tabungan_wajib + pembayaran.katering + pembayaran.ekskul + pembayaran.majelis_sekolah + pembayaran.kelas_berbakat %}
                                     <td>{{pembayaran.waktu_pembayaran}}</td>
-                                    {% if pembayaran.spp == 0 %}
+                                    {% if pembayaran.spp == "0" %}
                                         <td>-</td>
-                                    {% elif not pembayaran.spp == 0 %}
+                                    {% elif not pembayaran.spp == "0" %}
                                         <td>Rp. {{pembayaran.spp}}</td>
                                     {% endif %}
-                                    {% if pembayaran.tabungan_wajib == 0 %}
+                                    {% if pembayaran.tabungan_wajib == "0" %}
                                         <td>-</td>
-                                    {% elif not pembayaran.tabungan_wajib == 0 %}
+                                    {% elif not pembayaran.tabungan_wajib == "0" %}
                                         <td>Rp. {{pembayaran.tabungan_wajib}}</td>
                                     {% endif %}
-                                    {% if pembayaran.katering == 0 %}
+                                    {% if pembayaran.katering == "0" %}
                                         <td>-</td>
-                                    {% elif not pembayaran.katering == 0 %}
+                                    {% elif not pembayaran.katering == "0" %}
                                         <td>Rp. {{pembayaran.katering}}</td>
                                     {% endif %}
-                                    {% if pembayaran.jemputan == 0 %}
+                                    {% if pembayaran.jemputan == "0" %}
                                         <td>-</td>
-                                    {% elif not pembayaran.jemputan == 0 %}
+                                    {% elif not pembayaran.jemputan == "0" %}
                                         <td>Rp. {{pembayaran.jemputan}}</td>
                                     {% endif %}
-                                    {% if pembayaran.ekskul == 0 %}
+                                    {% if pembayaran.ekskul == "0" %}
                                         <td>-</td>
-                                    {% elif not pembayaran.ekskul == 0 %}
+                                    {% elif not pembayaran.ekskul == "0" %}
                                         <td>Rp. {{pembayaran.ekskul}}</td>
                                     {% endif %}
-                                    {% if pembayaran.majelis_sekolah == 0 %}
+                                    {% if pembayaran.majelis_sekolah == "0" %}
                                         <td>-</td>
-                                    {% elif not pembayaran.majelis_sekolah == 0 %}
+                                    {% elif not pembayaran.majelis_sekolah == "0" %}
                                         <td>Rp. {{pembayaran.majelis_sekolah}}</td>
                                     {% endif %}
-                                    {% if pembayaran.kelas_berbakat == 0 %}
+                                    {% if pembayaran.kelas_berbakat == "0" %}
                                         <td>-</td>
-                                    {% elif not pembayaran.kelas_berbakat == 0 %}
+                                    {% elif not pembayaran.kelas_berbakat == "0" %}
                                         <td>Rp. {{pembayaran.kelas_berbakat}}</td>
                                     {% endif %}
-                                    <td>Rp. {{total}}</td>
+                                    <td>Rp. {{pembayaran.total}}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
