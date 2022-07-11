@@ -71,7 +71,7 @@
 
                 <div>
                     <h4 class="text">Riwayat Pembayaran Siswa/i</h4>
-                    <table>
+                    <table class="min-h">
                         <thead>
                             <th>Tanggal Pembayaran</th>
                             <th>SPP</th>
@@ -83,7 +83,7 @@
                             <th>Kelas Berbakat</th>
                             <th>Total</th>
                         </thead>
-                        <tbody>
+                        <tbody >
                             {% for pembayaran in pembayaran %}
                                 <tr>
                                     {% set total = pembayaran.spp + pembayaran.tabungan_wajib + pembayaran.katering + pembayaran.ekskul + pembayaran.majelis_sekolah + pembayaran.kelas_berbakat %}
