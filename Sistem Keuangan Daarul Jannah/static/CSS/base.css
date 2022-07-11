@@ -458,7 +458,7 @@ th {
     border-radius: 15px;
     padding: 2%;
     /* margin:10px; */
-    min-height: 85%;
+    min-height: 55vh;
 }
 
 .container{
@@ -545,4 +545,12 @@ th {
     border-radius: 5px;
     border: 1px solid #CCCCCC;
     padding:5px;
+}
+
+.detail-tagihan > div{
+    margin-bottom:2vh;
+}
+
+.tagihan li{
+    margin-bottom: 1vh;
 }
