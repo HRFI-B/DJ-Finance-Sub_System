@@ -71,7 +71,7 @@
 
                 <div>
                     <h4 class="text">Riwayat Pembayaran Siswa/i</h4>
-                    <table class="min-h">
+                    <table class="roundedTable">
                         <thead>
                             <th>Tanggal Pembayaran</th>
                             <th>SPP</th>
@@ -128,6 +128,89 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- <div class="table" id="data_siswa">
+                    <h4 class="text">Riwayat Pembayaran Siswa/i</h4>
+                    <table class="coll ">
+                        <tr>
+                            <th>NIS</th>
+                            <th>Nama Siswa/i</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Status Siswa/i</th>
+                            <th>Tingkat</th>
+                            <th>Kelas</th>
+                            <th>Menu Fungsi</th>
+                        </tr>
+                        {% for siswa_tk in siswa_tk %}
+                        <tr>
+                            <td>{{ siswa_tk.nis }}</td>
+                            <td class="tb-name">
+                                {{siswa_tk.nama_siswa}}
+                            </td>
+                            <td>{{ siswa_tk.jenis_kelamin }}</td>
+                            <td>{{ siswa_tk.status }}</td>
+                            <td> TK </td>
+                            <td>{{ siswa_tk.kelas }}</td>
+                            <td class="row" style="justify-content:center ;">
+                                <a href="{{ url_for('detail_siswa', nis = siswa_tk['nis']) }}" class="btn-2 fungsi" title="Detail Siswa">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </a>
+                                <a href="{{ url_for('riwayat_pembayaran', nis = siswa_tk['nis']) }}" class="btn-1 fungsi" title="Riwayat Pembayaran">
+                                    <i class="fi fi-sr-ballot"></i>
+                                </a>
+                                <a href="{{ url_for('pembayaran_siswa', nis = siswa_tk['nis']) }}" class="btn-2 fungsi" title="Pembayaran SPP">
+                                    <i class="fi fi-sr-money-check-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                        {% for siswa_sd in siswa_sd %}
+                        <tr>
+                            <td>{{ siswa_sd.nis }}</td>
+                            <td>{{siswa_sd.nama_siswa}}
+                                
+                            </td>
+                            <td>{{ siswa_sd.jenis_kelamin }}</td>
+                            <td>{{ siswa_sd.status }}</td>
+                            <td> SD </td>
+                            <td>{{ siswa_sd.kelas }}</td>
+                            <td class="row" style="justify-content:center ;">
+                                <a href="{{ url_for('detail_siswa', nis = siswa_sd['nis']) }}" class="btn-2 fungsi" title="Detail Siswa">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </a>
+                                <a href="{{ url_for('riwayat_pembayaran', nis = siswa_sd['nis']) }}" class="btn-1 fungsi" title="Riwayat Pembayaran">
+                                    <i class="fi fi-sr-ballot"></i>
+                                </a>
+                                <a href="{{ url_for('pembayaran_siswa', nis = siswa_sd['nis']) }}" class="btn-2 fungsi" title="Pembayaran SPP">
+                                    <i class="fi fi-sr-money-check-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                        {% for siswa_smp in siswa_smp %}
+                        <tr>
+                            <td>{{ siswa_smp.nis }}</td>
+                            <td>{{siswa_smp.nama_siswa}}
+                                
+                            </td>
+                            <td>{{ siswa_smp.jenis_kelamin }}</td>
+                            <td>{{ siswa_smp.status }}</td>
+                            <td> SMP </td>
+                            <td>{{ siswa_smp.kelas }}</td>
+                            <td class="row" style="justify-content:center ;">
+                                <a href="{{ url_for('detail_siswa', nis = siswa_smp['nis']) }}" class="btn-2 fungsi" title="Detail Siswa">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </a>
+                                <a href="{{ url_for('riwayat_pembayaran', nis = siswa_smp['nis']) }}" class="btn-1 fungsi" title="Riwayat Pembayaran">
+                                    <i class="fi fi-sr-ballot"></i>
+                                </a>
+                                <a href="{{ url_for('pembayaran_siswa', nis = siswa_smp['nis']) }}" class="btn-2 fungsi" title="Pembayaran SPP">
+                                    <i class="fi fi-sr-money-check-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                    </table>
+                </div> -->
             </div>
         </div>
             

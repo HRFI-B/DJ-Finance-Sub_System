@@ -99,11 +99,13 @@ select,input{
 
 .btn-1 i{
     color: #049DBE;
+    /* color:black; */
     font-size: 20px;
 }
 
 .btn-2 i{
     color: #0A9D71;
+    /* color:black; */
     font-size: 20px;
 }
 
@@ -113,7 +115,7 @@ select,input{
 }
 
 .fungsi i:hover{
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 ul, li, a{
@@ -364,18 +366,52 @@ select:focus, input:focus{
 
 table{
     width: 100%;
-    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
-    -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
-    font-size: 0.9vw;
     border-radius: 15px;
     padding: 10px;
+}
+
+.coll{
     border-collapse: collapse;
 }
 
 .min-h{
     min-height: 20vh;
     margin-bottom: 5vh;
+    border: 1px solid #CCCCCC;
+    border-radius: 15px !important;
+    padding:2px;
+    /* border-collapse: collapse; */
+}
+.roundedTable {
+    margin-top: 10px;
+    border-radius: 15px / 15px;
+    border: 1px solid #CCCCCC;
+    border-spacing: 0px;
+}
+.roundedTable th{
+    padding: 10px;
+    padding-top: 0;
+}
+.roundedTable tr {
+    padding: 10px;
+}
+
+.roundedTable th:first-child {
+    border-left: none;
+    border-top-left-radius: 15px;
+}
+.roundedTable th:last-child {
+    border-top-right-radius: 15px;
+}
+.roundedTable tr td {
+    border: 1px solid #CCCCCC;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    padding: 5px;
+}
+.roundedTable tr td:first-child {
+    border-left: none;
 }
 
 .shadow{
@@ -413,9 +449,8 @@ tr{
     border-radius: 15px;
 }
 
-tr:hover{
-    border-radius: 15px;
-    background-color:#ccc;
+.table table tr:hover{
+    background-color:rgb(225, 225, 225);
 }
 
 th {
