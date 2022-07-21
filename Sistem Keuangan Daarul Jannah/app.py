@@ -71,6 +71,9 @@ def login():
 
                 # menyimpan data otoritas user
                 session['otoritas'] = user['otoritas']
+
+                # menyimpan data tanggal
+                session['tanggal'] = datetime.now().strftime("%d-%m-%Y")
                 
                 # pengambilan data nama pegawai dari database
                 with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
