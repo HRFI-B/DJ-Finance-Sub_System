@@ -1,2 +1,2 @@
-from math import floor
-print(type(floor(3.4)))
+from datetime import datetime
+print(datetime.now().strftime("%d-%m-%Y"))
