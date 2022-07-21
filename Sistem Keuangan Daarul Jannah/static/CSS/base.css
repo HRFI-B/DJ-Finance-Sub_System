@@ -32,18 +32,23 @@ select,input{
     color:black !important;
  }
 .middle { 
-    grid-area: 2 / 2 / 5 / 6; 
-    padding: 20px;
+    grid-area: 2 / 2 / 6 / 6; 
+    padding: 1.5vw;
     grid-auto-rows: 500px;
     overflow: auto;
+    
+}
+
+.content{
+    min-height: calc(100vh - 20vh);
 }
 
 .footer { 
-    grid-area: 5 / 2 / 6 / 6;  
+    /* grid-area: 5 / 2 / 6 / 6;   */
     text-align: center;
-    padding: 1%;
     color: #ccc;
     margin: 0;
+    font-size: 1vw;
 }
 
 
@@ -79,6 +84,13 @@ select,input{
 }
 .user{
     font-size: 100px; 
+}
+
+.img-dash{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    padding-top:10%;
 }
 
 .menu{

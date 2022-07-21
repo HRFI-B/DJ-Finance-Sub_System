@@ -9,12 +9,12 @@
 
     <body>
     {% block body %}
-    <div class="box-area">
-        <div style="display:flex;justify-content:center;flex-direction:row">
+    
+        <div class="img-dash">
             <img src="{{ url_for('static', filename='Image/Icon1.png') }}" style="opacity: 0.25; width:298px; height:auto;">
         </div>
         
-    </div>
+    
     <script src="{{url_for('static', filename='Javascript/dash_active_class.js')}}">   </script>
     {% endblock %}
     </body>

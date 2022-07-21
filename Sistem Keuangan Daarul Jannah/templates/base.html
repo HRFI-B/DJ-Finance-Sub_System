@@ -81,14 +81,19 @@
 
             <!-- main -->
             <div class="middle">
-                {% block body %}
-                {% endblock %}
+                <div class="content">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+                
+                <div class="footer">
+                    <p>Copyright &copy; {{session['year']}} Sekolah Daarul Jannah</p>
+                </div>
+                
             </div>
 
             <!-- footer -->
-            <div class="footer">
-                <p>Copyright &copy; {{session['year']}} Sekolah Daarul Jannah</p>
-            </div>
+            
 
            
         </div>
