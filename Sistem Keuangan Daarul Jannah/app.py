@@ -753,6 +753,28 @@ def tambah_pegawai():
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
 
+@app.route('/ubah_pegawai/<nip>', methods=['GET','POST'])
+def ubah_pegawai(nip):
+    # halaman ubah staff
+    # jika user sudah login, maka user tidak akan diredirect ke halaman login
+    if 'loggedin' in session:
+        # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                
+                # instruksi yang dijalankan ketika request method GET
+                if request.method == 'GET':
+    
+                    # Pengecekan dan pengambilan data staff dari database jika nis siswa ada di database siswa_sd
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.unit, pegawai.jabatan, pegawai.foto_path,user.otoritas, user.username, user.password FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip WHERE pegawai.nip = %s', ([nip]))
+                        data_pegawai = cursor.fetchone()
+                        
+                #Render tabel-pegawai.html jika ada request dari client
+                return render_template('ubahdatapegawai.html', pegawai=data_pegawai)
+
+    # jika user belum login, maka user akan diredirect ke halaman login
+    return redirect('/login')
+
 @app.route('/hapus_pegawai/<nip>', methods=['GET','POST'])
 def hapus_pegawai(nip):
     # halaman hapus staff
