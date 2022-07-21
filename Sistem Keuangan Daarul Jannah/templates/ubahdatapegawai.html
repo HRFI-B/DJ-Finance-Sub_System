@@ -13,18 +13,18 @@
             {% block body %}
             <h1 class="page-title">Ubah Data Pegawai Daarul Jannah</h1>
             <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
-            <form action="{{ url_for('ubah_siswa', nis = siswa['nis']) }}" method="post">
+            <form action="{{ url_for('ubah_pegawai', nip = pegawai['nip']) }}" method="post">
             <div class="container">
                 <div class="card">
                     <div class="row fl-stretch">
-                        {% set foto_siswa = "foto_siswa/" + siswa['foto_path'] %}
+                        {% set foto_pegawai = "foto_pegawai/" + pegawai['foto_path'] %}
                         <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
                         <div >
                             <div class="row detail">
                                 <h4 class="in-2">Nama</h4>
                                 <h4>:</h4>
                                 <div class="dtl-style">
-                                    <input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_siswa" required value="{{siswa.nama_siswa}}">
+                                    <input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_pegawai" required value="{{pegawai.nama_pegawai}}">
                                 </div>
                             </div>
                                
@@ -33,14 +33,14 @@
                                     <h4 class="in-1">NIP</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <input type="text" id="floatingInput" placeholder="Masukkan NIS" name="nis" value="{{siswa.nis}}" readonly>
+                                        <input type="text" id="floatingInput" placeholder="Masukkan NIP" name="nip" value="{{pegawai.nip}}" readonly>
                                     </div>
                                 </div>
                                 <div class="row detail">
                                     <h4 class="in-1">Status</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <input type="text" id="NISN" placeholder="Masukkan NISN" name="nisn" required value="{{siswa.nisn}}" maxlength="10" minlength="10">
+                                        <input type="text" id="Status" placeholder="Masukkan Status" name="status" required value="{{pegawai.setatus}}" maxlength="10" minlength="10">
                                     </div>
                                 </div>
                             </div>
@@ -112,10 +112,10 @@
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <select name="jenis_kelamin" required>
-                                            {% if siswa.jenis_kelamin == "Laki-laki" %}
+                                            {% if pegawai.jenis_kelamin == "Laki-laki" %}
                                                 <option value="Laki-laki" selected>Laki-laki</option>
                                                 <option value="Perempuan">Perempuan</option>
-                                            {% elif siswa.jenis_kelamin == "Perempuan" %}
+                                            {% elif pegawai.jenis_kelamin == "Perempuan" %}
                                                 <option value="Laki-laki">Laki-laki</option>
                                                 <option value="Perempuan" selected>Perempuan</option>
                                             {% endif %}
@@ -127,15 +127,15 @@
                                     <h4>:</h4>
                                     <div class="dtl-style">
                                         <select name="status" required>
-                                            {% if siswa.status == "Reguler" %}
+                                            {% if pegawai.status == "Reguler" %}
                                                 <option value="Reguler" selected>Reguler</option>
                                                 <option value="Yayasan">Yayasan</option>
                                                 <option value="Inklusi">Inklusi</option>
-                                            {% elif siswa.status == "Yayasan" %}
+                                            {% elif pegawai.status == "Yayasan" %}
                                                 <option value="Reguler">Reguler</option>
                                                 <option value="Yayasan" selected>Yayasan</option>
                                                 <option value="Inklusi">Inklusi</option>
-                                            {% elif siswa.status == "Inklusi" %}
+                                            {% elif pegawai.status == "Inklusi" %}
                                                 <option value="Reguler">Reguler</option>
                                                 <option value="Yayasan">Yayasan</option>
                                                 <option value="Inklusi" selected>Inklusi</option>
@@ -151,7 +151,7 @@
                     </div>
                     <div class="row cmd-btn" style="justify-content:flex-end;">
                         
-                        <input type="submit" value="Simpan Data Siswa/i" class="p-btn btn konten-profil" style="border:none">
+                        <input type="submit" value="Simpan Data Pegawai/i" class="p-btn btn konten-profil" style="border:none">
                         
                     </div> 
                 </div>
