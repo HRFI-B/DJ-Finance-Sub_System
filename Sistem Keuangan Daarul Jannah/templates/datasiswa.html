@@ -87,13 +87,18 @@
                         <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}" title="Ubah Data Siswa/i">
                             <p class="ch-btn btn">Ubah Data Siswa/i</p>
                         </a>
-                        <a href="{{ url_for('hapus_siswa', nis = siswa['nis']) }}" title="Hapus Data Siswa/i">
+                        <a 
+                        title="Hapus Data Siswa/i" id="delete">
                             <p class="del-btn btn">Hapus Data Siswa/i</p>
                         </a>
-                </div> 
+                    </div> 
                 </div>
             </div> 
+
+            
+
             <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}">   </script>   
+            
             {% endblock %}
 
 </body>

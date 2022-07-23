@@ -603,3 +603,63 @@ th {
 .tagihan li{
     margin-bottom: 1vh;
 }
+
+.pop-up{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(77, 77, 77, 0.9);
+    /* opacity: 1; */
+}
+
+.modal{
+    width: 90%;
+    max-width: 400px;
+    padding: 2.5vw;
+    background: #FFF;
+    border-radius: 10px;
+    /* border-radius: .25em .25em .4em .4em; */
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%; right: 50%;
+    transform: translate(50%,-50%);
+}
+
+.modal-buttons{
+    justify-content:center;
+}
+
+#confirm{
+    padding-bottom: 1vw;
+    font-size: 1.5vw;
+}
+
+.close-btn{
+    text-align: right !important;
+}
+
+.modal-buttons a:hover{
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25);
+}
+
+.btn-no{
+    background-color: #ccc;
+    padding: 1vw;
+    width: 20%;
+    margin: 1vw;
+    border-radius: 10px;
+}
+
+.btn-yes{
+    background-color:#c80000;
+    width: 20%;
+    padding: 1vw;
+    margin: 1vw;
+    border-radius: 10px;
+}
+
