@@ -1,12 +1,17 @@
-<div class="pop-up" role="alert">
-    <div class="modal">
-        <!-- <i class="fa-solid fa-xmark close-btn" id="confirm"></i> -->
-        <p id="confirm">Apakah Anda yakin untuk menghapus data siswa?</p>
-        <div class="modal-buttons row">
-            <a href="" class="btn-no">
-                <p>Batal</p></a></li>
-            <a href="{{ url_for('hapus_siswa', nis = siswa['nis']) }}" class="btn-yes">
-                <p>Hapus</p></a></li>
+<!DOCTYPE html>
+<html>
+    {% block content %}
+    <div class="pop-up" role="alert">
+        <div class="modal">
+            <!-- <i class="fa-solid fa-xmark close-btn" id="confirm"></i> -->
+            <p id="confirm">Apakah Anda yakin untuk menghapus data siswa?</p>
+            <div class="modal-buttons row">
+                <a href="" class="btn-no">
+                    <p>Batal</p></a>
+                <a href="{{ url_for('hapus_siswa', nis = siswa['nis']) }}" class="btn-yes">
+                    <p>Hapus</p></a>
+            </div>
         </div>
     </div>
-</div>
+    {% endblock %}
+</html>

@@ -11,6 +11,7 @@
 <body>
     <!-- Sidebar -->
             {% block body %}
+            {% set popup = True %}
             <h1 class="page-title">Detail Data Siswa/i Daarul Jannah</h1>
             <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
             
@@ -87,18 +88,37 @@
                         <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}" title="Ubah Data Siswa/i">
                             <p class="ch-btn btn">Ubah Data Siswa/i</p>
                         </a>
-                        <a 
-                        title="Hapus Data Siswa/i" id="delete">
-                            <p class="del-btn btn">Hapus Data Siswa/i</p>
-                        </a>
+                        <button title="Hapus Data Siswa/i" id="delete" class="del-btn btn" style="color: white;" onclick="open_modal()">
+                            Hapus Data Siswa/i
+                        </button>
                     </div> 
                 </div>
             </div> 
-
+             
+            <div class="pop-up" role="alert">
+                <div class="modal">
+                    <!-- <i class="fa-solid fa-xmark close-btn" id="confirm"></i> -->
+                    <p id="confirm">Apakah Anda yakin untuk menghapus data siswa?</p>
+                    <div class="modal-buttons row">
+                        <a href="{{ url_for('detail_siswa', nis = siswa['nis']) }}" class="btn-no">
+                            <p>Batal</p></a>
+                        <a href="{{ url_for('hapus_siswa', nis = siswa['nis']) }}" class="btn-yes">
+                            <p>Hapus</p></a>
+                    </div>
+                </div>
+            </div>
             
-
             <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}">   </script>   
-            
+            <script>
+                // Get the modal
+                function open_modal(){
+
+                    var modal = document.getElementsByClassName("pop-up")[0];
+                    modal.style.display = "block";
+    
+                }
+            </script>
             {% endblock %}
 
 </body>
+</html>
