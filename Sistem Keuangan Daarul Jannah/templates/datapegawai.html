@@ -99,7 +99,7 @@
                             
                     </div>
                     <div class="row cmd-btn" style="justify-content:flex-end;">
-                        <a href="">
+                        <a href="{{url_for('ubah_pegawai', nip = pegawai['nip'])}}">
                             <p class="ch-btn btn">Ubah Data Pegawai</p>
                         </a>
                         <a href="{{url_for('hapus_pegawai', nip = pegawai['nip'])}}">
