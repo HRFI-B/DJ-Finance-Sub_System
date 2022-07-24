@@ -251,28 +251,28 @@ def tambah_siswa():
                         tingkat = request.form['tingkat']
 
                         # foto siswa
-                        foto_profil = request.files['foto_siswa']
-                        nama_foto = str(foto_profil.filename)
-                        if foto_profil:
-                            foto_profil.save(os.path.join(app.config['UPLOAD_FOLDER'], nama_foto))
-                        else:
-                            nama_foto = 'default.jpg'
+                        # foto_profil = request.files['foto_siswa']
+                        # nama_foto = str(foto_profil.filename)
+                        # if foto_profil:
+                        #     foto_profil.save(os.path.join(app.config['UPLOAD_FOLDER'], nama_foto))
+                        # else:
+                        #     nama_foto = 'default.jpg'
 
                         # pemasukan data siswa baru ke database
                         with mysql.connection.cursor() as cursor:
                             # pemasukan data siswa baru ke dalam database siswa_tk jika tingkat siswa adalah tk
                             if tingkat == "TK":
-                                cursor.execute('INSERT IGNORE INTO siswa_tk (nis, nisn, nama_siswa, jenis_kelamin, kelas, status, foto_path) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status, nama_foto))
+                                cursor.execute('INSERT IGNORE INTO siswa_tk (nis, nisn, nama_siswa, jenis_kelamin, kelas, status) VALUES (%s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status))
                                 mysql.connection.commit()
 
                             # pemasukan data siswa baru ke dalam database siswa_sd jika tingkat siswa adalah sd
                             elif tingkat == "SD":
-                                cursor.execute('INSERT IGNORE INTO siswa_sd (nis, nisn, nama_siswa, jenis_kelamin, kelas, status, foto_path) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status, nama_foto))
+                                cursor.execute('INSERT IGNORE INTO siswa_sd (nis, nisn, nama_siswa, jenis_kelamin, kelas, status) VALUES (%s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status))
                                 mysql.connection.commit()
 
                             # pemasukan data siswa baru ke dalam database siswa_smp jika tingkat siswa adalah smp
                             elif tingkat == "SMP":
-                                cursor.execute('INSERT IGNORE INTO siswa_smp (nis, nisn, nama_siswa, jenis_kelamin, kelas, status, foto_path) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status, nama_foto))
+                                cursor.execute('INSERT IGNORE INTO siswa_smp (nis, nisn, nama_siswa, jenis_kelamin, kelas, status) VALUES (%s, %s, %s, %s, %s, %s)', (nis, nisn, nama_siswa, jenis_kelamin, kelas, status))
                                 mysql.connection.commit()
                         return redirect('/manajemen_siswa')
 
@@ -723,16 +723,16 @@ def tambah_pegawai():
                     otoritas = request.form['otoritas']
 
                     # foto pegawai
-                    foto_profil = request.files['foto_pegawai']
-                    nama_foto = str(foto_profil.filename)
-                    if foto_profil:
-                        foto_profil.save(os.path.join(app.config['UPLOAD_FOLDER'], nama_foto))
-                    else:
-                        nama_foto = 'default.jpg'
+                    # foto_profil = request.files['foto_pegawai']
+                    # nama_foto = str(foto_profil.filename)
+                    # if foto_profil:
+                    #     foto_profil.save(os.path.join(app.config['UPLOAD_FOLDER'], nama_foto))
+                    # else:
+                    #     nama_foto = 'default.jpg'
 
                     with mysql.connection.cursor() as cursor:
                         # pemasukan data pegawai baru ke database
-                        cursor.execute('INSERT IGNORE INTO pegawai (nip, nama_pegawai, jenis_kelamin, status, unit, jabatan, foto_path) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nip, nama, jenis_kelamin, status, unit, jabatan, nama_foto))
+                        cursor.execute('INSERT IGNORE INTO pegawai (nip, nama_pegawai, jenis_kelamin, status, unit, jabata) VALUES (%s, %s, %s, %s, %s, %s)', (nip, nama, jenis_kelamin, status, unit, jabatan))
                         mysql.connection.commit()
 
                     if not otoritas == 'None':

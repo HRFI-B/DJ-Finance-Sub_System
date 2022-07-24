@@ -65,6 +65,8 @@ function dynamicOptionDataPegawai(){
     if (otoritas == "Admin" || otoritas == "Staff") {
         username.disabled = false;
         password.disabled = false;
+        document.getElementById("username").setAttribute("required");
+        document.getElementById("password").setAttribute("required");
     }
     else {
         username.disabled = true;

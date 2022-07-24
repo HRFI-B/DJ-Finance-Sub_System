@@ -5,6 +5,7 @@
         {% block head%}
         <title>Pengubahan Data Pegawai - Sistem Pembayaran DJ</title>
         <script>document.title = "Pengubahan Data Pegawai - Sistem Pembayaran DJ"</script>
+        <script src="{{ url_for('static', filename='Javascript/dynamic_option.js') }}"></script>
         {% endblock %}
     </head>
 
@@ -17,137 +18,348 @@
             <div class="container">
                 <div class="card">
                     <div class="row fl-stretch">
-                        {% set foto_pegawai = "foto_pegawai/" + pegawai['foto_path'] %}
-                        <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
-                        <div >
-                            <div class="row detail">
-                                <h4 class="in-2">Nama</h4>
-                                <h4>:</h4>
-                                <div class="dtl-style">
-                                    <input type="text" id="floatingInput" placeholder="Masukkan Nama" name="nama_pegawai" required value="{{pegawai.nama_pegawai}}">
-                                </div>
-                            </div>
-                               
-                            <div class="row">
-                                <div class="row detail">
-                                    <h4 class="in-1">NIP</h4>
+                        {% set foto_pegawai = "foto_siswa/default.jpg" %}
+                        <img src="{{url_for('static', filename=foto_pegawai)}}" class="ft-siswa" alt="foto orang" style="margin-right:5%; margin-left:5%">
+                        
+                        <form action="{{ url_for('ubah_pegawai', nip = pegawai['nip']) }}" method="post">
+                            <div >
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Nama</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <input type="text" id="floatingInput" placeholder="Masukkan NIP" name="nip" value="{{pegawai.nip}}" readonly>
+                                        <input type="text" id="nama_pegawai" placeholder="Masukkan Nama" name="nama_pegawai" required value="{{pegawai.nama_pegawai}}">
                                     </div>
                                 </div>
-                                <div class="row detail">
-                                    <h4 class="in-1">Status</h4>
-                                    <h4>:</h4>
-                                    <div class="dtl-style">
-                                        <input type="text" id="Status" placeholder="Masukkan Status" name="status" required value="{{pegawai.setatus}}" maxlength="10" minlength="10">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="row detail">
-                                    <h4 class="in-1">Jabatan</h4>
-                                    <h4>:</h4>
-                                    <div class="dtl-style">
-                                        <h4>{{tingkat}}</h4>
-                                    </div>
-                                </div>
-                                <div class="row detail">
-                                    <h4 class="in-1">Kelas</h4>
-                                    <h4>:</h4>
-                                    <div class="dtl-style">
-                                        <select name="kelas"  required>
-                                            {% if tingkat == "TK" %}
-                                                <option value="A DAHLIA">Kelas A Dahlia</option>
-                                                <option value="A MELATI">Kelas A Melati</option>
-                                                <option value="B LILY">Kelas B Lily</option>
-                                                <option value="B MATAHARI">Kelas B Matahari</option>
-                                            {% elif tingkat == "SD" %}
-                                                <option value="1D">Kelas 1D</option>
-                                                <option value="1J">Kelas 1J</option>
-                                                <option value="1I">Kelas 1I</option>
-                                                <option value="1P">Kelas 1P</option>
-                                                <option value="2D">Kelas 2D</option>
-                                                <option value="2J">Kelas 2J</option>
-                                                <option value="2I">Kelas 2I</option>
-                                                <option value="2P">Kelas 2P</option>
-                                                <option value="3D">Kelas 3D</option>
-                                                <option value="3J">Kelas 3J</option>
-                                                <option value="3I">Kelas 3I</option>
-                                                <option value="3P">Kelas 3P</option>
-                                                <option value="4D">Kelas 4D</option>
-                                                <option value="4J">Kelas 4J</option>
-                                                <option value="4I">Kelas 4I</option>
-                                                <option value="4P">Kelas 4P</option>
-                                                <option value="5D">Kelas 5D</option>
-                                                <option value="5J">Kelas 5J</option>
-                                                <option value="5I">Kelas 5I</option>
-                                                <option value="5P">Kelas 5P</option>
-                                                <option value="6D">Kelas 6D</option>
-                                                <option value="6J">Kelas 6J</option>
-                                                <option value="6I">Kelas 6I</option>
-                                                <option value="6P">Kelas 6P</option>
-                                            {% elif tingkat == "SMP" %}
-                                                <option value="7D">Kelas 7D</option>
-                                                <option value="7J">Kelas 7J</option>
-                                                <option value="7I">Kelas 7I</option>
-                                                <option value="7P">Kelas 7P</option>
-                                                <option value="8D">Kelas 8D</option>
-                                                <option value="8J">Kelas 8J</option>
-                                                <option value="8I">Kelas 8I</option>
-                                                <option value="8P">Kelas 8P</option>
-                                                <option value="9D">Kelas 9D</option>
-                                                <option value="9J">Kelas 9J</option>
-                                                <option value="9I">Kelas 9I</option>
-                                            {% endif %}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                                 
-                            <div class="row">
-                                <div class="row detail">
-                                    <h4 class="in-1">Jenis Kelamin</h4>
+                                <!-- <div class="row"> -->
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">NIP</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <input type="text" id="nip_pegawai" placeholder="Masukkan Nama" name="nip" required value="{{pegawai.nip}}">
+                                        </div>
+                                    </div>
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Status</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="status" id="status" required>
+                                                {% if pegawai.status == "Tetap" %}
+                                                <option value="Tetap" selected>
+                                                    Tetap
+                                                </option>
+                                                <option value="Tidak Tetap">
+                                                    Tidak Tetap
+                                                </option>
+                                                <option value="Magang">
+                                                    Magang
+                                                </option>
+                                                {% elif pegawai.status == "Tidak Tetap" %}
+                                                <option value="Tetap">
+                                                    Tetap
+                                                </option>
+                                                <option value="Tidak Tetap" selected>
+                                                    Tidak Tetap
+                                                </option>
+                                                <option value="Magang">
+                                                    Magang
+                                                </option>
+                                                {% elif pegawai.status == "Magang" %}
+                                                <option value="Tetap">
+                                                    Tetap
+                                                </option>
+                                                <option value="Tidak Tetap">
+                                                    Tidak Tetap
+                                                </option>
+                                                <option value="Magang" selected>
+                                                    Magang
+                                                </option>
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                                
+                                <!-- <div class="row"> -->
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Unit</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="unit" id="unit_pegawai" required>
+                                                {% if pegawai.unit == "TK" %}
+                                                    <option value="TK" selected>
+                                                        TK
+                                                    </option>
+                                                    <option value="SD">
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP">
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ">
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat">
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver">
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam">
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy">
+                                                        Office Boy
+                                                    </option>
+                                                {% elif pegawai.unit == "SD" %}
+                                                    <option value="TK">
+                                                        TK
+                                                    </option>
+                                                    <option value="SD" selected>
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP">
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ">
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat">
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver">
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam">
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy">
+                                                        Office Boy
+                                                    </option>
+                                                {% elif pegawai.unit == "SMP" %}
+                                                    <option value="TK">
+                                                        TK
+                                                    </option>
+                                                    <option value="SD">
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP" selected>
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ">
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat">
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver">
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam">
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy">
+                                                        Office Boy
+                                                    </option>
+                                                {% elif pegawai.unit == "TPQ" %}
+                                                    <option value="TK">
+                                                        TK
+                                                    </option>
+                                                    <option value="SD">
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP">
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ" selected>
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat">
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver">
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam">
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy">
+                                                        Office Boy
+                                                    </option>
+                                                {% elif pegawai.unit == "Sekertariat" %}
+                                                    <option value="TK">
+                                                        TK
+                                                    </option>
+                                                    <option value="SD">
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP">
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ">
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat" selected>
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver">
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam">
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy">
+                                                        Office Boy
+                                                    </option>
+                                                {% elif pegawai.unit == "Driver" %}
+                                                    <option value="TK" >
+                                                        TK
+                                                    </option>
+                                                    <option value="SD">
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP">
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ">
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat">
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver" selected>
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam">
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy">
+                                                        Office Boy
+                                                    </option>
+                                                {% elif pegawa.unit == "Satpam" %}
+                                                    <option value="TK" >
+                                                        TK
+                                                    </option>
+                                                    <option value="SD">
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP">
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ">
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat">
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver">
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam" selected>
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy">
+                                                        Office Boy
+                                                    </option>
+                                                {% elif pegawai.unit == "Office Boy" %}
+                                                    <option value="TK" >
+                                                        TK
+                                                    </option>
+                                                    <option value="SD">
+                                                        SD
+                                                    </option>
+                                                    <option value="SMP">
+                                                        SMP
+                                                    </option>
+                                                    <option value="TPQ">
+                                                        TPQ
+                                                    </option>
+                                                    <option value="Sekertariat">
+                                                        Sekertariat
+                                                    </option>
+                                                    <option value="Driver">
+                                                        Driver
+                                                    </option>
+                                                    <option value="Satpam">
+                                                        Satpam
+                                                    </option>
+                                                    <option value="Office Boy" selected>
+                                                        Office Boy
+                                                    </option>
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Jabatan</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <input type="text" name="jabatan" id="jabatan_pegawai" placeholder="Masukkan Jabatan" value="{{ pegawai.jabatan }}" required>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                                    
+                                <!-- <div class="row"> -->
+                                    
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Jenis Kelamin</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="jenis_kelamin" id="jenis_kelamin" required>
+                                                {% if pegawai.jenis_kelamin == "Laki-laki" %}
+                                                    <option value="Laki-laki" selected>
+                                                        Laki-laki
+                                                    </option>
+                                                    <option value="Perempuan">
+                                                        Perempuan
+                                                    </option>
+                                                {% elif pegawai.jenis_kelamin == "Perempuan" %}
+                                                    <option value="Laki-laki">
+                                                        Laki-laki
+                                                    </option>
+                                                    <option value="Perempuan" selected>
+                                                        Perempuan
+                                                    </option>
+                                                {% else %}
+                                                    <option value="Laki-laki">
+                                                        Laki-laki
+                                                    </option>
+                                                    <option value="Perempuan">
+                                                        Perempuan
+                                                    </option>
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row detail" style="margin-bottom:10px">
+                                        <h4 class="in-1">Otoritas Sistem</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="otoritas" id="otoritas" onchange="dynamicOptionDataPegawai()" required>
+                                                <option value="" selected disabled>Pilih Otoritas</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Staff">Staff</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Username</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <select name="jenis_kelamin" required>
-                                            {% if pegawai.jenis_kelamin == "Laki-laki" %}
-                                                <option value="Laki-laki" selected>Laki-laki</option>
-                                                <option value="Perempuan">Perempuan</option>
-                                            {% elif pegawai.jenis_kelamin == "Perempuan" %}
-                                                <option value="Laki-laki">Laki-laki</option>
-                                                <option value="Perempuan" selected>Perempuan</option>
-                                            {% endif %}
-                                        </select>
+                                        <input type="text" id="username" placeholder="Masukkan Username" name="username" minlength="4" value="{{ pegawai.username }}" disabled>
                                     </div>
                                 </div>
-                                <div class="row detail">
-                                    <h4 class="in-1">Status</h4>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Password</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <select name="status" required>
-                                            {% if pegawai.status == "Reguler" %}
-                                                <option value="Reguler" selected>Reguler</option>
-                                                <option value="Yayasan">Yayasan</option>
-                                                <option value="Inklusi">Inklusi</option>
-                                            {% elif pegawai.status == "Yayasan" %}
-                                                <option value="Reguler">Reguler</option>
-                                                <option value="Yayasan" selected>Yayasan</option>
-                                                <option value="Inklusi">Inklusi</option>
-                                            {% elif pegawai.status == "Inklusi" %}
-                                                <option value="Reguler">Reguler</option>
-                                                <option value="Yayasan">Yayasan</option>
-                                                <option value="Inklusi" selected>Inklusi</option>
-                                            {% endif %}
-                                        </select>
+                                        <input type="text" id="password" placeholder="Masukkan Password" name="password" minlength="8" value="{{ pegawai.password }}" disabled>
                                     </div>
                                 </div>
                             </div>
-
-                            
-                        </div>
-                            
+                        </form>
                     </div>
                     <div class="row cmd-btn" style="justify-content:flex-end;">
                         
@@ -157,7 +369,7 @@
                 </div>
             </div> 
             </form>
-            <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}"></script>
+            <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}"></script>
             <script src="{{url_for('static', filename='Javascript/number_only_filter.js')}}"></script>
             <script>
                 setInputFilter(document.getElementById("NISN"), function(value) {

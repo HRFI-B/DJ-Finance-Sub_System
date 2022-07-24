@@ -19,7 +19,8 @@
                 <div class="container">
                     <div class="card">
                         <div class="row fl-stretch">
-                            <img id="pic" class="ft-siswa" style="margin-right:5%; margin-left:5%"/>
+                            {% set foto_siswa = "foto_siswa/default.jpg" %}
+                            <img id="pic" src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" style="margin-right:5%; margin-left:5%"/>
                             <!-- <img src="../static/foto_siswa/1549425553128.png" > -->
                             <div >
                                 <div class="row detail">
@@ -105,13 +106,13 @@
                                     </div>
                                 </div>
                                 
-                                <div class="row detail">
+                                <!-- <div class="row detail">
                                     <h4 class="in-2">Foto</h4>
                                     <h4>:</h4>
                                     <div >
                                         <input type="file" name="foto_siswa" oninput="pic.src=window.URL.createObjectURL(this.files[0])" required>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                             </div>
                                 
