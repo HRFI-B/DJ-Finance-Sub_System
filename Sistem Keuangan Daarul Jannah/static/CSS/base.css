@@ -3,6 +3,7 @@ html, body {
     height: 100%;
     font-family: "Poppins", sans-serif !important;
     /* font-size: calc(0.75em + 0.5vmin); */
+    font-size: 1vw;
     background-color: #FAFAFA;
     margin:0px;
 }
@@ -22,7 +23,7 @@ select,input{
 
 .side { 
     grid-area: 1 / 1 / 6 / 2; 
-    /* height: 100vh; */
+    
     background-color:#056A31;
 }
 .top {
@@ -30,6 +31,7 @@ select,input{
     border-bottom: 1px solid #CCCCCC;
     padding: 1%;
     color:black !important;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
  }
 .middle { 
     grid-area: 2 / 2 / 6 / 6; 
@@ -40,13 +42,10 @@ select,input{
 }
 
 .content{
-    /* min-height: calc(100vh - 150px); */
     min-height: 75vh;
 }
 
 .footer { 
-    /* grid-area: 5 / 2 / 6 / 6;   */
-
     text-align: center;
     color: #ccc;
     padding-top: 5vh;
@@ -67,16 +66,18 @@ select,input{
     text-align: center;
     padding: 10px;
     padding-top: 30px;
+    font-size: 1vw;
     color: white;
 }
 .sidebar h1,h2,h3,h4,h5,h6,p{
+    
+    font-size: 1vw;
     margin-bottom: 0;
     padding-bottom: 0;
     margin-top: 0;
 }
 
 .sidebar p{
-    font-size: 14px;
     font-weight: lighter;
 }
 
@@ -104,7 +105,6 @@ select,input{
 .menu i{
     font-size: 20px;
     padding-top: 10px;
-    /* color: white; */
 }
 
 .btn-wrap{
@@ -113,13 +113,11 @@ select,input{
 
 .btn-1 i{
     color: #049DBE;
-    /* color:black; */
     font-size: 20px;
 }
 
 .btn-2 i{
     color: #0A9D71;
-    /* color:black; */
     font-size: 20px;
 }
 
@@ -441,7 +439,6 @@ table{
 
 th{
     padding:10px;
-    /* background-color: #56ef98; */
 }
 
 th,td{
@@ -461,6 +458,7 @@ td{
 tr{
     border-bottom: 1px solid #ccc;
     border-radius: 15px;
+
 }
 
 .table table tr:hover{
@@ -506,8 +504,8 @@ th {
     border: 1px solid #CCCCCC;
     border-radius: 15px;
     padding: 2%;
-    /* margin:10px; */
-    min-height: 55vh;
+    font-size: 1vw;
+    min-height: 52vh;
 }
 
 .container{
@@ -631,6 +629,10 @@ th {
 
 .modal-buttons{
     justify-content:center;
+}
+
+button{
+    font-family: "Poppins", sans-serif !important;
 }
 
 #confirm{
