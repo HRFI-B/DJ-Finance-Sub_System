@@ -548,7 +548,8 @@ th {
 
 .detail p{
     padding: 1%;
-    min-width: fit-content;
+    white-space: pre-line;
+    word-wrap: break-word;
 }
 
 .dtl-style{
