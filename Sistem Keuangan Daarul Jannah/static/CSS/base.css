@@ -530,8 +530,12 @@ th {
 }
 
 .detail h4{
-    padding: 0.5vw;
+    padding: 5px;
     
+}
+
+.indikator{
+    min-width: 50%;
 }
 
 .detail .in-1{
@@ -543,7 +547,7 @@ th {
 }
 
 .detail p{
-    padding: 5px;
+    padding: 1%;
     min-width: fit-content;
 }
 
