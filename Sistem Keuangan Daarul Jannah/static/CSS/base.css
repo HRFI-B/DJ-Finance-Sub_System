@@ -2,7 +2,6 @@
 html, body {
     height: 100%;
     font-family: "Poppins", sans-serif !important;
-    /* font-size: calc(0.75em + 0.5vmin); */
     font-size: 1vw;
     background-color: #FAFAFA;
     margin:0px;
@@ -104,8 +103,7 @@ select,input{
 }
 
 .menu i{
-    font-size: 20px;
-    padding-top: 10px;
+    padding-top: 3%;
     font-size: 1.5vw;
 }
 
@@ -136,7 +134,7 @@ ul, li, a{
     list-style-type: none;
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    /* font-size: 18px; */
     margin: 0;
     padding: 0;
 }
@@ -149,7 +147,7 @@ nav a{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 10px;
+    padding: 1vw;
 }
 
 .li-menu:hover, .li-menu:active{
@@ -277,7 +275,6 @@ nav a h5{
     flex-direction: row;
     justify-content: flex-end;
     flex-wrap: nowrap;
-    /* justify-content: space-between; */
 }
 
 .filter-kiri select{
@@ -446,7 +443,6 @@ th{
 th,td{
     text-align: center;
     color: black !important;
-    /* padding: 5px; */
 }
 
 td{
@@ -572,7 +568,6 @@ th {
     font-size: 1vw;
     padding: 10px;
     border-radius: 10px;
-    /* margin-left:10px; */
 }
 
 .box-area{
@@ -617,7 +612,6 @@ th {
     height: 100%;
     width: 100%;
     background-color: rgba(77, 77, 77, 0.9);
-    /* opacity: 1; */
 }
 
 .modal{
