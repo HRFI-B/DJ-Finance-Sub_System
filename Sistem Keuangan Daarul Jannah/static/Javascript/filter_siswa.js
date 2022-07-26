@@ -3,7 +3,7 @@ function searchBar(){
     var input, filter, table, tr, td, i, txtValue, search_filter,search_filter_value;
     input = document.getElementById("search-txt");
     filter = input.value.toUpperCase();
-    table = document.getElementById("data_siswa");
+    table = document.getElementById("tabel_siswa");
     tr = table.getElementsByTagName("tr");
     search_filter = document.getElementById("search-bar-filter");
     search_filter_value = search_filter.options[search_filter.selectedIndex].value;
@@ -68,7 +68,7 @@ function filterTingkat(){
      var input, filter, table, tr, td, i, txtValue;
      input = document.getElementById("filter-tingkat");
      filter = input.value.toUpperCase();
-     table = document.getElementById("data_siswa");
+     table = document.getElementById("tabel_siswa");
      tr = table.getElementsByTagName("tr");
 
      // Loop through all table rows, and hide those who don't match the search query
