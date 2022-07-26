@@ -732,7 +732,7 @@ def tambah_pegawai():
 
                     with mysql.connection.cursor() as cursor:
                         # pemasukan data pegawai baru ke database
-                        cursor.execute('INSERT IGNORE INTO pegawai (nip, nama_pegawai, jenis_kelamin, status, unit, jabata) VALUES (%s, %s, %s, %s, %s, %s)', (nip, nama, jenis_kelamin, status, unit, jabatan))
+                        cursor.execute('INSERT IGNORE INTO pegawai (nip, nama_pegawai, jenis_kelamin, status, unit, jabatan) VALUES (%s, %s, %s, %s, %s, %s)', (nip, nama, jenis_kelamin, status, unit, jabatan))
                         mysql.connection.commit()
 
                     if not otoritas == 'None':
@@ -759,7 +759,7 @@ def ubah_pegawai(nip):
     # jika user sudah login, maka user tidak akan diredirect ke halaman login
     if 'loggedin' in session:
         # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
-        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+        if session['otoritas'] == 'Admin':
                 
                 # instruksi yang dijalankan ketika request method GET
                 if request.method == 'GET':
@@ -769,8 +769,51 @@ def ubah_pegawai(nip):
                         cursor.execute('SELECT pegawai.nip, pegawai.nama_pegawai, pegawai.jenis_kelamin, pegawai.status, pegawai.unit, pegawai.jabatan, pegawai.foto_path,user.otoritas, user.username, user.password FROM pegawai LEFT JOIN user ON pegawai.nip = user.nip WHERE pegawai.nip = %s', ([nip]))
                         data_pegawai = cursor.fetchone()
                         
-                #Render tabel-pegawai.html jika ada request dari client
-                return render_template('ubahdatapegawai.html', pegawai=data_pegawai)
+                    #Render tabel-pegawai.html jika ada request dari client
+                    return render_template('ubahdatapegawai.html', pegawai=data_pegawai)
+            
+                # instruksi yang dijalankan ketika request method POST
+                elif request.method == 'POST':
+                    
+                    # pengambilan data nip dari form
+                    nip = request.form['nip']
+
+                    # pengambilan data nama dari form
+                    nama = request.form['nama_pegawai']
+
+                    # pengambilan data jenis kelamin dari form
+                    jenis_kelamin = request.form['jenis_kelamin']
+
+                    # pengambilan data status dari form
+                    status = request.form['status']
+
+                    # pengambilan data unit dari form
+                    unit = request.form['unit']
+
+                    # pengambilan data jabatan dari form
+                    jabatan = request.form['jabatan']
+
+                    # pengambilan data otoritas dari form
+                    otoritas = request.form['otoritas']
+                    
+                    with mysql.connection.cursor() as cursor:
+                        # pemasukan data pegawai baru ke database
+                        cursor.execute('UPDATE IGNORE pegawai (nip, nama_pegawai, jenis_kelamin, status, unit, jabatan) VALUES (%s, %s, %s, %s, %s, %s)', ([nip], nama, jenis_kelamin, status, unit, jabatan))
+                        mysql.connection.commit()
+
+                    if not otoritas == 'None':
+                        # pengambilan data username dari form
+                        username = request.form['username']
+
+                        # pengambilan data password dari form
+                        password = request.form['password']
+
+                        with mysql.connection.cursor() as cursor:
+                            # pemasukan data user baru ke database
+                            cursor.execute('UPDATE IGNORE user (nip, username, password, otoritas) VALUES (%s, %s, %s, %s)', (nip, username, password, otoritas))
+                            mysql.connection.commit()
+                    
+                    return redirect('/manajemen_pegawai')
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
