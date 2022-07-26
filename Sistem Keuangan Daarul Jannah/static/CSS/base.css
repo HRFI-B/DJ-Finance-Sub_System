@@ -378,7 +378,7 @@ select:focus, input:focus{
 table{
     width: 100%;
     border-radius: 15px;
-    padding: 10px;
+    padding: 2%;
 }
 
 .coll{
