@@ -8,16 +8,19 @@ import os
 #Koneksi, inisialisasi DB
 def connect_db():
     # IP host database
-    app.config['MYSQL_HOST'] = 'localhost'
+    app.config['MYSQL_HOST'] = 'db-mysql-nyc3-66893-do-user-12112795-0.b.db.ondigitalocean.com'
 
     # Nama user database
-    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_USER'] = 'doadmin'
 
     # Password user database
-    app.config['MYSQL_PASSWORD'] = ''
+    app.config['MYSQL_PASSWORD'] = 'AVNS_7mR0OCxcXI8o4M8GQdf'
 
     # Nama database
     app.config['MYSQL_DB'] = 'sistem_pembayaran'
+    
+    # Inisialisasi MySQL
+    app.config['MYSQL_PORT'] = 25060
 
     mysql = MySQL(app)
     return mysql
