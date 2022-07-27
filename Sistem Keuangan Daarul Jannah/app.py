@@ -777,7 +777,7 @@ def ubah_pegawai(nip):
                     
                     # pengambilan data nip dari form
                     nip = request.form['nip']
-
+                    
                     # pengambilan data nama dari form
                     nama = request.form['nama_pegawai']
 
@@ -798,7 +798,7 @@ def ubah_pegawai(nip):
                     
                     with mysql.connection.cursor() as cursor:
                         # pemasukan data pegawai baru ke database
-                        cursor.execute('UPDATE IGNORE pegawai (nip, nama_pegawai, jenis_kelamin, status, unit, jabatan) VALUES (%s, %s, %s, %s, %s, %s)', ([nip], nama, jenis_kelamin, status, unit, jabatan))
+                        cursor.execute('UPDATE IGNORE pegawai SET (nip =%s, nama_pegawai=%s, jenis_kelamin=%s, status=%s, unit=%s, jabatan=%s WHERE nip=%s', ([nip], nama, jenis_kelamin, status, unit, jabatan,nip))
                         mysql.connection.commit()
 
                     if not otoritas == 'None':
@@ -810,7 +810,7 @@ def ubah_pegawai(nip):
 
                         with mysql.connection.cursor() as cursor:
                             # pemasukan data user baru ke database
-                            cursor.execute('UPDATE IGNORE user (nip, username, password, otoritas) VALUES (%s, %s, %s, %s)', (nip, username, password, otoritas))
+                            cursor.execute('UPDATE IGNORE user SET (nip=%s, username=%s, password=%s, otoritas=%s WHERE nip=%s', ([nip], username, password, otoritas,nip))
                             mysql.connection.commit()
                     
                     return redirect('/manajemen_pegawai')
