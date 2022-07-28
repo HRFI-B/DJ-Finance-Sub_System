@@ -1,26 +1,27 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from re import S
+from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from datetime import *
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from threading import Thread
-import os
+import pandas.io.sql as psql
 
 #Koneksi, inisialisasi DB
 def connect_db():
     # IP host database
-    app.config['MYSQL_HOST'] = 'db-mysql-nyc3-66893-do-user-12112795-0.b.db.ondigitalocean.com'
+    app.config['MYSQL_HOST'] = 'localhost'
 
     # Nama user database
-    app.config['MYSQL_USER'] = 'doadmin'
+    app.config['MYSQL_USER'] = 'root'
 
     # Password user database
-    app.config['MYSQL_PASSWORD'] = 'AVNS_7mR0OCxcXI8o4M8GQdf'
+    app.config['MYSQL_PASSWORD'] = ''
 
     # Nama database
     app.config['MYSQL_DB'] = 'sistem_pembayaran'
     
     # Inisialisasi MySQL
-    app.config['MYSQL_PORT'] = 25060
+    # app.config['MYSQL_PORT'] = 25060
 
     mysql = MySQL(app)
     return mysql
@@ -135,29 +136,8 @@ def manajemen_siswa():
     # jika user sudah login, maka user tidak akan diredirect ke halaman login
     if 'loggedin' in session:
 
-        # instruksi yang dijalankan ketika akun memiliki otoritas staff
-        if session['otoritas'] == 'Staff':
-
-            # pengambilan semua data siswa dari database
-            with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-
-                # pengambilan data siswa tk
-                cursor.execute('SELECT * FROM siswa_tk')
-                siswa_tk = cursor.fetchall()
-
-                # pengambilan data siswa sd
-                cursor.execute('SELECT * FROM siswa_sd')
-                siswa_sd = cursor.fetchall()
-
-                # pengambilan data siswa smp
-                cursor.execite('SELECT * FROM siswa_smp')
-                siswa_smp = cursor.fetchall()
-            
-            # render template manajemen_siswa.html dengan data siswa
-            return render_template('tabelsiswa.html',siswa_tk=siswa_tk, siswa_sd=siswa_sd, siswa_smp=siswa_smp)
-
-        # instruksi yang dijalankan ketika akun memiliki otoritas admin
-        elif session['otoritas'] == 'Admin':
+        # instruksi yang dijalankan ketika akun memiliki otoritas admin atau staff
+        if session['otoritas'] == 'Admin' or session['otoritas'] == 'Staff':
 
             # pengambilan semua data siswa dari database
             with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
@@ -413,7 +393,7 @@ def hapus_siswa(nis):
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
 
-@app.route('/riwayat_pembayaran/<nis>', methods=['GET'])
+@app.route('/riwayat_pembayaran/<nis>', methods=['GET', 'POST'])
 def riwayat_pembayaran(nis):
     # halaman riwayat pembayaran
     # jika user sudah login, maka user tidak akan diredirect ke halaman login
@@ -439,8 +419,8 @@ def riwayat_pembayaran(nis):
                         data_pembayaran = cursor.fetchall()
 
                         # pengambilan data tagihan siswa sd dari database tagihan_sd
-                        cursor.execute('SELECT * FROM tagihan_sd where nis = %s ORDER by tagihan_bulan ASC', ([nis]))
-                        tagihan_siswa = cursor.fetchall()      
+                        # cursor.execute('SELECT * FROM tagihan_sd where nis = %s ORDER by tagihan_bulan ASC', ([nis]))
+                        # tagihan_siswa = cursor.fetchall()   
                 
                 # jika data siswa tidak ditemukan di database siswa_sd 
                 elif not data_siswa:
@@ -455,12 +435,12 @@ def riwayat_pembayaran(nis):
 
                         with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
                             # pengambilan data pembayaran siswa smp dari database pembayaran_smp
-                            cursor.execute('SELECT * FROM pembayaran_smp where nis = %s', ([nis]))
+                            cursor.execute('SELECT * FROM pembayaran_smp where nis = %s ORDER by waktu_pembayaran DESC', ([nis]))
                             data_pembayaran = cursor.fetchall()
 
                             # pengambilan data tagihan siswa smp dari database tagihan_smp
-                            cursor.execute('SELECT * FROM tagihan_smp where nis = %s', ([nis]))
-                            tagihan_siswa = cursor.fetchall()    
+                            # cursor.execute('SELECT * FROM tagihan_smp where nis = %s', ([nis]))
+                            # tagihan_siswa = cursor.fetchall()   
                                     
                     # jika data siswa tidak ditemukan di database siswa_smp
                     elif not data_siswa:
@@ -475,15 +455,68 @@ def riwayat_pembayaran(nis):
 
                             # pengambilan data pembayaran siswa tk dari database pembayaran_tk
                             with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                                cursor.execute('SELECT * FROM pembayaran_tk where nis = %s', ([nis]))
+                                cursor.execute('SELECT * FROM pembayaran_tk where nis = %s ORDER by waktu_pembayaran DESC', ([nis]))
                                 data_pembayaran = cursor.fetchall()
 
                                 # pengambilan data tagihan siswa tk dari database tagihan_tk
-                                cursor.execute('SELECT * FROM tagihan_tk where nis = %s', ([nis]))
-                                tagihan_siswa = cursor.fetchall()  
+                                # cursor.execute('SELECT * FROM tagihan_tk where nis = %s', ([nis]))
+                                # tagihan_siswa = cursor.fetchall()  
+
+                    tahun_ajaran = "Semua Tahun Ajaran"
+                #Render tabel-pembayaran.html jika ada request dari client
+                return render_template('riwayat_pembayaran.html', siswa=data_siswa, pembayaran=data_pembayaran, tahun_ajaran=tahun_ajaran)
+            
+            elif request.method == 'POST':
+                tahun_ajaran = request.form['tahun_ajaran']
+                # Pengecekan dan pengambilan data siswa dari database jika nis siswa ada di database siswa_tk
+                with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                    cursor.execute('SELECT * FROM siswa_sd where nis = %s', ([nis]))
+                    data_siswa = cursor.fetchone()
+                    
+                # jika data siswa ditemukan di database siswa_sd
+                if data_siswa:
+                    
+                    # pengambilan data pembayaran siswa sd dari database pembayaran_sd
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT * FROM pembayaran_sd where nis = %s AND pembayaran_periode_ta =%s ORDER by waktu_pembayaran DESC', ([nis], tahun_ajaran))
+                        data_pembayaran = cursor.fetchall()
+                
+                # jika data siswa tidak ditemukan di database siswa_sd 
+                elif not data_siswa:
+
+                    # pengecekan dan pengambilan data siswa dari database jika nis siswa ada di database siswa_smp
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT * FROM siswa_smp where nis = %s', ([nis]))
+                        data_siswa = cursor.fetchone()
+                    
+                    # jika data siswa ditemukan di database siswa_smp
+                    if data_siswa:
+
+                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                            # pengambilan data pembayaran siswa smp dari database pembayaran_smp
+                            cursor.execute('SELECT * FROM pembayaran_smp where nis = %s AND pembayaran_periode_ta =%s  ORDER by waktu_pembayaran DESC', ([nis], tahun_ajaran))
+                            data_pembayaran = cursor.fetchall()
+
+                    # jika data siswa tidak ditemukan di database siswa_smp
+                    elif not data_siswa:
+
+                        # pengecekan dan pengambilan data siswa dari database jika nis siswa ada di database siswa_tk
+                        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                            cursor.execute('SELECT * FROM siswa_tk where nis = %s', ([nis]))
+                            data_siswa = cursor.fetchone()
+                        
+                        # jika data siswa ditemukan di database siswa_tk
+                        if data_siswa:
+
+                            # pengambilan data pembayaran siswa tk dari database pembayaran_tk
+                            with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                                cursor.execute('SELECT * FROM pembayaran_tk where nis = %s AND pembayaran_periode_ta =%s  ORDER by waktu_pembayaran DESC', ([nis], tahun_ajaran))
+                                data_pembayaran = cursor.fetchall()
+
 
                 #Render tabel-pembayaran.html jika ada request dari client
-                return render_template('riwayat_pembayaran.html', siswa=data_siswa, pembayaran=data_pembayaran, tagihan=tagihan_siswa)
+                return render_template('riwayat_pembayaran.html', siswa=data_siswa, pembayaran=data_pembayaran, tahun_ajaran=tahun_ajaran)
+            
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
@@ -560,7 +593,7 @@ def pembayaran_siswa(nis):
                     # pengambilan data dari form pembayaran
                     pembayaran_periode_bulan = request.form['periode_bulan']
                     pembayaran_periode_ta = request.form['periode_ta']
-                    waktu_pembayaran = session['datetime']
+                    waktu_pembayaran = datetime.now()
 
                     pembayaran_total = 0
 
@@ -570,7 +603,6 @@ def pembayaran_siswa(nis):
                     else:
                         pembayaran_spp = int(pembayaran_spp)
                         pembayaran_total += pembayaran_spp
-                        pembayaran_spp = "{:,}".format(pembayaran_spp)
 
                     pembayaran_tabungan_wajib = request.form['nominal_tabungan_wajib']
                     if not pembayaran_tabungan_wajib:
@@ -578,7 +610,6 @@ def pembayaran_siswa(nis):
                     else:
                         pembayaran_tabungan_wajib = int(pembayaran_tabungan_wajib)
                         pembayaran_total += pembayaran_tabungan_wajib
-                        pembayaran_tabungan_wajib = "{:,}".format(pembayaran_tabungan_wajib)
 
                     pembayaran_katering = request.form['nominal_katering']
                     if not pembayaran_katering:
@@ -586,7 +617,6 @@ def pembayaran_siswa(nis):
                     else:
                         pembayaran_katering = int(pembayaran_katering)
                         pembayaran_total += pembayaran_katering
-                        pembayaran_katering = "{:,}".format(pembayaran_katering)
 
                     pembayaran_jemputan = request.form['nominal_jemputan']
                     if not pembayaran_jemputan:
@@ -594,7 +624,6 @@ def pembayaran_siswa(nis):
                     else:
                         pembayaran_jemputan = int(pembayaran_jemputan)
                         pembayaran_total += pembayaran_jemputan
-                        pembayaran_jemputan = "{:,}".format(pembayaran_jemputan)
 
                     pembayaran_ekskul = request.form['nominal_ekskul']
                     if not pembayaran_ekskul:
@@ -602,7 +631,6 @@ def pembayaran_siswa(nis):
                     else:
                         pembayaran_ekskul = int(pembayaran_ekskul)
                         pembayaran_total += pembayaran_ekskul
-                        pembayaran_ekskul = "{:,}".format(pembayaran_ekskul)
 
                     pembayaran_majelis_sekolah = request.form['nominal_majelis_sekolah']
                     if not pembayaran_majelis_sekolah:
@@ -610,7 +638,6 @@ def pembayaran_siswa(nis):
                     else:
                         pembayaran_majelis_sekolah = int(pembayaran_majelis_sekolah)
                         pembayaran_total += pembayaran_majelis_sekolah
-                        pembayaran_majelis_sekolah = "{:,}".format(pembayaran_majelis_sekolah)
 
                     pembayaran_kelas_berbakat = request.form['nominal_kelas_berbakat']
                     if not pembayaran_kelas_berbakat:
@@ -618,24 +645,38 @@ def pembayaran_siswa(nis):
                     else:
                         pembayaran_kelas_berbakat = int(pembayaran_kelas_berbakat)
                         pembayaran_total += pembayaran_kelas_berbakat
-                        pembayaran_kelas_berbakat = "{:,}".format(pembayaran_kelas_berbakat)
 
-                    pembayaran_total = "{:,}".format(pembayaran_total)
+                    # pembayaran_total = "{:,}".format(pembayaran_total)
 
                     if jenjang == "SD":
                         with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
                             cursor.execute('INSERT IGNORE INTO pembayaran_sd (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_total))
                             mysql.connection.commit()
-
+                            # pembayaran = 'SELECT * FROM pembayaran_sd WHERE nis = {} AND waktu_pembayaran = "{}"'.format(nis, waktu_pembayaran.strftime("%d-%m-%Y"))
+                            # print(pembayaran)
+                            # df = psql.read_sql(pembayaran, con = mysql.connection)
+                            # df.to_excel('./data_export/{}_pembayaran_{}.xlsx'.format(nis,waktu_pembayaran.strftime("%d-%m-%Y")), index=False)
+                            # return send_file("./data_export/{}_pembayaran_{}.xlsx".format(nis,waktu_pembayaran.strftime("%d-%m-%Y")), as_attachment=True)
+                            
                     elif jenjang == "SMP":
                         with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
                             cursor.execute('INSERT IGNORE INTO pembayaran_smp (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_total))
                             mysql.connection.commit()
+                            # pembayaran = 'SELECT * FROM pembayaran_smp WHERE nis = {} AND waktu_pembayaran = "{}"'.format(nis, waktu_pembayaran.strftime("%d-%m-%Y"))
+                            # df = psql.read_sql(pembayaran, con = mysql.connection)
+                            # df.to_excel('./data_export/{}_pembayaran_{}.xlsx'.format(nis,waktu_pembayaran.strftime("%d-%m-%Y")), index=False)
+                            # return send_file("./data_export/{}_pembayaran_{}.xlsx".format(nis,waktu_pembayaran.strftime("%d-%m-%Y")), as_attachment=True)
+                            
 
                     elif jenjang == "TK":
                         with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
                             cursor.execute('INSERT IGNORE INTO pembayaran_tk (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_total))
                             mysql.connection.commit()
+                            # pembayaran = 'SELECT * FROM pembayaran_tk WHERE nis = {} AND waktu_pembayaran = "{}"'.format(nis, waktu_pembayaran.strftime("%d-%m-%Y"))
+                            # df = psql.read_sql(pembayaran, con = mysql.connection)
+                            # df.to_excel('./data_export/{}_pembayaran_{}.xlsx'.format(nis,waktu_pembayaran.strftime("%d-%m-%Y")), index=False)
+                            # return send_file("./data_export/{}_pembayaran_{}.xlsx".format(nis,waktu_pembayaran.strftime("%d-%m-%Y")), as_attachment=True)
+                            
 
                     return redirect('/manajemen_siswa')
 

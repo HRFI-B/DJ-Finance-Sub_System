@@ -381,7 +381,7 @@
             <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}"></script>
             <script src="{{url_for('static', filename='Javascript/number_only_filter.js')}}"></script>
             <script>
-                setInputFilter(document.getElementById("NISN"), function(value) {
+                setInputFilter(document.getElementById("nip_pegawai"), function(value) {
                     return /^\d*\.?\d*$/.test(value);
                   }, "Only digits and '.' are allowed");
             </script>
