@@ -72,7 +72,7 @@
                                     <div class="detail-tagihan">
                                         <div>
                                             <p>Periode Pembayaran :</p>
-                                            <select id="periode" name="periode_bulan" required="required">
+                                            <select id="periode" name="periode_bulan" required="required" onchange="changeTA()">
                                                 <option disabled hidden selected id="default" value="">Pilih Bulan</option>
                                                 <option value="Januari" id="1">Januari</option>
                                                 <option value="Februari" id="2">Februari</option>
@@ -169,6 +169,76 @@
                 
             </div>
         <!-- </form> -->
+        <script>
+            function changeTA(){
+                var periode = document.getElementById('periode').value;
+                var tahun_ajaran = document.getElementById('tahun_ajaran');
+                var year = parseInt(new Date().getFullYear());
+    
+    
+                if (periode == "Januari" || periode == "Februari" || periode == "Maret" || periode == "April" || periode == "Mei" || periode == "Juni" ) {
+                    document.querySelector('#tahun_ajaran').options[2].selected = true;
+                } else if ( periode == "September" || periode == "Oktober" || periode == "November" || periode == "Desember") {
+                    document.querySelector('#tahun_ajaran').options[1].selected = true;
+                }
+                else{
+                    document.querySelector('#tahun_ajaran').options[0].selected = true;
+                }
+            }
+            bulan = new Date().getMonth()+1;
+            if (bulan == 1){
+                document.querySelector('#periode').options[1].selected = true;
+                changeTA();
+            }
+            else if (bulan == 2){
+                document.querySelector('#periode').options[2].selected = true;
+                changeTA();
+            }
+            else if (bulan == 3){
+                document.querySelector('#periode').options[3].selected = true;
+                changeTA();
+            }
+            else if (bulan == 4){
+                document.querySelector('#periode').options[4].selected = true;
+                changeTA();
+            }
+            else if (bulan == 5){
+                document.querySelector('#periode').options[5].selected = true;
+                changeTA();
+            }
+            else if (bulan == 6){
+                document.querySelector('#periode').options[6].selected = true;
+                changeTA();
+            }
+            else if (bulan == 7){
+                document.querySelector('#periode').options[7].selected = true;
+                changeTA();
+            }
+            else if (bulan == 8){
+                document.querySelector('#periode').options[8].selected = true;
+                changeTA();
+            }
+            else if (bulan == 9){
+                document.querySelector('#periode').options[9].selected = true;
+                changeTA();
+            }
+            else if (bulan == 10){
+                document.querySelector('#periode').options[10].selected = true;
+                changeTA();
+            }
+            else if (bulan == 11){
+                document.querySelector('#periode').options[11].selected = true;
+                changeTA();
+            }
+            else if (bulan == 12){
+                document.querySelector('#periode').options[12].selected = true;
+                changeTA();
+            }
+            else{
+                document.querySelector('#periode').options[0].selected = true;
+                changeTA();
+            }
+        </script>
         
         {% endblock %}
     </body>
