@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+<html>
+    <head>
+        {% block head %}
+            <!-- <title>Riwayat Pembayaran - Sistem Pembayaran DJ</title> -->
+            <script>document.title = "Riwayat Pembayaran - Sistem Pembayaran DJ"</script>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block body %}
+        
+        <h1 class="page-title">Data Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
+        <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
+        
+        <div class="container">
+            <div class="card">
+                <div class="row fl-stretch" style="margin-bottom:2%">
+                    <div class="column" >
+                        <h4 class="text">Data Siswa/i</h4>
+                        <div class="card-nosh" style="margin-right:10px">
+                            <div class="row " style="align-items:center;justify-content:space-evenly;">
+                                {% set foto_siswa = "foto_siswa/default.jpg" %}
+                                <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang">
+                                <div class="column">
+                                    <div class="row detail">
+                                        <h4 class="indikator">Nama</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.nama_siswa}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="indikator">Kelas</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.kelas}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="indikator">Jenis Kelamin</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.jenis_kelamin}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="indikator">Status</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.status}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="indikator">NIS</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.nis}}</p>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="indikator">NISN</h4>
+                                        <h4>:</h4>
+                                        <p>{{siswa.nisn}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h4 class="text" style="margin-left:10px">Rincian Tagihan</h4>
+                        <div class="card-nosh" style="margin-left:10px">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="filter-kiri">
+                    <form action="/riwayat_pembayaran/{{siswa.nis}}" method="post">
+                        <select class="filter-tabel" id="filter-tabel" onchange="filterTabel()" title="Filter Tabel">
+                            <option value="Riwayat" selected>Riwayat Pembayaran</option>
+                            <option value="Rincian" disabled>Rincian Pembayaran</option>
+                        </select>
+                        <select class="filter-ta" id="filter-ta" title="Filter Kelas" name="tahun_ajaran" onchange="this.form.submit()">
+                            <option value="" disabled selected hidden>{{tahun_ajaran}}</option>
+                            <option>{{session['year']}}/{{session['year']+1}} Ganjil</option>
+                            <option>{{session['year']}}/{{session['year']+1}} Genap</option>
+                            <option>{{session['year']-1}}/{{session['year']}} Ganjil</option>
+                            <option>{{session['year']-1}}/{{session['year']}} Genap</option>
+                            <option>{{session['year']-2}}/{{session['year']-1}} Ganjil</option>
+                            <option>{{session['year']-2}}/{{session['year']-1}} Genap</option>
+                        </select>
+                    </form>
+                    
+                </div>
+                
+                <div id="Rincian" style="display: none;">
+                    <table class="roundedTable">
+                        <thead>
+                            <th>Bulan Tagihan</th>
+                            <th>SPP</th>
+                            <th>Tabungan Wajib</th>
+                            <th>Katering</th>
+                            <th>Jemputan</th>
+                            <th>Ekskul</th>
+                            <th>Majelis Sekolah</th>
+                            <th>Kelas Berbakat</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody >
+                            <tr>
+                                <td>Januari</td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Februari</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Maret</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>April</td>
+                                <td>
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mei</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Juni</td>
+                            </tr>
+                            <tr>
+                                <td>Juli</td>
+                            </tr>
+                            <tr>
+                                <td>Agustus</td>
+                            </tr>
+                            <tr>
+                                <td>September</td>
+                            </tr>
+                            <tr>
+                                <td>Oktober</td>
+                            </tr>
+                            <tr>
+                                <td>November</td>
+                            </tr>
+                            <tr>
+                                <td>Desember</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="Riwayat">
+                    <!-- <h4 class="text">Riwayat Pembayaran Siswa/i</h4> -->
+                    <table class="roundedTable" id="tabelRiwayat">
+                        <thead>
+                            <th>Tanggal</th>
+                            <th>Periode Pembayaran</th>
+                            <th>SPP</th>
+                            <th>Tabungan Wajib</th>
+                            <th>Katering</th>
+                            <th>Jemputan</th>
+                            <th>Ekskul</th>
+                            <th>Majelis Sekolah</th>
+                            <th>Kelas Berbakat</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody >
+                            {% for pembayaran in pembayaran %}
+                                <tr>
+                                    <td>{{pembayaran.waktu_pembayaran}}</td>
+                                    <td>{{pembayaran.pembayaran_periode_bulan}}</td>
+                                    {% if pembayaran.spp == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.spp == "0" %}
+                                        <td>{{pembayaran.spp}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.tabungan_wajib == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.tabungan_wajib == "0" %}
+                                        <td>{{pembayaran.tabungan_wajib}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.katering == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.katering == "0" %}
+                                        <td>{{pembayaran.katering}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.jemputan == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.jemputan == "0" %}
+                                        <td>{{pembayaran.jemputan}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.ekskul == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.ekskul == "0" %}
+                                        <td>{{pembayaran.ekskul}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.majelis_sekolah == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.majelis_sekolah == "0" %}
+                                        <td>{{pembayaran.majelis_sekolah}}</td>
+                                    {% endif %}
+                                    {% if pembayaran.kelas_berbakat == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.kelas_berbakat == "0" %}
+                                        <td>{{pembayaran.kelas_berbakat}}</td>
+                                    {% endif %}
+                                    <td>{{pembayaran.total}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <script>
+                function filterTabel(){
+                    var filter = document.getElementById("filter-tabel").value;
+                    if (filter == "Riwayat"){
+                        document.getElementById("Riwayat").style.display = "block";
+                        document.getElementById("Rincian").style.display = "none";
+                        
+                    }
+                    else if (filter == "Rincian"){
+                        document.getElementById("Riwayat").style.display = "none";
+                        document.getElementById("Rincian").style.display = "block";
+                    }
+                }
+                    
+                var tabel = document.getElementById("tabelRiwayat");
+                var rows = tabel.getElementsByTagName("td");
+                for (var i = 0; i < rows.length; i++) {
+                    if(i%10 != 0){
+                        if (parseInt(rows[i].innerHTML) > 0){
+                            rows[i].innerHTML = new Intl.NumberFormat('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                                }).format(rows[i].innerHTML);
+                        }
+                    }
+                }
+                for (var i = 0; i < rows.length; i++) {
+                    if (parseInt(rows[i].innerHTML) == 0){
+                        rows[i].innerHTML = "-";
+                    }
+                }
+            </script>
+            
+        {% endblock %}
+    </body>
+</html>
