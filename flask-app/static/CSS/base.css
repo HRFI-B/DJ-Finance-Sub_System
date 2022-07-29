@@ -401,6 +401,18 @@ table{
     padding:2px;
     /* border-collapse: collapse; */
 }
+
+.roundedTable::-webkit-scrollbar-thumb{
+    background: #3d4146;
+    border-radius: 10px;
+}
+
+.roundedTable::-webkit-scrollbar{
+    /* width:5px; */
+    height: 10px;
+    background:#dadada;
+}
+
 .roundedTable {
     margin-top: 10px;
     border-radius: 15px / 15px;
@@ -491,12 +503,19 @@ th {
 
 .ft-siswa{
     width: 12vw;
-    height: 16vw;
+    height: 12vw;
     border-radius: 15px;
 }
 
+.ft-siswa2{
+    width: 9vw;
+    height: 9vw;
+    border-radius: 15px;
+    margin: 2vw;
+}
+
 .ft-pgw{
-    width: 12vw;
+    width: 16vw;
     height: 16vw;
     border-radius: 15px;
 }
@@ -515,7 +534,15 @@ th {
     border-radius: 15px;
     padding: 2%;
     font-size: 1vw;
-    min-height: 52vh;
+    min-height: 62vh;
+}
+
+.card-nosh2{
+    border: 1px solid #CCCCCC;
+    border-radius: 15px;
+    padding: 2%;
+    font-size: 1vw;
+    /* min-height: 62vh; */
 }
 
 .container{
