@@ -178,8 +178,8 @@ nav a h5{
 }
 
 .foto-profil{
-    width:3vw; 
-    height:3vw;
+    width:5vh; 
+    height:5vh;
     border-radius:100px;
 }
 
@@ -195,6 +195,7 @@ nav a h5{
 
 .teks-profil h5{
     font-weight: bolder;
+    /* font-size: 2vh; */
     font-size: medium;
     margin-bottom: 2px;
 }
@@ -229,6 +230,13 @@ nav a h5{
   
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.top-profil{
+    float:right;
+    padding-right:10px;
+    text-align:right;
+    font-size: 1vw;
 }
   
 .disabled {
