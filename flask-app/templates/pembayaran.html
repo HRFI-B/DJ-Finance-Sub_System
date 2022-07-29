@@ -147,6 +147,15 @@
                                                     <!-- &ensp; -->
                                                     <!-- <button class="tgh-btn" title="Tambah Tagihan"><i class="fa-solid fa-circle-plus"></i></button> -->
                                                 </li>
+                                                <li>
+                                                    <select id="tagihan_bimbel" style="width:40%">
+                                                        <option value="Bimbel">Bimbel</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_bimbel" name="nominal_bimbel" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <!-- &ensp; -->
+                                                    <!-- <button class="tgh-btn" title="Tambah Tagihan"><i class="fa-solid fa-circle-plus"></i></button> -->
+                                                </li>
                                             </ul>
                                             <!-- <button class="tgh-btn btn">Tambah Tagihan</button> -->
                                         </div>
@@ -178,7 +187,7 @@
     
                 if (periode == "Januari" || periode == "Februari" || periode == "Maret" || periode == "April" || periode == "Mei" || periode == "Juni" ) {
                     document.querySelector('#tahun_ajaran').options[2].selected = true;
-                } else if ( periode == "September" || periode == "Oktober" || periode == "November" || periode == "Desember") {
+                } else if ( periode == "Juli" || periode == "Agustus" || periode == "September" || periode == "Oktober" || periode == "November" || periode == "Desember") {
                     document.querySelector('#tahun_ajaran').options[1].selected = true;
                 }
                 else{

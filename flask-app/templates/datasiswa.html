@@ -88,9 +88,11 @@
                         <a href="{{ url_for('ubah_siswa', nis = siswa['nis']) }}" title="Ubah Data Siswa/i">
                             <p class="ch-btn btn">Ubah Data Siswa/i</p>
                         </a>
-                        <button title="Hapus Data Siswa/i" id="delete" class="del-btn btn" style="color: white;" onclick="open_modal()">
-                            Hapus Data Siswa/i
-                        </button>
+                        {% if session['otoritas'] == "Admin" %}
+                            <button title="Hapus Data Siswa/i" id="delete" class="del-btn btn" style="color: white;" onclick="open_modal()">
+                                Hapus Data Siswa/i
+                            </button>
+                        {% endif %}
                     </div> 
                 </div>
             </div> 

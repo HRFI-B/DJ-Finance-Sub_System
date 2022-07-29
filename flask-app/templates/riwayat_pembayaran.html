@@ -165,6 +165,7 @@
                             <th>Ekskul</th>
                             <th>Majelis Sekolah</th>
                             <th>Kelas Berbakat</th>
+                            <th>Bimbel</th>
                             <th>Total</th>
                         </thead>
                         <tbody >
@@ -207,6 +208,11 @@
                                     {% elif not pembayaran.kelas_berbakat == "0" %}
                                         <td>{{pembayaran.kelas_berbakat}}</td>
                                     {% endif %}
+                                    {% if pembayaran.bimbel == "0" %}
+                                        <td>-</td>
+                                    {% elif not pembayaran.bimbel == "0" %}
+                                        <td>{{pembayaran.bimbel}}</td>
+                                    {% endif %}
                                     <td>{{pembayaran.total}}</td>
                                 </tr>
                             {% endfor %}
@@ -232,7 +238,7 @@
                 var tabel = document.getElementById("tabelRiwayat");
                 var rows = tabel.getElementsByTagName("td");
                 for (var i = 0; i < rows.length; i++) {
-                    if(i%10 != 0){
+                    if(i%11 != 0){
                         if (parseInt(rows[i].innerHTML) > 0){
                             rows[i].innerHTML = new Intl.NumberFormat('id-ID', {
                                 style: 'currency',

@@ -369,7 +369,7 @@ def hapus_siswa(nis):
     if 'loggedin' in session:
 
         # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
-        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+        if session['otoritas'] == 'Admin':
             
             #  penghapusan data siswa dari database
             with mysql.connection.cursor() as cursor:
@@ -646,11 +646,18 @@ def pembayaran_siswa(nis):
                         pembayaran_kelas_berbakat = int(pembayaran_kelas_berbakat)
                         pembayaran_total += pembayaran_kelas_berbakat
 
+                    pembayaran_bimbel = request.form['nominal_bimbel']
+                    if not pembayaran_bimbel:
+                        pembayaran_bimbel = 0
+                    else:
+                        pembayaran_bimbel = int(pembayaran_bimbel)
+                        pembayaran_total += pembayaran_bimbel
+
                     # pembayaran_total = "{:,}".format(pembayaran_total)
 
                     if jenjang == "SD":
                         with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                            cursor.execute('INSERT IGNORE INTO pembayaran_sd (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_total))
+                            cursor.execute('INSERT IGNORE INTO pembayaran_sd (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, bimbel, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_bimbel, pembayaran_total))
                             mysql.connection.commit()
                             # pembayaran = 'SELECT * FROM pembayaran_sd WHERE nis = {} AND waktu_pembayaran = "{}"'.format(nis, waktu_pembayaran.strftime("%d-%m-%Y"))
                             # print(pembayaran)
@@ -660,7 +667,7 @@ def pembayaran_siswa(nis):
                             
                     elif jenjang == "SMP":
                         with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                            cursor.execute('INSERT IGNORE INTO pembayaran_smp (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_total))
+                            cursor.execute('INSERT IGNORE INTO pembayaran_smp (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, bimbel, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_bimbel, pembayaran_total))
                             mysql.connection.commit()
                             # pembayaran = 'SELECT * FROM pembayaran_smp WHERE nis = {} AND waktu_pembayaran = "{}"'.format(nis, waktu_pembayaran.strftime("%d-%m-%Y"))
                             # df = psql.read_sql(pembayaran, con = mysql.connection)
@@ -670,7 +677,7 @@ def pembayaran_siswa(nis):
 
                     elif jenjang == "TK":
                         with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-                            cursor.execute('INSERT IGNORE INTO pembayaran_tk (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_total))
+                            cursor.execute('INSERT IGNORE INTO pembayaran_tk (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, spp, tabungan_wajib, katering, jemputan, ekskul, majelis_sekolah, kelas_berbakat, bimbel, total) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nis, pembayaran_periode_bulan, pembayaran_periode_ta, waktu_pembayaran, pembayaran_spp, pembayaran_tabungan_wajib, pembayaran_katering, pembayaran_jemputan, pembayaran_ekskul, pembayaran_majelis_sekolah, pembayaran_kelas_berbakat, pembayaran_bimbel, pembayaran_total))
                             mysql.connection.commit()
                             # pembayaran = 'SELECT * FROM pembayaran_tk WHERE nis = {} AND waktu_pembayaran = "{}"'.format(nis, waktu_pembayaran.strftime("%d-%m-%Y"))
                             # df = psql.read_sql(pembayaran, con = mysql.connection)
@@ -842,7 +849,7 @@ def ubah_pegawai(nip):
                     
                     with mysql.connection.cursor() as cursor:
                         # pemasukan data pegawai baru ke database
-                        cursor.execute('UPDATE IGNORE pegawai SET (nip =%s, nama_pegawai=%s, jenis_kelamin=%s, status=%s, unit=%s, jabatan=%s WHERE nip=%s', ([nip], nama, jenis_kelamin, status, unit, jabatan,nip))
+                        cursor.execute('UPDATE IGNORE pegawai SET nip =%s, nama_pegawai=%s, jenis_kelamin=%s, status=%s, unit=%s, jabatan=%s WHERE nip=%s', ([nip], nama, jenis_kelamin, status, unit, jabatan,nip))
                         mysql.connection.commit()
 
                     if not otoritas == 'None':
@@ -854,7 +861,7 @@ def ubah_pegawai(nip):
 
                         with mysql.connection.cursor() as cursor:
                             # pemasukan data user baru ke database
-                            cursor.execute('UPDATE IGNORE user SET (nip=%s, username=%s, password=%s, otoritas=%s WHERE nip=%s', ([nip], username, password, otoritas,nip))
+                            cursor.execute('UPDATE IGNORE user SET nip=%s, username=%s, password=%s, otoritas=%s WHERE nip=%s', ([nip], username, password, otoritas,nip))
                             mysql.connection.commit()
                     
                     return redirect('/manajemen_pegawai')

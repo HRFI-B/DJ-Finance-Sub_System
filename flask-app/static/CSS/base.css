@@ -406,6 +406,10 @@ table{
     border-radius: 15px / 15px;
     border: 1px solid #CCCCCC;
     border-spacing: 0px;
+    display: block;
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
 }
 .roundedTable th{
     padding: 10px;
