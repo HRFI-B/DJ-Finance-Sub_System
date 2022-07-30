@@ -12,7 +12,7 @@
     <body>
         {% block body %}
         
-        <h1 class="page-title">Data Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
+        <h1 class="page-title">Riwayat Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
         <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
         
         <div class="container">
@@ -20,40 +20,56 @@
                 <div class="row fl-stretch" style="margin-bottom:2%">
                     <div class="column" >
                         <h4 class="text">Data Siswa/i</h4>
-                        <div class="card-nosh" style="margin-right:10px">
-                            <div class="row " style="align-items:center;justify-content:space-evenly;">
+                        <div class="card-nosh2" style="margin-right:10px">
+                            <div class="row fl-stretch" style="align-items:center;">
                                 {% set foto_siswa = "foto_siswa/default.jpg" %}
-                                <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang">
+                                <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa2" alt="foto orang">
                                 <div class="column">
                                     <div class="row detail">
-                                        <h4 class="indikator">Nama</h4>
+                                        <h4 class="in-2">Nama</h4>
                                         <h4>:</h4>
-                                        <p>{{siswa.nama_siswa}}</p>
+                                        <div class="dtl-style">
+                                            <h4>{{siswa.nama_siswa}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="row detail">
+                                            <h4 class="in-1">NIS</h4>
+                                            <h4>:</h4>
+                                            <div class="dtl-style">
+                                                <h4>{{siswa.nis}}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4 class="in-1">NISN</h4>
+                                            <h4>:</h4>
+                                            <div class="dtl-style">
+                                                <h4>{{siswa.nisn}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="row detail">
+                                            <h4 class="in-1">Status</h4>
+                                            <h4>:</h4>
+                                            <div class="dtl-style">
+                                                <h4>{{siswa.status}}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4 class="in-1">Kelas</h4>
+                                            <h4>:</h4>
+                                            <div class="dtl-style">
+                                                <h4>{{siswa.kelas}}</h4>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row detail">
-                                        <h4 class="indikator">Kelas</h4>
+                                        <h4 class="in-2">Jenis Kelamin</h4>
                                         <h4>:</h4>
-                                        <p>{{siswa.kelas}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4 class="indikator">Jenis Kelamin</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.jenis_kelamin}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4 class="indikator">Status</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.status}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4 class="indikator">NIS</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.nis}}</p>
-                                    </div>
-                                    <div class="row detail">
-                                        <h4 class="indikator">NISN</h4>
-                                        <h4>:</h4>
-                                        <p>{{siswa.nisn}}</p>
+                                        <div class="dtl-style">
+                                            <h4>{{siswa.jenis_kelamin}}</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
