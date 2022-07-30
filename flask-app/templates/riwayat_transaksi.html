@@ -49,6 +49,7 @@
             <div class="table" id="tabel_siswa">
                 <table class="shadow coll" style="overflow-x: auto;">
                     <tr>
+                        <th>No</th>
                         <th>NIS</th>
                         <th>Nama Siswa/i</th>
                         <th>Periode</th>
@@ -66,6 +67,7 @@
                     </tr>
                     {% for siswa_tk in siswa_tk %}
                     <tr>
+                        <td>{{ loop.index }}</td>
                         <td>{{ siswa_tk.nis }}</td>
                         <td class="tb-name">
                             {{siswa_tk.nama_siswa}}
