@@ -5,6 +5,7 @@
         {% block head%}
         <title>Pengubahan Data Siswa - Sistem Pembayaran DJ</title>
         <script>document.title = "Pengubahan Data Siswa - Sistem Pembayaran DJ"</script>
+        <script src="{{url_for('static', filename='Javascript/dynamic_option.js')}}"></script>
         {% endblock %}
     </head>
 
@@ -50,7 +51,7 @@
                                     <h4 class="in-1">Tingkat</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <select id="tingkat" placeholder="Masukkan Tingkat" name="tingkat" required>
+                                        <select id="tingkat" placeholder="Masukkan Tingkat" name="tingkat" onchange="dynamicOptionUbahDataSiswa()" required>
                                             {% if siswa.tingkat == "TK" %}
                                                 <option value="TK" selected>TK</option>
                                                 <option value="SD">SD</option>
@@ -71,7 +72,7 @@
                                     <h4 class="in-1">Kelas</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <select name="kelas" required>
+                                        <select name="kelas" id="kelas" required>
                                             {% if siswa.tingkat == "TK" %}
                                                 <option value="A DAHLIA">Kelas A Dahlia</option>
                                                 <option value="A MELATI">Kelas A Melati</option>
@@ -140,7 +141,7 @@
                                     <h4 class="in-1">Status</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <select name="status" required>
+                                        <select name="status"  required>
                                             {% if siswa.status == "Reguler" %}
                                                 <option value="Reguler" selected>Reguler</option>
                                                 <option value="Yayasan">Yayasan</option>
@@ -208,6 +209,7 @@
                     return /^\d*\.?\d*$/.test(value);
                   }, "Only digits and '.' are allowed");
             </script>
+            
             {% endblock %}
 
 </body>
