@@ -49,6 +49,7 @@
             <div class="table">
                 <table class="shadow coll" id="tabel_siswa">
                     <tr>
+                        <th>No</th>
                         <th>NIS</th>
                         <th>Nama Siswa/i</th>
                         <th>Jenis Kelamin</th>
@@ -59,6 +60,7 @@
                     </tr>
                     {% for siswa in siswa %}
                     <tr>
+                        <td>{{loop.index}}</td>
                         <td>{{ siswa.nis }}</td>
                         <td class="tb-name">
                             {{siswa.nama_siswa}}
