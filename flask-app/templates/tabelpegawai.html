@@ -45,6 +45,7 @@
             <div class="table" id="data_pegawai">
                 <table class="shadow coll">
                     <tr class="first">
+                        <th>No</th>
                         <th>NIP</th>
                         <th>Nama Pegawai</th>
                         <th>Jenis Kelamin</th>
@@ -56,6 +57,7 @@
                     </tr>
                     {% for pegawai in pegawai %}
                     <tr>
+                        <td>{{ loop.index }}</td>
                         <td>{{ pegawai.nip }}</td>
                         <td class="tb-name">
                             {{pegawai.nama_pegawai}}
