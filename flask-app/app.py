@@ -891,6 +891,22 @@ def hapus_pegawai(nip):
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
 
+@app.route('/riwayat_transaksi', methods=['GET','POST'])
+def riwayat_transaksi():
+    # halaman riwayat transaksi
+    # jika user sudah login, maka user tidak akan diredirect ke halaman login
+    if 'loggedin' in session:
+        # instruksi yang dijalankan ketika akun memiliki otoritas staff atau admin
+        if session['otoritas'] == 'Staff' or session['otoritas'] == 'Admin':
+                
+                # instruksi yang dijalankan ketika request method GET atau POST
+                if request.method == 'GET' or request.method == 'POST':
+    
+                    return render_template('riwayat_transaksi.html')
+
+    # jika user belum login, maka user akan diredirect ke halaman login
+    return redirect('/login')
+
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(host='0.0.0.0',port=2431 ,debug=True)
