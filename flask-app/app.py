@@ -688,8 +688,11 @@ def riwayat_transaksi():
                 
                 # instruksi yang dijalankan ketika request method GET atau POST
                 if request.method == 'GET' or request.method == 'POST':
-    
-                    return render_template('riwayat_transaksi.html')
+                    
+                    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+                        cursor.execute('SELECT pembayaran.nis, pembayaran.pembayaran_periode_bulan, pembayaran.pembayaran_periode_ta, pembayaran.waktu_pembayaran, pembayaran.spp, pembayaran.tabungan_wajib, pembayaran.katering, pembayaran.jemputan, pembayaran.ekskul, pembayaran.majelis_sekolah, pembayaran.kelas_berbakat, pembayaran.bimbel, pembayaran.total, siswa.nama_siswa FROM pembayaran LEFT JOIN siswa ON pembayaran.nis = siswa.nis')
+                        data_pembayaran = cursor.fetchall()
+                    return render_template('riwayat_transaksi.html', pembayaran = data_pembayaran)
 
     # jika user belum login, maka user akan diredirect ke halaman login
     return redirect('/login')
