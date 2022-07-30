@@ -131,14 +131,44 @@
                                                 <option value="Reguler" selected>Reguler</option>
                                                 <option value="Yayasan">Yayasan</option>
                                                 <option value="Inklusi">Inklusi</option>
+                                                <option value="Yatim">Yatim</option>
+                                                <option value="Adik Kakak">Adik Kakak</option>
+                                                <option value="Alumni">Alumni</option>
                                             {% elif siswa.status == "Yayasan" %}
                                                 <option value="Reguler">Reguler</option>
                                                 <option value="Yayasan" selected>Yayasan</option>
                                                 <option value="Inklusi">Inklusi</option>
+                                                <option value="Yatim">Yatim</option>
+                                                <option value="Adik Kakak">Adik Kakak</option>
+                                                <option value="Alumni">Alumni</option>
                                             {% elif siswa.status == "Inklusi" %}
                                                 <option value="Reguler">Reguler</option>
                                                 <option value="Yayasan">Yayasan</option>
                                                 <option value="Inklusi" selected>Inklusi</option>
+                                                <option value="Yatim">Yatim</option>
+                                                <option value="Adik Kakak">Adik Kakak</option>
+                                                <option value="Alumni">Alumni</option>
+                                            {% elif siswa.status == "Yatim" %}
+                                                <option value="Reguler">Reguler</option>
+                                                <option value="Yayasan">Yayasan</option>
+                                                <option value="Inklusi">Inklusi</option>
+                                                <option value="Yatim" selected>Yatim</option>
+                                                <option value="Adik Kakak">Adik Kakak</option>
+                                                <option value="Alumni">Alumni</option>
+                                            {% elif siswa.status == "Adik Kakak" %}
+                                                <option value="Reguler">Reguler</option>
+                                                <option value="Yayasan">Yayasan</option>
+                                                <option value="Inklusi">Inklusi</option>
+                                                <option value="Yatim">Yatim</option>
+                                                <option value="Adik Kakak" selected>Adik Kakak</option>
+                                                <option value="Alumni">Alumni</option>
+                                            {% elif siswa.status == "Alumni" %}
+                                                <option value="Reguler">Reguler</option>
+                                                <option value="Yayasan">Yayasan</option>
+                                                <option value="Inklusi">Inklusi</option>
+                                                <option value="Yatim">Yatim</option>
+                                                <option value="Adik Kakak">Adik Kakak</option>
+                                                <option value="Alumni" selected>Alumni</option>
                                             {% endif %}
                                         </select>
                                     </div>
