@@ -50,20 +50,34 @@
                                     <h4 class="in-1">Tingkat</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <h4>{{tingkat}}</h4>
+                                        <select id="tingkat" placeholder="Masukkan Tingkat" name="tingkat" required>
+                                            {% if siswa.tingkat == "TK" %}
+                                                <option value="TK" selected>TK</option>
+                                                <option value="SD">SD</option>
+                                                <option value="SMP">SMP</option>
+                                            {% elif siswa.tingkat == "SD" %}
+                                                <option value="TK">TK</option>
+                                                <option value="SD" selected>SD</option>
+                                                <option value="SMP">SMP</option>
+                                            {% elif siswa.tingkat == "SMP" %}
+                                                <option value="TK">TK</option>
+                                                <option value="SD">SD</option>
+                                                <option value="SMP" selected>SMP</option>
+                                            {% endif %}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row detail">
                                     <h4 class="in-1">Kelas</h4>
                                     <h4>:</h4>
                                     <div class="dtl-style">
-                                        <select name="kelas"  required>
-                                            {% if tingkat == "TK" %}
+                                        <select name="kelas" required>
+                                            {% if siswa.tingkat == "TK" %}
                                                 <option value="A DAHLIA">Kelas A Dahlia</option>
                                                 <option value="A MELATI">Kelas A Melati</option>
                                                 <option value="B LILY">Kelas B Lily</option>
                                                 <option value="B MATAHARI">Kelas B Matahari</option>
-                                            {% elif tingkat == "SD" %}
+                                            {% elif siswa.tingkat == "SD" %}
                                                 <option value="1D">Kelas 1D</option>
                                                 <option value="1J">Kelas 1J</option>
                                                 <option value="1I">Kelas 1I</option>
@@ -88,7 +102,7 @@
                                                 <option value="6J">Kelas 6J</option>
                                                 <option value="6I">Kelas 6I</option>
                                                 <option value="6P">Kelas 6P</option>
-                                            {% elif tingkat == "SMP" %}
+                                            {% elif siswa.tingkat == "SMP" %}
                                                 <option value="7D">Kelas 7D</option>
                                                 <option value="7J">Kelas 7J</option>
                                                 <option value="7I">Kelas 7I</option>
