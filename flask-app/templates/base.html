@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='Image/Icon1.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/base.css') }}">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}"> -->
+        <!--Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+        
+        <script src="https://kit.fontawesome.com/2aa7d1e097.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script> -->
+        <title>Base</title>
+        {% block head%}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="parent">
+            
+            <!-- sidebar -->
+            <div class="side"> 
+                <div class="sidebar">
+                    <img src="../static/Image/logo-sekolah.png" class="side-logo">
+                    <p>Sistem Informasi Pendataan Tagihan Siswa Daarul Jannah</p>
+                    
+                </div>
+                <div class="menu">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="/home" class="li-menu" id="dashboard">
+                                    <i class="fa-solid fa-house"></i>&emsp;
+                                    <h5 >Dashboard</h5>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/manajemen_siswa" class="li-menu" id="data_siswa">
+                                    <i class="fa fa-users"></i>&emsp;
+                                    <h5 >Data Siswa/i</h5>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/riwayat_transaksi" class="li-menu" id="riwayat_transaksi">
+                                    <i class="fa-solid fa-book-bookmark"></i></i></i>&emsp;
+                                    <h5>Riwayat Transaksi</h5>
+                                </a>
+                            </li>
+                            {% if session['otoritas'] == "Admin"%}
+                            <li>
+                                <a href="/manajemen_pegawai" class="li-menu" id="data_staf">
+                                    <i class="fa-solid fa-address-book"></i>&emsp;
+                                    <h5>Data Staf</h5>
+                                </a>
+                            </li>
+                            {% endif %}
+                            
+                        </ul>
+                    </nav>
+                    
+                </div>
+            </div>
+
+            <!-- header -->
+            <div class="top">
+                
+                <div class="dropdown" style="float:right;">
+                    <button class="dropbtn">
+                        <img src="../static/foto_pegawai/default.jpg" class="foto-profil">
+                    </button>
+                    <div class="dropdown-content" style="width:200px;padding:10px ">
+                        <li><a href="" class="disabled" style="color:rgb(155, 155, 155)">Otoritas: {{session['otoritas']}}</a></li>
+                        <li><a href="/logout" class="logout-btn">logout</a></li>
+                    </div>
+                </div>
+                <div class="top-profil">
+                    <h4>{{session['nama']}}</h4>
+                    <p>{{session['nip']}}</p>
+                </div>
+            </div>
+
+            <!-- main -->
+            <div class="middle">
+                <div class="content">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+                <div class="footer">
+                    <p>Copyright &copy; {{session['year']}} Sekolah Daarul Jannah</p>
+                </div>
+                
+            </div>
+
+            <!-- footer -->
+            
+        </div>
+        
+    </body>
+</html>
+
+

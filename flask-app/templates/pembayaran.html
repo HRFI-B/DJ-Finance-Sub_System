@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+<html>
+    <head>
+        {% block head %}
+            <!-- <title>Riwayat Pembayaran - Sistem Pembayaran DJ</title> -->
+            <script>document.title = "Pembayaran - Sistem Pembayaran DJ"</script>
+            <script src="{{ url_for('static', filename='Javascript/pre_input_data.js') }}"></script>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block body %}
+        
+        <h1 class="page-title">Pembayaran Siswa/i Sekolah Daarul Jannah</h1>
+        <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
+        <!-- <form action="" method="post" enctype="multipart/form-data"> -->
+            <div class="container">
+                <div class="card">
+                    <div class="row fl-stretch" style="margin-bottom:2%">
+                        <div class="column" >
+                            <h4 class="text">Data Siswa/i</h4>
+                            <div class="card-nosh" style="margin-right:10px">
+                                <div class="row " 
+                                style="align-items:center;justify-content:space-evenly;"
+                                >
+                                    {% set foto_siswa = "foto_siswa/default.jpg" %}
+                                    <div>
+                                        <img src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" alt="foto orang" >
+                                    </div>
+                                    <div class="column">
+                                        <div class="row detail">
+                                            <h4 class="indikator">Nama</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.nama_siswa}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4 class="indikator">Kelas</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.kelas}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4 class="indikator">Jenis Kelamin</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.jenis_kelamin}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4 class="indikator">Status</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.status}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4 class="indikator">NIS</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.nis}}</p>
+                                        </div>
+                                        <div class="row detail">
+                                            <h4 class="indikator">NISN</h4>
+                                            <h4>:</h4>
+                                            <p>{{siswa.nisn}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="column">
+                                <h4 class="text" style="margin-left:10px">Input Data Rincian Tagihan </h4>
+                            <form action="" method="post">
+                                <div class="card-nosh" style="margin-left:10px">
+                                    <div class="detail-tagihan">
+                                        <div>
+                                            <p>Periode Pembayaran :</p>
+                                            <select id="periode" name="periode_bulan" required="required" onchange="changeTA()">
+                                                <option disabled hidden selected id="default" value="">Pilih Bulan</option>
+                                                <option value="Januari" id="1">Januari</option>
+                                                <option value="Februari" id="2">Februari</option>
+                                                <option value="Maret" id="3">Maret</option>
+                                                <option value="April" id="4">April</option>
+                                                <option value="Mei" id="5">Mei</option>
+                                                <option value="Juni" id="6">Juni</option>
+                                                <option value="Juli" id="7">Juli</option>
+                                                <option value="Agustus" id="8">Agustus</option>
+                                                <option value="September" id="9">September</option>
+                                                <option value="Oktober" id="10">Oktober</option>
+                                                <option value="November" id="11">November</option>
+                                                <option value="Desember" id="12">Desember</option>
+                                            </select>
+                                            <select id="tahun_ajaran" name="periode_ta" required="required">
+                                                <option disabled hidden selected value="">Pilih Tahun Ajaran</option>
+                                                <option>{{session['year']}}/{{session['year']+1}} Ganjil</option>
+                                                <option>{{session['year']}}/{{session['year']+1}} Genap</option>
+                                            </select>
+                                        </div>
+                                        <div class="tagihan">
+                                            <p>Pilih Tagihan :</p>
+                                            <ul>
+                                                <li>
+                                                    <select id="tagihan_spp" style="width:40%">
+                                                        <option value="SPP">SPP</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_spp" name="nominal_spp" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_tabungan_wajib" style="width:40%">
+                                                        <option value="Tabungan Wajib">Tabungan Wajib</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_tabungan_wajib" name="nominal_tabungan_wajib" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_katering" style="width:40%">
+                                                        <option value="Katering">Katering</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_katering" name="nominal_katering" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_jemputan" style="width:40%">
+                                                        <option value="Jemputan">Jemputan</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_jemputan" name="nominal_jemputan" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_ekskul" style="width:40%">
+                                                        <option value="Ekskul">Ekskul</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_ekskul" name="nominal_ekskul" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_majelis_sekolah" style="width:40%">
+                                                        <option value="Majelis Sekolah">Majelis Sekolah</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_majelis_sekolah" name="nominal_majelis_sekolah" placeholder="Masukkan Nominal" style="width:40%">
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_kelas_berbakat" style="width:40%">
+                                                        <option value="Kelas Berbakat">Kelas Berbakat</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_kelas_berbakat" name="nominal_kelas_berbakat" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <!-- &ensp; -->
+                                                    <!-- <button class="tgh-btn" title="Tambah Tagihan"><i class="fa-solid fa-circle-plus"></i></button> -->
+                                                </li>
+                                                <li>
+                                                    <select id="tagihan_bimbel" style="width:40%">
+                                                        <option value="Bimbel">Bimbel</option>
+                                                    </select> &emsp;
+                                                    Rp.&ensp;
+                                                    <input type="number" id="nominal_bimbel" name="nominal_bimbel" placeholder="Masukkan Nominal" style="width:40%">
+                                                    <!-- &ensp; -->
+                                                    <!-- <button class="tgh-btn" title="Tambah Tagihan"><i class="fa-solid fa-circle-plus"></i></button> -->
+                                                </li>
+                                            </ul>
+                                            <!-- <button class="tgh-btn btn">Tambah Tagihan</button> -->
+                                        </div>
+                                    </div>
+                                    
+                                <div class="row cmd-btn" style="justify-content:flex-end;">
+                                    <a>
+                                        <input type="submit" class="p-btn btn" value="Simpan Pembayaran">
+                                        <!-- <p >Simpan Pembayaran</p> -->
+                                    </a>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+        <!-- </form> -->
+        <script>
+            function changeTA(){
+                var periode = document.getElementById('periode').value;
+                var tahun_ajaran = document.getElementById('tahun_ajaran');
+                var year = parseInt(new Date().getFullYear());
+    
+    
+                if (periode == "Januari" || periode == "Februari" || periode == "Maret" || periode == "April" || periode == "Mei" || periode == "Juni" ) {
+                    document.querySelector('#tahun_ajaran').options[2].selected = true;
+                } else if ( periode == "Juli" || periode == "Agustus" || periode == "September" || periode == "Oktober" || periode == "November" || periode == "Desember") {
+                    document.querySelector('#tahun_ajaran').options[1].selected = true;
+                }
+                else{
+                    document.querySelector('#tahun_ajaran').options[0].selected = true;
+                }
+            }
+            bulan = new Date().getMonth()+1;
+            if (bulan == 1){
+                document.querySelector('#periode').options[1].selected = true;
+                changeTA();
+            }
+            else if (bulan == 2){
+                document.querySelector('#periode').options[2].selected = true;
+                changeTA();
+            }
+            else if (bulan == 3){
+                document.querySelector('#periode').options[3].selected = true;
+                changeTA();
+            }
+            else if (bulan == 4){
+                document.querySelector('#periode').options[4].selected = true;
+                changeTA();
+            }
+            else if (bulan == 5){
+                document.querySelector('#periode').options[5].selected = true;
+                changeTA();
+            }
+            else if (bulan == 6){
+                document.querySelector('#periode').options[6].selected = true;
+                changeTA();
+            }
+            else if (bulan == 7){
+                document.querySelector('#periode').options[7].selected = true;
+                changeTA();
+            }
+            else if (bulan == 8){
+                document.querySelector('#periode').options[8].selected = true;
+                changeTA();
+            }
+            else if (bulan == 9){
+                document.querySelector('#periode').options[9].selected = true;
+                changeTA();
+            }
+            else if (bulan == 10){
+                document.querySelector('#periode').options[10].selected = true;
+                changeTA();
+            }
+            else if (bulan == 11){
+                document.querySelector('#periode').options[11].selected = true;
+                changeTA();
+            }
+            else if (bulan == 12){
+                document.querySelector('#periode').options[12].selected = true;
+                changeTA();
+            }
+            else{
+                document.querySelector('#periode').options[0].selected = true;
+                changeTA();
+            }
+        </script>
+        
+        {% endblock %}
+    </body>
+</html>

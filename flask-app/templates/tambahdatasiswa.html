@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+    <head>
+        {% block head%}
+        <title>Tambah Data Siswa - Sistem Pembayaran DJ</title>
+        <script>document.title = "Penambahan Data Siswa - Sistem Pembayaran DJ"</script>
+        <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='Javascript/dynamic_option.js') }}"></script>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block body %}
+            <h1 class="page-title">Tambah Data Siswa/i Sekolah Daarul Jannah</h1>
+            <h4 class="sub-title">Data Siswa/i Sekolah Daarul Jannah</h4>
+
+            <form action="/tambah_siswa" method="post" enctype="multipart/form-data">
+                <div class="container">
+                    <div class="card">
+                        <div class="row fl-stretch">
+                            {% set foto_siswa = "foto_siswa/default.jpg" %}
+                            <img id="pic" src="{{url_for('static', filename=foto_siswa)}}" class="ft-siswa" style="margin-right:5%; margin-left:5%"/>
+                            <!-- <img src="../static/foto_siswa/1549425553128.png" > -->
+                            <div >
+                                <div class="row detail">
+                                    <h4 class="in-2">Nama</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <input type="text" id="nama_siswa" placeholder="Masukkan Nama" name="nama_siswa" required>
+                                    </div>
+                                </div>
+                                   
+                                <div class="row">
+                                    <div class="row detail">
+                                        <h4 class="in-1">NIS</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <input type="text" id="NIS" placeholder="Masukkan NIS" name="nis" maxlength="9" minlength="9" required>
+                                        </div>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="in-1">NISN</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <input type="text" id="NISN" placeholder="Masukkan NISN" maxlength="10" minlength="10" name="nisn">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="row detail">
+                                        <h4 class="in-1">Tingkat</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="tingkat" id="tingkat_siswa" required  onchange="dynamicOption()">
+                                                <option disabled selected hidden>
+                                                    Pilih Tingkat
+                                                </option>
+                                                <option value="TK">
+                                                    Taman Kanak-Kanak
+                                                </option>
+                                                <option value="SD">
+                                                    Sekolah Dasar
+                                                </option>
+                                                <option value="SMP">
+                                                    Sekolah Menengah Pertama
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="in-1">Kelas</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="kelas" id="kelas_siswa" required disabled>
+                                                <option disabled hidden>
+                                                    Pilih Tingkat
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                <div class="row">
+                                    <div class="row detail">
+                                        <h4 class="in-1">Jenis Kelamin</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="jenis_kelamin" required>
+                                                <option value="Laki-laki">Laki-laki</option>
+                                                <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row detail">
+                                        <h4 class="in-1">Status</h4>
+                                        <h4>:</h4>
+                                        <div class="dtl-style">
+                                            <select name="status" required>
+                                                <option value="Reguler">Reguler</option>
+                                                <option value="Yayasan">Yayasan</option>
+                                                <option value="Inklusi">Inklusi</option>
+                                                <option value="Anak Pegawai">Anak Pegawai</option>
+                                                <option value="Yatim">Yatim</option>
+                                                <option value="Adik Kakak">Adik Kakak</option>
+                                                <option value="Alumni">Alumni</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- <div class="row detail">
+                                    <h4 class="in-2">Foto</h4>
+                                    <h4>:</h4>
+                                    <div >
+                                        <input type="file" name="foto_siswa" oninput="pic.src=window.URL.createObjectURL(this.files[0])" required>
+                                    </div>
+                                </div> -->
+                                
+                            </div>
+                                
+                        </div>
+                        <div class="row cmd-btn" style="justify-content:flex-end;">
+                            
+                            <input type="submit" value="Submit" class="p-btn btn konten-profil" style="border:none">
+                               
+                        </div> 
+                    </div>
+                </div> 
+                </form>
+                <script src="{{url_for('static', filename='Javascript/datsis_active_class.js')}}"></script>
+                <script src="{{url_for('static', filename='Javascript/number_only_filter.js')}}"></script>
+                <script>
+                    setInputFilter(document.getElementById("NIS"), function(value) {
+                        return /^\d*\.?\d*$/.test(value);
+                      }, "Only digits and '.' are allowed");
+                    setInputFilter(document.getElementById("NISN"), function(value) {
+                    return /^\d*\.?\d*$/.test(value);
+                    }, "Only digits and '.' are allowed");
+                </script>
+        {% endblock %}
+    </body>
+</html> 

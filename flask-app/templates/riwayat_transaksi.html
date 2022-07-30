@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+    <head>
+        {% block head%}
+            <title>Manajemen Siswa - Sistem Pembayaran DJ</title>
+            <!-- JS Script -->
+            <script>document.title = "Riwayat Transaksi - Sistem Pembayaran DJ"</script>
+            <script src="{{ url_for('static', filename='Javascript/filter_siswa.js') }}" type="text/javascript"></script>
+        {% endblock %}
+    </head>
+
+    <body>
+        {%block body%}
+        <div >
+            <h1 class="page-title">Riwayat Transaksi Sekolah Daarul Jannah</h1>
+            <h4 class="sub-title">Sistem Keuangan Sekolah Daarul Jannah</h4>
+
+            <!-- <div class="filter">
+                <div class="filter-kiri">
+                    <select class="filter-tingkat" id="filter-tingkat" onchange="filterTingkat()" title="Filter Tingkat Pendidikan">
+                        <option value="Tingkat" disabled selected hidden>Tingkat</option>
+                        <option value="">Semua Tingkat</option>
+                        <option value="TK">TK</option>
+                        <option value="SD" >SD</option>
+                        <option value="SMP">SMP</option>
+                    </select>
+                    
+                    <select class="filter-kelas" id="filter-kelas" onchange="filterKelas()" title="Filter Kelas">
+                        <option value="Kelas" disabled selected>Kelas</option>
+                    </select>
+                </div>
+                <div class="filter-kanan">
+                    <a href="/tambah_siswa">
+                        <p class="p-btn btn shadow">Tambah Data Siswa/i</p>
+                    </a>
+                    <div class="search-bar">
+                        <select id="search-bar-filter" onchange="searchBarClear()">
+                            <option value="">Semua Tingkat</option>
+                            <option value="NIS" selected>NIS</option>
+                            <option value="Nama">Nama</option>
+                            <option value="Kelas">Kelas</option>
+                        </select>
+                        <input type="text" placeholder="Cari Berdasarkan NIS" id="search-txt" onkeyup="searchBar()">
+                    </div>
+                </div>
+            </div> -->
+            
+            <div class="table">
+                <table class="shadow coll" style="overflow-x: auto;" id="tabel-transaksi">
+                    <tr>
+                        <th>No</th>
+                        <th>NIS</th>
+                        <th>Nama Siswa/i</th>
+                        <th>Periode</th>
+                        <th>Waktu Pembayaran</th>
+                        <th>SPP</th>
+                        <th>Tabungan Wajib</th>
+                        <th>Katering</th>
+                        <th>Jemputan</th>
+                        <th>Ekskul</th>
+                        <th>Majelis Sekolah</th>
+                        <th>Kelas Berbakat</th>
+                        <th>Bimbel</th>
+                        <th>Total</th>
+                        <!-- <th>Menu Fungsi</th> -->
+                    </tr>
+                    {% for pembayaran in pembayaran %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ pembayaran.nis }}</td>
+                        <td class="tb-name">
+                            {{pembayaran.nama_siswa}}
+                        </td>
+                        <td>{{ pembayaran.pembayaran_periode_bulan }} - {{pembayaran.pembayaran_periode_ta}}</td>
+                        <td>{{ pembayaran.waktu_pembayaran }}</td>
+                        <td>{{ pembayaran.spp }}</td>
+                        <td>{{ pembayaran.tabungan_wajib }}</td>
+                        <td >
+                            {{pembayaran.katering}}
+                        </td>
+                        <td>{{ pembayaran.jemputan }}</td>
+                        <td>{{ pembayaran.ekskul }}</td>
+                        <td>{{ pembayaran.majelis_sekolah }}</td>
+                        <td>{{ pembayaran.kelas_berbakat }}</td>
+                        <td>{{ pembayaran.bimbel }}</td>
+                        <td>{{ pembayaran.total }}</td>
+                        <!-- <td class="row" style="justify-content:center ;">
+                        </td> -->
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
+        </div>
+        <script>
+            var tabel = document.getElementById("tabel-transaksi");
+            var rows = tabel.getElementsByTagName("td");
+            for (var i = 0; i < rows.length; i++) {
+                if(i%14!=0 && (i-1)%14!=0 && (i-4)%14!=0){
+                    if (parseInt(rows[i].innerHTML) > 0){
+                        rows[i].innerHTML = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                            }).format(rows[i].innerHTML);
+                    }
+                }
+            }
+            for (var i = 0; i < rows.length; i++) {
+                if (parseInt(rows[i].innerHTML) == 0){
+                    rows[i].innerHTML = "-";
+                }
+            }
+        </script>
+        <script src="{{url_for('static', filename='Javascript/riwayattrans_active_class.js')}}">   </script>
+        {% endblock %}
+    </body>
+</html>
+

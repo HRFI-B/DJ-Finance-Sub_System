@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+    <head>
+        {% block head%}
+        <title>Detail Data Pegawai - Sistem Pembayaran DJ</title>
+        <script>document.title = "Detail Data Pegawai - Sistem Pembayaran DJ"</script>
+        {% endblock %}
+    </head>
+
+<body>
+    <!-- Sidebar -->
+            {% block body %}
+            <h1 class="page-title">Detail Data Pegawai Daarul Jannah</h1>
+            <h4 class="sub-title">Sistem Cek Pembayaran Sekolah Daarul Jannah</h4>
+            
+            <div class="container">
+                <div class="card">
+                    <div class="row fl-stretch">
+                        {% set foto_pegawai = "foto_siswa/default.jpg" %}
+                        <img src="{{url_for('static', filename=foto_pegawai)}}" class="ft-pgw" alt="foto orang" style="margin-right:5%; margin-left:5%">
+                        <div >
+                            <div class="row detail" style="margin-bottom:10px">
+                                <h4 class="in-1">Nama</h4>
+                                <h4>:</h4>
+                                <div class="dtl-style">
+                                    <h4>{{pegawai.nama_pegawai}}</h4>
+                                </div>
+                            </div>
+                               
+                            <!-- <div class="row"> -->
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">NIP</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{pegawai.nip}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Status</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{pegawai.status}}</h4>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                            
+                            <!-- <div class="row"> -->
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Unit</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{pegawai.unit}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Jabatan</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{pegawai.jabatan}}</h4>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                                
+                            <!-- <div class="row"> -->
+                                
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Jenis Kelamin</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{pegawai.jenis_kelamin}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row detail" style="margin-bottom:10px">
+                                    <h4 class="in-1">Otoritas Sistem</h4>
+                                    <h4>:</h4>
+                                    <div class="dtl-style">
+                                        <h4>{{pegawai.otoritas}}</h4>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                            <div class="row detail" style="margin-bottom:10px">
+                                <h4 class="in-1">Username</h4>
+                                <h4>:</h4>
+                                <div class="dtl-style">
+                                    <h4>{{pegawai.username}}</h4>
+                                </div>
+                            </div>
+                            <div class="row detail" style="margin-bottom:10px">
+                                <h4 class="in-1">Password</h4>
+                                <h4>:</h4>
+                                <div class="dtl-style">
+                                    <h4>{{pegawai.password}}</h4>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                            
+                    </div>
+                    <div class="row cmd-btn" style="justify-content:flex-end;">
+                        <a href="{{url_for('ubah_pegawai', nip = pegawai['nip'])}}">
+                            <p class="ch-btn btn">Ubah Data Pegawai</p>
+                        </a>
+                        <button href="{{url_for('hapus_pegawai', nip = pegawai['nip'])}}" class="del-btn btn" style="color: white;" onclick="open_modal()">
+                            <p >Hapus Data Pegawai</p>
+                        </button>
+                </div> 
+                </div>
+            </div>
+            <div class="pop-up" role="alert">
+                <div class="modal">
+                    <!-- <i class="fa-solid fa-xmark close-btn" id="confirm"></i> -->
+                    <p id="confirm">Apakah Anda yakin untuk menghapus data pegawai?</p>
+                    <div class="modal-buttons row">
+                        <a href="{{ url_for('detail_pegawai', nip = pegawai['nip']) }}" class="btn-no">
+                            <p>Batal</p></a>
+                        <a href="{{ url_for('hapus_pegawai', nip = pegawai['nip']) }}" class="btn-yes">
+                            <p>Hapus</p></a>
+                    </div>
+                </div>
+            </div> 
+            <script>
+                // Get the modal
+                function open_modal(){
+
+                    var modal = document.getElementsByClassName("pop-up")[0];
+                    modal.style.display = "block";
+    
+                }
+            </script>
+            <script src="{{url_for('static', filename='Javascript/datpeg_active_class.js')}}">   </script>   
+            {% endblock %}
+
+</body>

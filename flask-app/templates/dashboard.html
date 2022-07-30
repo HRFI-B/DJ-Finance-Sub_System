@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+    <head>
+        {% block head%}
+            <title>Dashboard - Sistem Pembayaran DJ</title>
+        {% endblock %}
+    </head>
+
+    <body>
+    {% block body %}
+    
+        <div class="img-dash">
+            <img src="{{ url_for('static', filename='Image/Icon1.png') }}" style="opacity: 0.25; width:298px; height:auto;">
+        </div>
+        
+    
+    <script src="{{url_for('static', filename='Javascript/dash_active_class.js')}}">   </script>
+    {% endblock %}
+    </body>
+</html>

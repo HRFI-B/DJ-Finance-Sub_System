@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>Dashboard - Sistem Pembayaran DJ</title>
+        <!--Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <!-- CSS Custom -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard-admin.css') }}">
+
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='Image/Icon1.png') }}">
+        <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script>
+        
+    </head>
+
+    <body>
+        <!-- Header -->
+        <nav class="navbar navbar-light header">
+            <a>
+            <button class ="box-menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
+            <img src="{{ url_for('static', filename='Image/Icon1.png') }}" width="40" height="40" class="d-inline-block" alt="">
+            </a>
+            <div class="user-box">
+                <i class="fas fa-user-circle id"></i>
+                <div class="id">
+                    <p class = "nama">Andy Rusman<br>018273282</p>
+                </div>
+            </div>
+        </nav>
+
+        <h1 class = "text-center h1">Menu Administrator<br>Sekolah Daarul Jannah<br></h1>
+
+        <div class="container">
+        <div class="row mx-auto">
+          <div class="card menu1 col-auto mr-auto" style="width: 18rem;">
+            <a href="cekpembayaran.html">
+            <div class="card-body">
+              <img src="{{ url_for('static', filename='Image/fa-solid_user-check.png') }}" class="card-img-overlay">
+              <p class="card-text">Cek Pembayaran<br>Siswa</p>
+            </div>
+          </a>
+          </div>
+
+          <div class="card menu2 col-auto" style="width: 18rem;">
+            <a href="ubahdata.html">
+            <div class="card-body">
+                <img src="Image/fa-solid_user-edit.png" class="card-img-overlay">
+                <p class="card-text">Ubah Data<br>Siswa</p>
+              </div>
+            </a>
+            </div>
+        </div>
+          
+        <div class="row mx-auto">
+          <div class="card menu1" style="width: 18rem;">
+            <a href="cekpembayaran.html">
+            <div class="card-body">
+              <img src="Image/fa-solid_user-check.png" class="card-img-overlay">
+              <p class="card-text">Cek Pembayaran<br>Siswa</p>
+            </div>
+          </a>
+          </div>
+
+          <div class="card menu2" style="width: 18rem;">
+            <a href="ubahdata.html">
+            <div class="card-body">
+                <img src="Image/fa-solid_user-edit.png" class="card-img-overlay">
+                <p class="card-text">Ubah Data<br>Siswa</p>
+              </div>
+            </a>
+            </div>
+        </div>
+
+        <div class="card mx-auto menu3" style="width: 18rem;">
+          <a href="cekpembayaran.html">
+            <div class="card-body">
+              <img src="Image/carbon_data-view-alt.png" class="card-img-overlay">
+              <p class="card-text">Audit Log<br>(Admin)</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+        <footer class="bg-light text-center text-lg-start footer">
+            <!-- Copyright -->
+            <div class="text-left p-3">
+              Copyright © 2021 Sekolah Daarul Jannah
+            </div>
+        </footer>
+    </body>
+</html>

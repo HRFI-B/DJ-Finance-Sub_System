@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Cek Pembayaran - Sistem Pembayaran DJ</title>
+        <!--Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <!-- CSS Custom -->
+        <link rel="stylesheet" href="CSS/editstaff.css">
+
+        <link rel="icon" type="image/png" href="Image/Icon1.png">
+        <script src="https://kit.fontawesome.com/07552a3127.js" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+        <!-- Header -->
+        <nav class="navbar navbar-light header">
+            <a>
+            <button class ="box-menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
+            <img src="Image/logo-sekolah.png" width="40" height="40" class="d-inline-block" alt="">
+            </a>
+            <div class="user-box">
+                <i class="fas fa-user-circle id"></i>
+                <div class="id">
+                    <p class = "nama">Andy Rusman<br>018273282</p>
+                </div>
+            </div>
+        </nav>
+
+        <div class="heading">
+            <a href="dashboard.html" class="">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <div class="head-pack">
+                <h1 class = "h1">Data Staff Daarul Jannah</h1>
+                <h2>Sistem Cek Pembayaran Sekolah Daarul Jannah</h2>
+            </div>
+        </div>
+
+        <div class="data-container mx-auto">
+            <a href="datasiswa.html">
+                <button  class="btn btn-success">Tambah Data Staff</button>
+            </a>
+            <div class="tabel-staff mx-auto">
+                <div class="scrollable1">
+                    <table border='1' class="table table-hover mx-auto">
+                        <thead>
+                            <th>NIP</th>
+                            <th>Nama Pegawai</th>
+                            <th>Sex</th>
+                            <th>Jabatan</th>
+                            <th>Otoritas</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td name="nip">846575921</td>
+                                <td name="nama">Firdaus Abdul Mu'id</td>
+                                <td name="sex">Laki-laki</td>
+                                <td name="jabatan">Guru</td>
+                                <td name="otoritas">User</td>
+                            </tr>
+                            <tr>
+                                <td name="nip">846575921</td>
+                                <td name="nama">Ihza Fajrur Racham</td>
+                                <td name="sex">Laki-laki</td>
+                                <td name="jabatan">Staff</td>
+                                <td name="otoritas">Admin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger" style="margin-top:20px !important; float:right;">Hapus Data Staff</button>
+        </div>
+
